@@ -1,0 +1,198 @@
+/*以下是02开奖公告*/
+
+.information_content {
+    top: 0.89rem;
+}
+
+.notice_menu li {
+    line-height: 0.4rem;
+    height: 0.4rem;
+    width: 33.3%;
+    text-align: center;
+}
+
+.notice_menu li a {
+    /*padding: 0 0.05rem 0.1rem 0.05rem;*/
+    display: inline-block;
+    padding: 0 0.08rem;
+}
+
+.information_list {
+    display: block;
+    background: #fff;
+}
+
+.information_list p {
+    text-align: left;
+}
+
+.tyle_information p span:nth-child(1) {
+    margin-right: 0.09rem;
+}
+
+.tyle_information p span:nth-child(2) {
+    margin-right: 0.06rem;
+}
+
+.bet_cont div {
+    width: 0.28rem;
+    height: 0.28rem;
+    text-align: center;
+    line-height: 0.28rem;
+}
+
+
+/*以下是03单一种类查看*/
+
+.number {
+    padding: 0.17rem 0;
+    line-height: 1.8;
+    margin-bottom: 0.15rem;
+}
+
+.history_table {
+    background: #fff;
+}
+
+.history_table .table_title .title_item {
+    width: 33.3%;
+    padding: 0.14rem 0;
+}
+
+.content_item {
+    height: 0.8rem;
+    text-align: center;
+    margin: auto;
+}
+
+.content_item .col_first {
+    width: 58%;
+}
+
+.content_item .col_second {
+    width: 42%;
+}
+
+.content_item .cols_first,
+.content_item .cols_second,
+.content_item .cols_three {
+    width: 33.3%;
+}
+
+.col_first {
+    line-height: 0.8rem;
+}
+
+.row_first {
+    background: #f0f0f0;
+}
+
+.row_first,
+.row_second {
+    height: 0.395rem;
+    line-height: 0.395rem;
+}
+
+.bet_button {
+    height: 0.49rem;
+}
+
+.bet_button a {
+    display: block;
+    text-align: center;
+    line-height: 0.49rem;
+    background: #ef3726;
+}
+
+
+/*以下是05*/
+
+.stop_prompt {
+    text-align: left;
+    padding: 0.105rem 0 0.105rem 0.15rem;
+    background: #fff;
+}
+
+.title_notice {
+    position: relative;
+}
+
+.title_notice div:nth-child(1) {
+    height: 0.3rem;
+    line-height: 0.3rem;
+}
+
+.machine_elects {
+    position: absolute;
+    right: 0;
+    width: 0.7rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    border: 1px #ccc solid;
+    border-radius: 0.14rem;
+}
+
+.machine_elects span {
+    background: url(../images/jixuan.png) left center no-repeat;
+    color: #1f1f1f;
+    background-size: contain;
+    padding-left: 0.22rem;
+}
+
+.ball_cont {
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    text-align: justify;
+}
+
+.ball_cont a {
+    border: 1px #cfcfcf solid;
+    display: inline-block;
+    margin-bottom: 0.13rem;
+    margin-right: 0.05rem;
+}
+
+.select_complete {
+    height: 0.48rem;
+    line-height: 0.48rem;
+    /* justify-content:space-between; -webkit-justify-content:space-between;*/
+}
+
+.select_complete a {
+    padding: 0;
+}
+
+.select_complete .delect {
+    width: 0.45rem;
+    text-align: center;
+    position: relative;
+}
+
+.select_complete .delect span {
+    background: url(../images/shanchu.png) center no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 0.18rem;
+    border-right: 1px #ccc solid;
+    padding: 0.11rem 0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -0.11rem;
+}
+
+.select_complete .have {
+    margin-left: 0.16rem;
+}
+
+.select_complete .have span {
+    margin-left: 0.09rem;
+}
+
+.select_complete .complete {
+    width: 1.0rem;
+    background: #ef3726;
+    color: #fff;
+    position: absolute;
+    right: 0;
+}

@@ -1,0 +1,107 @@
+.record_select {
+    border-bottom: 1px solid #CCCCCC;
+    width: 100%;
+    position: fixed;
+    top: 0.44rem;
+    max-width: 800px;
+}
+
+ul.record_select >li {
+    padding: 0 0.1rem;
+    width: 25%;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    text-align: center;
+    float: left;
+    font-size: 0.16rem;
+    color: #989898;
+    font-family: "microsoft yahei", simhei;
+}
+
+ul.record_select >li a {
+    width: 100%;
+    display: inline-block;
+}
+
+ul.record_select >li span {
+    display: inline-block;
+    height: 0.4rem;
+}
+
+ul.record_select >li.active span {
+    color: #ef3726;
+    border-bottom: 2px solid #ef3726;
+}
+
+
+.notice_menu li {
+    width: 33.3%;
+    text-align: center;
+}
+
+.information_list {
+    background: #fff;
+}
+
+.information_list li {
+    display: block;
+    background: url(../images/youjiant.png) no-repeat right center;
+    background-size: 0.09rem;
+    height: 0.76rem;
+    border-bottom: 1px #cccccc solid;
+}
+.information_list li:last-child{
+    border-bottom:none
+}
+
+.information_list p {
+    text-align: left;
+}
+
+.tyle_information {
+    position: relative;
+}
+
+.tyle_information .bet_cont {
+    -webkit-box-pack: justify;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+}
+
+.tyle_information img {
+    display: block;
+    width: 0.55rem;
+}
+
+.tyle_information div.content_info {
+    position: absolute;
+    left: 0.7rem;
+    top: 0;
+    height: 0.55rem;
+    width: 2.5rem;
+    margin-top: 0.13rem;
+    padding-top: 0.06rem;
+}
+
+.tyle_information div.content_info .content_top {
+    height: 0.2rem;
+}
+
+.tyle_information div.content_info .content_bottom {
+    height: 0.18rem;
+    margin-top: 0.1rem;
+}
+
+.tyle_information div.content_info .content_top p {
+    color: #333333;
+    font-size: 0.15rem;
+}
+
+.tyle_information div.content_info .content_bottom p {
+    color: #989898;
+    font-size: 0.13rem;
+}
+
+.tyle_information p span:nth-child(2) {
+    margin-right: 0.06rem;
+}

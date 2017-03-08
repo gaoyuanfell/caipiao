@@ -1,0 +1,417 @@
+/*以下是05双色球抢号*/
+
+.stop_prompt {
+    text-align: left;
+    padding: 0.105rem 0 0.105rem 0.15rem;
+    background: #fff;
+}
+
+.title_notice {
+    position: relative;
+}
+
+.title_notice div:nth-child(1) {
+    height: 0.3rem;
+    line-height: 0.3rem;
+}
+
+.machine_elects {
+    position: absolute;
+    right: 0;
+    width: 0.7rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    border: 1px #ccc solid;
+    border-radius: 0.14rem;
+}
+
+.machine_elects span {
+    background: url(../images/jixuan.png) left center no-repeat;
+    color: #1f1f1f;
+    background-size: contain;
+    padding-left: 0.22rem;
+}
+
+.ball_cont {
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    text-align: justify;
+    display: block;
+    /* text-align: left;*/
+}
+
+.ball_cont a {
+    border: 1px #cfcfcf solid;
+    display: inline-block;
+    margin-bottom: 0.13rem;
+    width: calc(100%/8 - 0.0511rem);
+    margin-right: calc(0.0511rem*8 /4);
+    width: -webkit-calc(100%/8 - 0.0511rem);
+    margin-right: -webkit-calc(0.0511rem*8 /4);
+}
+
+.select_complete {
+    height: 0.48rem;
+    line-height: 0.48rem;
+    background: #fff;
+}
+
+.select_complete a {
+    padding: 0;
+}
+
+.select_complete .delect {
+    width: 0.45rem;
+    text-align: center;
+    position: relative;
+}
+
+.select_complete .delect span {
+    background: url(../images/shanchu.png) center no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 0.18rem;
+    border-right: 1px #ccc solid;
+    padding: 0.11rem 0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -0.11rem;
+}
+
+.select_complete .have_cast {
+    margin-left: 0.16rem;
+}
+
+.select_complete .have_cast span {
+    margin-left: 0.07rem;
+}
+
+.select_complete .complete {
+    width: 1.0rem;
+    background: #ef3726;
+    color: #fff;
+    position: absolute;
+    right: 0;
+}
+
+
+/*以下是06双色球投注单*/
+
+.Note_number {
+    color: #979797;
+    padding-left: 0.15rem;
+}
+
+.Note_number span:nth-child(1) {
+    margin: 0;
+}
+
+.Note_number span {
+    margin-left: 0.06rem;
+}
+
+.total {
+    position: absolute;
+    right: 1.15rem;
+}
+
+.bet_multiple {
+    height: 0.6rem;
+    background: #fff;
+    line-height: 0.6rem;
+    margin-bottom: 0.125rem;
+    position: absolute;
+    top: 0.44rem;
+    width: 100%;
+}
+
+.bet_multiple .multiple_left {
+    width: 50%;
+}
+
+.multiple_left .allowance {
+    height: 0.3rem;
+    width: 1.115rem;
+    display: inline-block;
+    border: 1px #ccc solid;
+    line-height: 0.3rem;
+    background: #f2f2f2;
+    border-radius: 0.14rem;
+    position: relative;
+    vertical-align: middle;
+}
+
+.multiple_left .allowance a {
+    text-align: center;
+    display: inline-block;
+    width: 0.29rem;
+    line-height: 0.27rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: 0.15rem;
+}
+
+.multiple_left .allowance a:nth-child(1) {
+    left: 0;
+}
+
+.multiple_left .allowance a:nth-child(3) {
+    right: 0;
+}
+
+.multiple_left .multiple_numb {
+    width: 0.52rem;
+    text-align: center;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0.29rem;
+}
+
+.bet_slips {
+    height: 100%;
+}
+
+.bet_slips .slipsbg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.bet_slips .foot {
+    height: 0.06rem;
+    width: 3.28rem;
+    margin: auto;
+    position: absolute;
+    bottom: 0.06rem;
+}
+
+.slips_list {
+    background: #fff;
+    margin: 0 0.084rem;
+    -webkit-box-shadow: 0px 0px 10px #dcdcdc;
+    -moz-box-shadow: 0px 0px 10px #dcdcdc;
+    box-shadow: 0px 0px 10px #dcdcdc;
+    /* max-height: 3.7rem;*/
+    margin-top: -1px;
+    position: relative;
+    height: 100%;
+}
+
+.slips_item {
+    overflow: auto;
+    height: calc(100% - 0.49rem);
+}
+
+.slips_list a {
+    padding: 0.1rem 0.19rem 0.1rem 0;
+    margin: 0 0.12rem;
+    display: block;
+}
+
+.empty {
+    padding: 0.12rem 0.19rem 0.12rem 0;
+    display: block;
+    background: #fff;
+    position: absolute;
+    bottom: 0.09rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.slips_list .slips {
+    position: relative;
+}
+
+.slips_body {
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    text-align: left;
+}
+
+.slips_body>div {
+    display: inline-block;
+    width: -webkit-calc(100%/9 - 3.69px);
+    margin-right: -webkit-calc(3.69px*9 /4);
+    margin-top: 0.02rem;
+    margin-bottom: 0.02rem;
+    width: calc(100%/9 - 3.69px);
+    margin-right: calc(3.69px*9 /4);
+}
+
+.slips_body .red {
+    background: #fff3f3;
+}
+
+.slips_body .blue {
+    background: #f7fbff;
+}
+
+.bet_way {
+    margin-bottom: 0.15rem;
+}
+
+.bet_way a {
+    width: 1.65rem;
+    height: 0.4rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 0.38rem;
+    border: 1px #ccc solid;
+    border-radius: 0.4rem;
+    background: #fff;
+}
+
+.agreement {
+    background: #fff;
+    padding: 0.11rem 0;
+}
+
+.agreement input {
+    vertical-align: middle;
+}
+
+.box .title {
+    font-weight: normal;
+    text-align: center;
+    width: 100%;
+}
+
+.balance {
+    padding: 0.2rem 0 0.16rem 0;
+}
+
+.balance span {
+    width: 50%;
+    font-size: 0.15rem;
+}
+
+.bank_select img {
+    width: 0.25rem;
+    height: 0.25rem;
+    margin: auto;
+}
+
+.bank_input {
+    width: 2.85rem;
+    height: 0.4rem;
+    text-align: center;
+    line-height: 0.4rem;
+    border: 1px #ccc solid;
+    margin: auto;
+    border-radius: 0.1rem;
+    position: relative;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+
+.bank_input .banklogo {
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    left: 0.15rem;
+}
+
+.bank_input i img {
+    height: 0.09rem;
+    width: auto;
+    position: relative;
+    right: 0.15rem;
+}
+
+.bank_select select {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding-left: 0.45rem;
+    display: block;
+    right: 0;
+    border: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    z-index: 0;
+    width: 100%;
+    border-radius: 0.1rem;
+    outline: none;
+}
+
+.recharge {
+    margin-top: 0.25rem;
+}
+
+.recharge a {
+    height: 0.45rem;
+    line-height: 0.45rem;
+    background: #ef3726;
+    display: block;
+    border-radius: 0.1rem;
+    color: #fff;
+    font-size: 0.15rem;
+}
+
+.betting_button {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+.scroll-batList {
+    width: 100%;
+    position: absolute;
+    bottom: 1.7rem;
+    top: 1.16rem;
+    left: 0;
+    z-index: 1;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+}
+
+
+/*以下是08支付成功*/
+
+.payment_success .success {
+    width: 1.0rem;
+    margin-top: 0.7rem;
+}
+
+.payment_success h3 {
+    color: #000000;
+    font-size: 0.23rem;
+    font-weight: normal;
+    margin: 0.3rem 0 0.13rem 0;
+}
+
+.payment_success p {
+    color: #666666;
+}
+
+.success_after {
+    margin-top: 0.7rem;
+}
+
+.success_after a {
+    height: 0.5rem;
+    line-height: 0.5rem;
+    width: 100%;
+    display: block;
+    border: 1px #cccccc solid;
+    border-radius: 0.08rem;
+    background: #fff;
+}
+
+.success_after a:nth-child(2) {
+    margin: 0.15rem 0;
+}
+
+.success_after .continue_bet {
+    background: #ef3726;
+    color: #fff;
+    border: none;
+}

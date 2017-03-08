@@ -1,0 +1,1 @@
+export const baseUrl = 'http://180.97.75.144:8035/ABCLotteryWeb/';
