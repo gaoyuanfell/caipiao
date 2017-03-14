@@ -25,7 +25,13 @@
 .information_list p {
     text-align: left;
 }
-
+.information_list .information {
+    position: relative;
+}
+.type_pad{
+    position: absolute;
+    left: 0.15rem;
+}
 .tyle_information p span:nth-child(1) {
     margin-right: 0.09rem;
 }
@@ -33,21 +39,29 @@
 .tyle_information p span:nth-child(2) {
     margin-right: 0.06rem;
 }
-
+.type_logo img{
+    position: relative;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 0.55rem;
+    height: 0.55rem;
+}
 .bet_cont div {
     width: 0.28rem;
     height: 0.28rem;
     text-align: center;
     line-height: 0.28rem;
+    margin: auto;
 }
 
 
 /*以下是03单一种类查看*/
 
 .number {
-    padding: 0.17rem 0;
+    padding: 0.17rem 0.15rem;
     line-height: 1.8;
     margin-bottom: 0.15rem;
+    background: #fff;
 }
 
 .history_table {

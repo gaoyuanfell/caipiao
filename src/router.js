@@ -12,6 +12,7 @@ import history from './page/info/history.vue'
 
 
 import user from './page/user/user.vue'
+import manage from './page/user/manage.vue'
 /*银行卡添加*/
 import bindcard from './page/user/bindcard.vue'
 import addcard from './page/user/addcard.vue'
@@ -40,13 +41,13 @@ let routes = [{
     path: '/index',
     component: index,
     children: [{
-        name: 'betbox',
-        path: 'betbox',
-        component: betbox,
+        name: 'betboxList',
+        path: 'betboxList',
+        component: betboxList,
         children: [{
-            name: 'betboxList',
-            path: 'betboxList',
-            component: betboxList,
+            name: 'betbox',
+            path: 'betbox',
+            component: betbox,
             children: [{
                 name: 'betSuccess',
                 path: 'betSuccess',
@@ -73,6 +74,10 @@ let routes = [{
     path: '/user',
     component: user,
     children: [{
+        name:'manage',
+        path:'manage',
+        component:manage,
+    }, {
         name: 'pay',
         path: 'pay',
         component: pay,
@@ -169,10 +174,11 @@ const router = new Vuer({
     routes: routes
 })
 
-
 //登录拦截
+let zIndex = 10000;
 router.beforeEach((to, from, next) => {
-    next()
+    to.params.zIndex = ++zIndex;
+    next();
 })
 
 export default router;

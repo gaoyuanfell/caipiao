@@ -3,7 +3,7 @@
         <y-header title="开奖公告"></y-header>
         <div class="tabs">
             <ul class="notice_menu flex">
-                <li :class="{active:(index + 1) == activeIndex}" v-for="(item, index) in tabs" @click="tab(++index)" class="typehot size_16">
+                <li class="item" :class="{active:(index + 1) == activeIndex}" v-for="(item, index) in tabs" @click="tab(++index)">
                     <a href="Javascript:;">
                         {{ item.title}}
                     </a>
@@ -11,22 +11,24 @@
             </ul>
             <div style="overflow:auto;top: 0rem;bottom: 0rem;position: absolute;right: 0;left: 0;margin-top: 0.45rem;">
                 <mt-loadmore :bottomPullText="loadmore.bottomPullText" :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" ref="loadmore" style="margin-top: 0rem">
-                    <ul class="information_list cont_padding">
+                    <ul class="information_list">
                         <template v-for="i in lotteryNotices">
                             <li class="information">
-                                <router-link :to="{ name: 'doubleball', query: {DID: i.ItemId }}" class="flex pading">
+                                <router-link :to="{ name: 'doubleball', query: {DID: i.ItemId }}" class="flex item">
                                     <div class="type_logo"><img :src="i.LogoUrl" /></div>
-                                    <div class="tyle_information margleft">
-                                        <p class="typehot margbottom">
-                                            <span class="size_14 typecolor">{{i.TypeName}}</span>
+                                    <div class="tyle_information">
+                                        <p class="info">
+                                            <span>{{i.TypeName}}</span>
                                             <span>{{i.LotterySeq}}</span>
                                             <span>{{i.LotteryDate}}</span>
                                         </p>
                                         <div class="bet_cont flex">
-                                            <div v-for="(num, index) in i.LotteryString.split('')" v-if="num != ' '" :class="{bluebg:index == i.LotteryString.split('').length-1}" class="size_16 red redbg numberborder">{{$last}}{{num}}</div>
+                                            <div class="ball" v-for="(num, index) in getBalls(i.LotteryString)" v-if="num != ' '" :class="{bluebg:index == getBalls(i.LotteryString).length - 1}">{{$last}}{{num}}</div>
                                         </div>
                                     </div>
-                                    <span href="javascript:;" class="information_bg"></span>
+                                    <span href="javascript:;" class="information_bg">
+                                        <i class="icon">&#xe608;</i>
+                                    </span>
                                 </router-link>
                             </li>
                         </template>
@@ -85,7 +87,7 @@
         computed:{
             ...mapState({
                 lotteryNotices: state => state.$user.lotteryNotices
-            })
+            }),
         },
         methods: {
             ...mapMutations({
@@ -94,6 +96,17 @@
             ...mapActions([
 				'lotteryNotice_',
 			]),
+            getBalls(ball){
+                let rs = /\s/;
+                let rd = /\,/;
+                if(rs.test(ball)){
+                    return ball.split(rs);
+                }
+                if(rd.test(ball)){
+                    return ball.split(rd);
+                }
+                return ball.split("");
+            },
             tab(index) {
                 this.page.currentPage = 1;
                 this.activeIndex = index;

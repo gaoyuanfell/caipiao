@@ -16,106 +16,35 @@
                 </mt-swipe>
             </div>
             <div class="bet_luckynumber cont_padding">
-                <div class="bet_title itemborder flex">
-                    <div class="head menucolor">
+                <div class="bet_title flex">
+                    <p>
                         <span class="typecolor">【双色球】</span>2元赢千万大奖！等你来战！
-                    </div>
-                    <div class="head_right" @click="changeLuckyDoubleBall">
+                    </p>
+                    <p @click="changeLuckyDoubleBall">
+                        <img src="../../assets/images/huanyiz.png"/>
                         <a href="javascript:;" class="typehot">换一注</a>
-                    </div>
+                    </p>
                 </div>
                 <div class="bet_cont flex" id="index_number_box">
-                    <div class="lucky_number size_16 red numberborder ballsize">08</div>
-                    <div class="lucky_number size_16 red numberborder ballsize">09</div>
-                    <div class="lucky_number size_16 red numberborder ballsize">16</div>
-                    <div class="lucky_number size_16 red numberborder ballsize">18</div>
-                    <div class="lucky_number size_16 red numberborder ballsize">28</div>
-                    <div class="lucky_number size_16 red numberborder ballsize">32</div>
-                    <div class="lucky_number size_16 blue margin_none numberborder ballsize">08</div>
+                    <div class="lucky_number red">08</div>
+                    <div class="lucky_number red">09</div>
+                    <div class="lucky_number red">16</div>
+                    <div class="lucky_number red">18</div>
+                    <div class="lucky_number red">28</div>
+                    <div class="lucky_number red">32</div>
+                    <div class="lucky_number blue">08</div>
                 </div>
                 <div class="bet_button">
                     <a href="javascript:;" class="size_14 bet_submit" @click="luckSubmin()">投注幸运号</a>
                 </div>
             </div>
-            <!--以上是投注幸运号-->
-            <div class="type_content cont_padding">
+            <div class="lotterylist">
                 <ul @click="changePromptState($event)">
-                    <li class="item_menu flex itemborder">
-                        <div class="item" data-type="1">
-                            <img src="../../assets/images/leixing1.png" />
-                            <p class="typecolor size_14">双色球</p>
-                            <p class="typehot">奖池5000元</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing2.png" />
-                            <p class="typecolor size_14">大乐透</p>
-                            <p class="typehot">喜迎千万大奖</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing3.png" />
-                            <p class="typecolor size_14">七星彩</p>
-                            <p class="typehot">奖池2000元</p>
-                        </div>
-                        <div class="item margin_none">
-                            <img src="../../assets/images/leixing4.png" />
-                            <p class="typecolor size_14">七乐彩</p>
-                            <p class="typehot">富翁生产线</p>
-                        </div>
-                    </li>
-                    <li class="item_menu flex itemborder">
-                        <div class="item">
-                            <img src="../../assets/images/leixing21.png" />
-                            <p class="typecolor size_14">竞彩篮球</p>
-                            <p class="typehot">火热NBA</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing22.png" />
-                            <p class="typecolor size_14">竞猜篮球</p>
-                            <p class="typehot">热门赛事竞猜</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing23.png" />
-                            <p class="typecolor size_14">福彩3D</p>
-                            <p class="typehot">轻松三个数</p>
-                        </div>
-                        <div class="item margin_none">
-                            <img src="../../assets/images/leixing24.png" />
-                            <p class="typecolor size_14">北京单场</p>
-                            <p class="typehot">北京单场竞猜</p>
-                        </div>
-                    </li>
-                    <li class="item_menu flex itemborder">
-                        <div class="item">
-                            <img src="../../assets/images/leixing31.png" />
-                            <p class="typecolor size_14">排列三</p>
-                            <p class="typehot">每天博头彩</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing32.png" />
-                            <p class="typecolor size_14">排列五</p>
-                            <p class="typehot">每天开大奖</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing33.png" />
-                            <p class="typecolor size_14">任选九</p>
-                            <p class="typehot">最高赢500万</p>
-                        </div>
-                        <div class="item margin_none">
-                            <img src="../../assets/images/leixing34.png" />
-                            <p class="typecolor size_14">胜负彩</p>
-                            <p class="typehot">2元赢500万</p>
-                        </div>
-                    </li>
-                    <li class="item_menu flex itemborder border_none">
-                        <div class="item">
-                            <img src="../../assets/images/leixing41.png" />
-                            <p class="typecolor size_14">新11选5</p>
-                            <p class="typehot">超高中奖率</p>
-                        </div>
-                        <div class="item">
-                            <img src="../../assets/images/leixing42.png" />
-                            <p class="typecolor size_14">其他</p>
-                            <p class="typehot">其他</p>
+                    <li class="item_menu flex" v-for="(list,index) in lotterylist">
+                        <div v-for="(l,idx) in list" class="item" :data-type="l.TypeId" :data-state="l.CurState">
+                            <img :src="l.LogoUrl"/>
+                            <p>{{l.TypeName}}</p>
+                            <p>{{l.Tips}}</p>
                         </div>
                     </li>
                 </ul>
@@ -131,8 +60,8 @@
     import header from '../../components/header.vue';
 
     import Vue from 'vue';
-    import { mapGetters, mapMutations } from 'vuex';
-    import { Swipe, SwipeItem } from 'mint-ui';
+    import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
+    import { Swipe, SwipeItem, Toast } from 'mint-ui';
     Vue.component(Swipe.name, Swipe);
     Vue.component(SwipeItem.name, SwipeItem);
 
@@ -157,16 +86,23 @@
         },
         mounted: function () {
             this.changeLuckyDoubleBall();
+            this.lotterylist_()
         },
         computed: {
-            
+            ...mapState({
+                lotterylist: state => state.$home.lotterylist
+            })
         },
         methods: {
+            ...mapActions([
+                'lotterylist_'
+            ]),
             ...mapMutations({
                 closeMask:'closeMask',
                 openMask:'openMask',
             }),
-            luckSubmin: function () {
+            luckSubmin() {
+                // this.$store.commit('setLotteryType',1);
                 this.$store.commit('distroyDoubleBallList');
                 this.$store.commit('addDoubleBallList', this.luckyDoubleBall)
                 this.$router.push({
@@ -174,26 +110,30 @@
                     path: '/betboxList'
                 })
             },
-            changePromptState: function (e) {
+            changePromptState(e) {
                 let target = e.target;
                 if (target.nodeName != 'DIV') {
                     target = target.parentNode
                 }
                 if (!target.classList.contains('item')) return;
                 let type = target.getAttribute('data-type');
-                if (type == 1) {
+                let state = target.getAttribute('data-state');
+                if(state == 2){
+                    //设置彩票类型
+                    this.$store.commit('setLotteryType',type);
                     this.$router.push({
                         name: 'betbox',
                         path: '/betbox'
                     });
-                } else {
-                    this.openMask({
-                        content:'抱歉，该品种暂停购买',
-                        loding:false
-                    });
+                }else{
+                    this._toast && (this._toast.close());
+                    this._toast = Toast({
+                        message:'抱歉，该品种暂停购买',
+                        duration: 1000
+                    })
                 }
             },
-            changeLuckyDoubleBall: function () {
+            changeLuckyDoubleBall() {
                 this.luckyDoubleBall = {
                     0: [],
                     1: []

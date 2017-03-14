@@ -1,18 +1,18 @@
 <template>
-    <div class="contener" :style="{'zIndex':zIndex}">
+    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
         <y-header title="历史开奖信息" router="/info/doubleball"></y-header>
-        <div class="notice_content overflow">
-            <ul class="information_list no-bgimg cont_padding">
+        <div class="scroll-content" style="margin-bottom: 0rem;">
+            <ul class="information_list history_entry no-bgimg">
                 <template v-for="(h,index) in noticehistorys">
-                    <li class="information flex itemborder">
-                        <div class="tyle_information pading">
-                            <p class="typehot margbottom">
-                                <span class="size_14 typecolor">第{{h.LotterySeq || 0}}期</span>
+                    <li class="information flex">
+                        <div class="tyle_information">
+                            <p class="info">
+                                <span>第{{h.LotterySeq || 0}}期</span>
                                 <span>{{h.LotteryDate}}</span>
                             </p>
                             <div class="bet_cont flex" v-if="h.LotteryString">
-                                <template v-for="(n,index) in h.LotteryString.split(',')">
-                                    <div class="size_16 deepred_bg white auto_clear" :class="{'deepblue_bg margin_none': index == h.LotteryString.split(',').length - 1}">{{n}}</div>
+                                <template v-for="(n,index) in getBalls(h.LotteryString)">
+                                    <div class="ball" :class="{'deepblue_bg margin_none': index == getBalls(h.LotteryString).length - 1}">{{n}}</div>
                                 </template>
                             </div>
                         </div>
@@ -40,15 +40,15 @@
             }
         },
         created: function () {
+            
+        },
+        mounted:function(){
             let DID = this.$route.query.DID
             this.noticehistory_({DID:DID});
         },
-        mounted:function(){
-
-        },
         computed:{
             ...mapGetters({
-                zIndex: 'getZindex'
+                
             }),
             ...mapState({
                 noticehistorys:state => state.$user.noticehistorys
@@ -57,7 +57,18 @@
         methods:{
             ...mapActions([
                 'noticehistory_'
-            ])
+            ]),
+            getBalls(ball){
+                let rs = /\s/;
+                let rd = /\,/;
+                if(rs.test(ball)){
+                    return ball.split(rs);
+                }
+                if(rd.test(ball)){
+                    return ball.split(rd);
+                }
+                return ball.split("");
+            },
         }
     }
 </script>

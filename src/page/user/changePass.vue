@@ -1,37 +1,33 @@
 <template>
-	<div class="contener" :style="{'zIndex':zIndex}">
+	<div class="contener" :style="{'zIndex':$route.params.zIndex}">
 		<y-header title="修改密码" router="/user"></y-header>
-		<div class="center_content body_overflow">
-			<div class="revisions_content">
-				<label class="cont_padding">
-						<span class="typecolor size_14">原密码</span>
-						<input type="text" v-model="model.oldpass" placeholder="请输入原密码"/>
-					</label>
-				<label class="cont_padding">
-						<span class="typecolor size_14">新密码</span>
-						<input type="text" v-model="model.newpass" placeholder="密码由6-20位字母、数字组成"/>
-					</label>
-				<label class="cont_padding">
-						<span class="typecolor size_14">确认密码</span>
-						<input type="text" v-model="model.repe" placeholder="请重复输入密码"  />
-					</label>
-				<div class="revision cont_padding">
-					<a href="javascript:;" @click="submit" class="continue_bet size_18">确认修改</a>
-				</div>
+		<div class="scroll-content" style="margin-bottom:0rem;">
+			<div class="form-group">
+				<label class="control-label">
+					<span>原密码</span>
+					<input type="text" v-model="model.OPWD" placeholder="请输入原密码"/>
+				</label>
+				<label class="control-label">
+					<span>新密码</span>
+					<input type="text" v-model="model.PWD" placeholder="密码由6-20位字母、数字组成"/>
+				</label>
+				<label class="control-label">
+					<span>确认密码</span>
+					<input type="text" v-model="model.PWD1" placeholder="请重复输入密码"/>
+				</label>
+			</div>
+			<div class="position-btn">
+				<button @click="submit" class="btn">确认修改</button>
 			</div>
 		</div>
-	</div>
 	</div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
+	import { mapGetters,mapActions, mapState } from 'vuex';
 	import Vue from 'vue'
 	import header from '../../components/header.vue';
-	import {
-		Toast
-	} from 'mint-ui';
-	Vue.component(Toast);
+	import { Toast } from 'mint-ui';
 	export default {
 		components: {
 			'y-header': header,
@@ -41,20 +37,41 @@
 				model: {}
 			}
 		},
-		methods: {
-			submit() {
-				if (!this.model.newpass || !this.model.oldpass || !this.model) {
-					alert('每一项都必须填写')
-				}
-			}
-		},
 		created: function () {
+
+		},
+		mounted:function(){
 
 		},
 		computed: {
 			...mapGetters({
-				zIndex: 'getZindex'
+				user:'getUser'
 			})
+		},
+		methods:{
+			...mapActions([
+				'userpwd_'
+			]),
+			submit() {
+				let reg = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/;
+				let OPWD = this.model.OPWD;
+				let PWD = this.model.PWD;
+				let PWD1 = this.model.PWD1;
+				if(OPWD && PWD && PWD1){
+					if(reg.test(PWD) && PWD == PWD1){
+						this.userpwd_({ PWD:PWD, OPWD:OPWD, UID:this.user.UserId }).then(
+							(res) => {
+								Toast('修改成功！');
+								setTimeout( ()=> { this.$router.push({name:'user'}) }, 1000 )
+							}
+						)
+					}else{
+						Toast('两次密码不一致，请重新输入！')
+					}
+				}else{
+					Toast('请填写内容')
+				}
+			}
 		}
 	}
 

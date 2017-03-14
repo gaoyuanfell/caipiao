@@ -1,23 +1,23 @@
 <template>
-    <div class="contener" :style="{'zIndex':zIndex}">
+    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
         <y-header title="实名认证" router="/user"></y-header>
-        <div class="center_content body_overflow">
-            <div class="revisions_content">
-                <label class="cont_padding">
-						<span class="typecolor size_14">真实姓名</span>
-						<input type="text" v-model="model.name" placeholder="需与真实姓名一致，提交后不可修改"/>
-					</label>
-                <label class="cont_padding">
-						<span class="typecolor size_14">身份证号</span>
-						<input type="text" v-model="model.sfz" placeholder="需与身份证一致，提交后不可修改"/>
-					</label>
-                <label class="cont_padding">
-						<span class="typecolor size_14">确认号码</span>
-						<input type="text" v-model="model.repe" placeholder="请重复输入身份证号码"/>
-					</label>
-                <div class="revision cont_padding">
-                    <a href="javascript:;" @click="submit" class="continue_bet size_18">提交认证</a>
-                </div>
+        <div class="scroll-content" style="margin-bottom:0rem;">
+            <div class="form-group">
+                <label class="control-label">
+                    <span>真实姓名</span>
+                    <input type="text" v-model="model.name" placeholder="需与真实姓名一致，提交后不可修改"/>
+                </label>
+                <label class="control-label">
+                    <span>身份证号</span>
+                    <input type="text" v-model="model.sfz" placeholder="需与身份证一致，提交后不可修改"/>
+                </label>
+                <label class="control-label">
+                    <span>确认号码</span>
+                    <input type="text" v-model="model.repe" placeholder="请重复输入身份证号码"/>
+                </label>
+            </div>
+            <div class="position-btn">
+                <buttin @click="submit" class="btn">提交认证</buttin>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
         },
         computed:{
             ...mapGetters({
-                zIndex: 'getZindex'
+                
             })
         }
     }

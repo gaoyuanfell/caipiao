@@ -1,21 +1,21 @@
 <template>
-    <div class="contener" :style="{'zIndex':zIndex}">
+    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
         <y-header title="绑定银行卡" router="/user" r_title="添加" r_router="/user/bindcard/addcard"></y-header>
-        <div class="center_content body_overflow">
+        <div class="scroll-content" style="margin-bottom:0rem;">
             <div class="recharge_content">
-                <div class="card cont_padding">
-                    <a href="javascript:;" class="flex pading">
+                <div class="card">
+                    <a href="javascript:;" class="flex">
                         <div class="type_logo"><img src="../../assets/images/banklg.png" /></div>
-                        <div class="tyle_information margleft lineheight">
-                            <p class="size_14">中国农业银行</p>
-                            <p class="typehot">尾号0779储蓄卡</p>
+                        <div class="tyle_information">
+                            <p>中国农业银行</p>
+                            <p>尾号0779储蓄卡</p>
                         </div>
-                        <span href="javascript:;" class="information_bg"><img src="../../assets/images/youjiant.png"/></span>
+                        <span href="javascript:;" class="information_bg"><i class="icon">&#xe608;</i></span>
                     </a>
                 </div>
-                <div class="revision cont_padding">
-                    <a href="javascript:;" class="continue_bet size_18">确认绑定</a>
-                </div>
+            </div>
+            <div class="position-btn">
+                <button class="btn">确认绑定</button>
             </div>
         </div>
         <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
@@ -41,7 +41,7 @@
         },
         computed:{
             ...mapGetters({
-                zIndex: 'getZindex'
+                
             })
         }
     }

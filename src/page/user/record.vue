@@ -1,9 +1,9 @@
 <template>
-    <div class="contener" :style="{'zIndex':zIndex}">
+    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
         <y-header title="投注记录" router="/user"></y-header>
-        <div class="tabs">
+        <div class="tabs" style="margin-bottom:0rem;">
             <ul class="record_select">
-                <li :class="{active:item.index == activeIndex}" v-for="(item, index) in tabs" @click="tab(item.index)">
+                <li class="item" :class="{active:item.index == activeIndex}" v-for="(item, index) in tabs" @click="tab(item.index)">
                     <a href="Javascript:;">
                     {{ item.title}}
                     </a>
@@ -11,24 +11,42 @@
             </ul>
             <div style="overflow:auto;position: absolute;right: 0;left: 0;top: 0.48rem;bottom: 0rem;">
                 <mt-loadmore :bottomPullText="loadmore.bottomPullText" :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" ref="loadmore">
-                    <ul class="information_list cont_padding">
+                    <ul class="record-list">
                         <template v-for="(o, index) in orderList">
-                            <li class="information flex itemborder">
+                            <li class="item flex">
                                 <router-link :to="{ name: 'recordDetail', query: {DID: o.OrderDetailId }}">
-                                    <div class="tyle_information pading">
+                                    <div class="ball_list">
                                         <img :src="o.LogoUrl">
-                                        <div class="content_info">
-                                            <div class="content_top">
-                                                <p style="float: left;">等待开奖</p>
-                                                <p style="float: right;">[{{o.TypeName}}]</p>
+                                        <div class="ball_info">
+                                            <div class="ball_info_top">
+                                                <p class="fl">等待开奖</p>
+                                                <p class="fr">[{{o.TypeName}}]</p>
                                             </div>
-                                            <div class="content_bottom">
-                                                <p style="float: left;">{{o.CreateTime | date}}</p>
-                                                <p style="float: right;">投注{{o.CostMoney | number('元')}}</p>
+                                            <div class="ball_info_bottom">
+                                                <p class="fl">{{o.CreateTime | date}}</p>
+                                                <p class="fr">投注{{o.CostMoney | number('元')}}</p>
                                             </div>
                                         </div>
+                                        <span href="javascript:;" class="information_bg">
+                                            <i class="icon">&#xe608;</i>
+                                        </span>
                                     </div>
+                                    
                                 </router-link>
+                                <div class="trade_type trade_typefirst flex" v-if="o.OrderDetailState == 0">
+                                    <div class="obligations">
+                                        待付款
+                                    </div>
+                                    <div class="record_payment flex">
+                                        <a href="Javascript:;">取消投注</a><a href="Javascript:;" class="record_paybut">付款</a>
+                                    </div>
+                                </div>
+                                <div class="trade_type" v-if="o.OrderDetailState == 1">
+                                    <p class="trading_success">交易成功</p>
+                                </div>
+                                <div class="trade_type" v-if="o.OrderDetailState == 4">
+                                    <p class="trading_close">交易关闭</p>
+                                </div>
                             </li>
                         </template>
                     </ul>
@@ -81,15 +99,15 @@
             }
         },
         created: function () {
+            
+        },
+        mounted: function () {
             this.destroyOrderList();
             this.orderList_({ PN: 13000000000,PG: this.page })
         },
-        mounted: function () {
-
-        },
         computed: {
             ...mapGetters({
-                zIndex: 'getZindex'
+                
             }),
             ...mapState({
                 orderList: state => state.$user.orderList
@@ -107,7 +125,7 @@
                 this.destroyOrderList();
                 let body = { PN: 13000000000,PG: this.page };
                 index && (body.CS = index);
-                this.orderList_(body).then(()=>{},()=>{})
+                this.orderList_(body);
             },
             loadTop() {
                 let loadmore = this.$refs.loadmore;

@@ -1,12 +1,12 @@
 <template>
-    <div class="contener" :style="{'zIndex':zIndex}">
+    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
         <y-header title="充值成功" router="/user"></y-header>
         <div class="scroll-content botoom_0">
-            <div class="payment_success cont_padding">
+            <div class="payment_success">
                 <img src="../../assets/images/zfcg.png" class="success" />
                 <h3>充值成功</h3>
                 <p class="size_18 ">您可通过投注详情查看方案状态</p>
-                <div class="success_after size_18 typecolor">
+                <div class="success_after">
                     <router-link :to="{ name: 'user'}" >账户详情</router-link>
                     <router-link :to="{ name: 'index'}" >返回首页</router-link>
                 </div>
@@ -36,7 +36,7 @@
         },
         computed:{
             ...mapGetters({
-                zIndex: 'getZindex'
+                
             })
         }
     }

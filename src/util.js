@@ -39,10 +39,11 @@ const moneyNum = function (value, suffix) {
     }
     let number = parseInt(value).toFixed(2).split(".");
     let s = number[1];
-    let n = number[0].split("").reverse();
+    let n = number[0].split("").reverse();;
     let str = '';
     let arr = [];
     let l = n.length;
+    let numft = ''
     if (l >= 3) {
         n.forEach((b, i) => {
             str = b + str;
@@ -54,14 +55,31 @@ const moneyNum = function (value, suffix) {
                 arr.push(str);
             }
         })
+        numft = arr.reverse().join(',')
     } else {
-        arr.push(n.join());
+        numft = number[0] + '';
     }
-    return (negative ? "-" : "") + arr.reverse().join(',') + "." + s + (suffix || "")
+    return (negative ? "-" : "") + numft + "." + s + (suffix || "")
+}
+
+/**
+ * 按指定份数分割数组
+ * @param {*} array 
+ * @param {*} num 
+ */
+const arrayslice = function(array,num){
+    let ar = [];
+    let _ar = null;
+    let _num = num;
+    while (_ar = array.slice( 0 - _num + num, num ),ar.push(_ar),_ar.length == _num) {
+        num += _num;
+    }
+    return ar;
 }
 
 export {
     formatDate,
     formatNum,
-    moneyNum
+    moneyNum,
+    arrayslice,
 }

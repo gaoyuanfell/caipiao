@@ -1,11 +1,16 @@
 import Vue from 'vue';
+import { lotterylist, aorder } from '../service/home-service';
+import { arrayslice } from '../../util';
 
 const state = {
     doubleBall: {
         0: [],
-        1: []
+        1: [],
+        type:2
     },
     doubleBallList: [],
+    lotterylist: null,
+    lotteryType: 1,
 }
 
 const getters = {
@@ -35,7 +40,13 @@ const getters = {
 }
 
 const actions = {
-
+    async lotterylist_( {commit, state} ){
+        let data = await lotterylist().catch( (e) => {console.info(e)} );
+        state.lotterylist = arrayslice(data,4);
+    },
+    async aorder_( {commit, state}, body){
+        let data = await aorder(body).catch( (e) => {console.info(e)} );
+    }
 }
 
 const mutations = {
@@ -63,7 +74,15 @@ const mutations = {
     //销毁投注列表
     distroyDoubleBallList(state) {
         state.doubleBallList = [];
+        state.doubleBall = {
+            0: [],
+            1: []
+        }
     },
+    //设置彩票类型
+    setLotteryType(state,type){
+        state.lotteryType = type;
+    }
 }
 
 export default {

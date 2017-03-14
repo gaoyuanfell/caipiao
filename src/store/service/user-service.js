@@ -1,7 +1,5 @@
-import {
-    baseUrl
-} from '../config';
 import http from '../axios';
+import md5 from '../../md5';
 
 /**
  * 获取用户信息
@@ -17,7 +15,31 @@ export const getUserInfo = (body = {}) => {
  * @param {} body 
  */
 export const login = (body = {}) => {
-    return http.post(`/user/userlogin`, body)
+    let PD = body.PD;
+    body.PD = md5(PD);
+    return http.post(`/user/lg`, body)
+}
+
+/**
+ * 注册
+ * @param {} body 
+ */
+export const register = (body = {}) => {
+    let PWD = body.PWD;
+    body.PWD = md5(PWD);
+    return http.post(`/user/reg`, body)
+}
+
+/**
+ * 修改密码
+ * @param {} body 
+ */
+export const userpwd = (body = {}) => {
+    let OPWD = body.OPWD;
+    let PWD = body.PWD;
+    body.OPWD = md5(OPWD);
+    body.PWD = md5(PWD);
+    return http.post(`/user/pwd`, body)
 }
 
 /**
@@ -74,4 +96,12 @@ export const noticedetail = (body = {}) => {
  */
 export const noticehistory = (body = {}) => {
     return http.post(`/notice/noticehistory`, body);
+}
+
+/**
+ * 投注详情
+ * @param {*} body
+ */
+export const userorderdetail = (body = {}) => {
+    return http.post(`/user/userorderdetail`, body);
 }

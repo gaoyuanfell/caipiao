@@ -1,9 +1,5 @@
 <template>
     <div>
-        <div class="error_prompt size_16" v-if="mask.maskState">
-            <img v-if="mask.maskLoding" class="loding-img" src="./assets/images/loding.gif">
-            <span v-text="mask.maskContent"></span>
-        </div>
         <transition name="custom-classes-transition" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
             <router-view></router-view>
         </transition>
@@ -32,9 +28,7 @@
 
         },
         computed:{
-            ...mapState({
-                mask:state => state.mask
-            })
+            
         },
         methods:{
 
