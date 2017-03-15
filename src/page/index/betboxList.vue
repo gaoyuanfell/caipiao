@@ -103,32 +103,7 @@
                 
             </div>
         </div>
-
-        <!--
         
-            <div class="box">
-                    <h3 class="typecolor typecolor size_18 title">余额不足</h3>
-                    
-                    <div class="bank">
-                        <div class="bank_input flex size_14 typehot">
-                            <div class="bank_select flex">
-                                <img class="banklogo" src="../../assets/images/banklg.png"/>
-                                <select class=" size_14 typehot">
-                                    <option value="中国农业银行 尾号0775储蓄卡 ">中国农业银行 尾号0775储蓄卡</option>
-                                    <option value="中国农业银行 尾号0775储蓄卡">中国农业银行 尾号0775储蓄卡</option>
-                                    <option value="中国农业银行 尾号0775储蓄卡">中国农业银行 尾号0775储蓄卡</option>
-                                </select>
-                            </div>
-                            <i><img src="../../assets/images/xiangxia.png"/></i>
-                        </div>
-                    </div>
-                    <div class="recharge">
-                        <a href="javascript:;"></a>
-                    </div>
-                </div>
-        
-        -->
-
         <div class="bomb_box animated fadeIn" v-if="confirmPay">
             <div class="box_confirm_pay">
                 <p class="close">

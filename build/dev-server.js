@@ -8,6 +8,8 @@ if (!process.env.NODE_ENV) {
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
+var https = require('https');
+var fs = require('fs');
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
@@ -67,6 +69,11 @@ var uri = 'http://localhost:' + port
 devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
+
+// var privateKey  = fs.readFileSync('./static/cert.pem', 'utf8');
+// var certificate = fs.readFileSync('./static/cert.crt', 'utf8');
+// var credentials = {key: privateKey, cert: certificate};
+// var httpsServer = https.createServer(credentials, app);
 
 module.exports = app.listen(port, function (err) {
   if (err) {

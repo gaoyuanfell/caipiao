@@ -3,7 +3,7 @@
         <y-header title="我的彩票" router="/user"></y-header>
         <div class="scroll-content" style="margin-bottom:0rem;">
             <div class="center_list">
-                <router-link to="/user/record" class="center_item flex">
+                <router-link to="/user/manage/userInfo" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/jl.png" /></div>
                     <div class="tyle_information">账户详情</div>
                     <span href="javascript:;" class="information_bg">
@@ -45,6 +45,10 @@
                 <button class="btn">退出登录</button>
             </div>
         </div>
+        
+        <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 

@@ -25,6 +25,14 @@ export default function (Vue) {
         return formatNum(value);
     })
 
+    Vue.filter('confusePhone', function (value) {
+        if(isNaN(parseInt(value)) && String(value).length != 11){
+            return value;
+        }
+        let _value = String(value).substr(0,3) + "****" + String(value).substr(7,4);
+        return _value
+    })
+
     /**
      * yyyy-MM-dd HH:mm:ss (周w)默认 w周
      */

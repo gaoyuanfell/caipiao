@@ -82,7 +82,7 @@
         },
         mounted: function () {
             //获取用户 基本数据 请求参数 PN or UID
-            this.userInfo_({ PN: '13870814611' })
+            // this.userInfo_({ PN: '13870814611' })
         },
         computed: {
             ...mapState({

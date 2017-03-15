@@ -33,5 +33,11 @@ destroyed //Vue 实例销毁后调用。调用后，Vue 实例指示的所有东
 
 
 
+测试服务器   180.97.75.144:21314   root   YcMed@Dmpsper#$!2016
 
 
+openssl genrsa -out key.pem 2048
+
+openssl req -new -key key.pem -out cert.csr
+
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095

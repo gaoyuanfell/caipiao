@@ -12,6 +12,7 @@ import history from './page/info/history.vue'
 
 
 import user from './page/user/user.vue'
+import userInfo from './page/user/user-info.vue'
 import manage from './page/user/manage.vue'
 /*银行卡添加*/
 import bindcard from './page/user/bindcard.vue'
@@ -33,6 +34,9 @@ import register2 from './page/user/register-2.vue'
 import register3 from './page/user/register-3.vue'
 import register4 from './page/user/register-4.vue'
 import register5 from './page/user/register-5.vue'
+
+// 相机
+import camera from './page/user/camera.vue'
 
 import accountDetail from './page/user/account-detail.vue'
 
@@ -77,6 +81,20 @@ let routes = [{
         name:'manage',
         path:'manage',
         component:manage,
+        children:[
+            {
+                name:'userInfo',
+                path:'userInfo',
+                component:userInfo,
+                children:[
+                    {
+                        name:'camera',
+                        path:'camera',
+                        component:camera,
+                    }
+                ]
+            }
+        ]
     }, {
         name: 'pay',
         path: 'pay',
@@ -175,7 +193,7 @@ const router = new Vuer({
 })
 
 //登录拦截
-let zIndex = 10000;
+let zIndex = 100;
 router.beforeEach((to, from, next) => {
     to.params.zIndex = ++zIndex;
     next();

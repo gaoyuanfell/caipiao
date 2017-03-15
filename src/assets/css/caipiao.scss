@@ -19,6 +19,45 @@
     }
 }
 
+.heading {
+    height: 0.44rem;
+    line-height: 0.44rem;
+    background: #ef3726;
+    font-size: 0.18rem;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    max-width: 800px;
+    z-index: 1;
+    padding: 0 0.15rem;
+    .back {
+        flex: .3;
+        text-align: left;
+        i.icon {
+            font-size: 20px;
+            color: white;
+        }
+    }
+    .title_right {
+        flex: .3;
+        text-align: right;
+        font-size: 0.14rem;
+        a {
+            color: #fff;
+            display: block;
+            height: 100%;
+        }
+    }
+    .title {
+        flex: .8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+
 /*index */
 
 .banner {
@@ -44,7 +83,7 @@
                 text-align: left;
             }
             &:nth-child(2) {
-                img{
+                img {
                     width: 0.22rem;
                     vertical-align: middle;
                     margin-right: 0.02rem;
@@ -462,8 +501,8 @@
     }
 }
 
-.box_money_lack{
-    transform: translate(0,-50%);
+.box_money_lack {
+    transform: translate(0, -50%);
     top: 50%;
     left: 0;
     right: 0;
@@ -472,33 +511,33 @@
     padding: 0 0.2rem;
     margin: 0 0.15rem;
     border-radius: 3px;
-    .title{
+    .title {
         text-align: center;
         font-size: .18rem;
         height: .5rem;
         line-height: .7rem;
     }
-    .balance{
+    .balance {
         font-size: .15rem;
         height: .4rem;
         line-height: .4rem;
-        span{
+        span {
             flex: 1;
             text-align: left;
             padding-left: 0.05rem;
-            em{
+            em {
                 color: red;
                 padding-right: 0.05rem;
             }
         }
     }
-    .bank_select{
+    .bank_select {
         height: 0.5rem;
         width: 100%;
         border: 1px solid #ccc;
         border-radius: 5px;
         position: relative;
-        img.banklogo{
+        img.banklogo {
             height: 0.3rem;
             width: 0.3rem;
             transform: translate(0%, -50%);
@@ -506,7 +545,7 @@
             left: 0.1rem;
             position: absolute;
         }
-        .select{
+        .select {
             width: 100%;
             border: none;
             appearance: none;
@@ -516,14 +555,14 @@
             padding-left: 0.5rem;
             color: #999;
             font-size: 0.15rem;
-            &:focus{
+            &:focus {
                 outline: none;
             }
             option {
                 width: 100%;
             }
         }
-        .select-blak{
+        .select-blak {
             position: absolute;
             right: 0;
             top: 50%;
@@ -532,7 +571,7 @@
             color: #999;
         }
     }
-    .bank-btn{
+    .bank-btn {
         padding: 0.32rem 0;
     }
 }
@@ -648,12 +687,12 @@
     background: #fff;
     padding: 0 .15rem;
     .information {
-        &:last-child{
+        &:last-child {
             border-bottom: none;
-        }   
+        }
         border-bottom: 1px solid #ccc;
         position: relative;
-        .item{
+        .item {
             padding: 0.13rem 0;
             position: relative;
             width: 100%;
@@ -675,8 +714,8 @@
                     text-align: left;
                     margin-bottom: .13rem;
                     color: #989898;
-                    span{
-                        &:nth-child(1){
+                    span {
+                        &:nth-child(1) {
                             margin-right: .09rem;
                             color: #282828;
                             font-size: .14rem;
@@ -814,13 +853,13 @@
                 text-align: left;
                 margin-bottom: .13rem;
                 color: #989898;
-                span{
-                    &:nth-child(1){
+                span {
+                    &:nth-child(1) {
                         margin-right: .09rem;
                         color: #282828;
                         font-size: .14rem;
                     }
-                    &:nth-child(2){
+                    &:nth-child(2) {
                         margin-right: .06rem;
                     }
                 }
@@ -847,7 +886,9 @@
     }
 }
 
+
 /*info end*/
+
 
 /*user*/
 
@@ -896,7 +937,7 @@
         height: .5rem;
         line-height: .5rem;
         border-bottom: 1px solid #ccc;
-        &:last-child{
+        &:last-child {
             border-bottom: none;
         }
         .img_icon {
@@ -924,7 +965,9 @@
     }
 }
 
+
 /*user end*/
+
 
 /*pay*/
 
@@ -1246,7 +1289,8 @@
 
 
 /*recordDetail*/
-.wait_lottery{
+
+.wait_lottery {
     text-align: left;
     strong {
         color: #999;
@@ -1257,7 +1301,8 @@
         color: #ef3726;
     }
 }
-.record_details{
+
+.record_details {
     padding: 0 .15rem;
     background: #fff;
     margin-top: .15rem;
@@ -1273,7 +1318,7 @@
             margin-right: .12rem;
         }
     }
-    .detail_item{
+    .detail_item {
         justify-content: space-between;
         padding: .18rem 0;
         position: relative;
@@ -1281,7 +1326,7 @@
         .bet_cont {
             flex: 1;
             flex-wrap: wrap;
-            .ball{
+            .ball {
                 width: .28rem;
                 height: .28rem;
                 text-align: center;
@@ -1292,12 +1337,12 @@
                 font-size: .16rem;
                 color: #ff3b3b;
                 background: #fff0f0;
-                &:last-child{
+                &:last-child {
                     color: #3b97ff;
                 }
             }
         }
-        .prize_win{
+        .prize_win {
             color: #27c436;
             font-size: .14rem;
             flex: .3;
@@ -1305,21 +1350,21 @@
                 position: absolute;
                 top: 50%;
                 display: block;
-                transform: translate(90%,-50%);
+                transform: translate(90%, -50%);
             }
         }
-        .prize_notwin{
+        .prize_notwin {
             color: #989898;
             @extend .prize_win;
         }
     }
-    .details_bottom{
+    .details_bottom {
         font-size: .12rem;
         color: #989898;
         text-align: left;
         padding: .18rem 0;
     }
-    .total_bets{
+    .total_bets {
         text-align: right;
         font-size: .13rem;
         color: #333;
@@ -1329,6 +1374,7 @@
         }
     }
 }
+
 .wantbet_but .wantbet {
     display: block;
     height: .49rem;
@@ -1341,6 +1387,7 @@
     color: #fff;
     font-size: .18rem;
 }
+
 
 /*recordDetail end*/
 
@@ -1418,60 +1465,67 @@
     bottom: 0.5rem;
     padding: 0 .15rem;
 }
+
+
 /*nameauth end*/
 
 
 /*bindcard*/
+
 .card {
     background: #fff;
     text-align: left;
     padding: 0 .15rem;
     a {
-    position: relative;
-    padding: .1rem 0;
-    .type_logo {
-    width: .55rem;
-    height: auto;
-    img {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    width: .55rem;
-    height: .55rem;
-    }
-    }
-    .tyle_information {
-        margin-left: .15rem;
-        line-height: 2.2;
-        p{
-            &:nth-child(1){
-            color: #333;
-            font-size: .14rem;
-            }
-            &:nth-child(2){
-                color: #989898;
+        position: relative;
+        padding: .1rem 0;
+        .type_logo {
+            width: .55rem;
+            height: auto;
+            img {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                width: .55rem;
+                height: .55rem;
             }
         }
-    }
-    .information_bg {
-    width: .09rem;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    }
+        .tyle_information {
+            margin-left: .15rem;
+            line-height: 2.2;
+            p {
+                &:nth-child(1) {
+                    color: #333;
+                    font-size: .14rem;
+                }
+                &:nth-child(2) {
+                    color: #989898;
+                }
+            }
+        }
+        .information_bg {
+            width: .09rem;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
     }
 }
+
+
 /*bindcard end*/
 
 
 /*changePass*/
 
+
 /*changePass end*/
 
 
 /*login*/
-.form-group .control-label{
+
+.form-group .control-label {
     display: block;
     width: 100%;
     height: .5rem;
@@ -1481,7 +1535,7 @@
     position: relative;
     text-align: left;
     margin-bottom: .15rem;
-    span{
+    span {
         position: absolute;
         z-index: 1;
         color: #282828;
@@ -1496,6 +1550,7 @@
         font-size: .14rem;
     }
 }
+
 .remember {
     text-align: right;
     padding-right: .15rem;
@@ -1504,7 +1559,8 @@
         font-size: .14rem;
     }
 }
-.login_but{
+
+.login_but {
     position: absolute;
     width: 100%;
     bottom: .5rem;
@@ -1518,7 +1574,8 @@
         color: #3c3c3c;
     }
 }
-.iphone_note{
+
+.iphone_note {
     margin: .28rem 0;
     .note {
         font-size: .14rem;
@@ -1534,6 +1591,7 @@
         color: #ef3726;
     }
 }
+
 .sms {
     background: #fff;
     padding: .1rem 0;
@@ -1574,7 +1632,8 @@
         // color: #ccc;
     }
 }
-.lose_password{
+
+.lose_password {
     background: #fff;
     margin: 0 .15rem;
     border: 1px solid gray;
@@ -1585,8 +1644,8 @@
         height: .53rem;
         line-height: .53rem;
         border-right: 1px solid #ccc;
-        &:last-child{
-            border-right:none;
+        &:last-child {
+            border-right: none;
         }
         i {
             width: .13rem;
@@ -1597,7 +1656,8 @@
         }
     }
 }
-.number_key{
+
+.number_key {
     flex-wrap: wrap;
     position: absolute;
     bottom: 0;
@@ -1611,37 +1671,185 @@
         font-size: .24rem;
         border-right: 1px solid #b9bec3;
         border-bottom: 1px solid #b9bec3;
-        &:active{
+        &:active {
             background: #d5d8db;
         }
     }
-    & .no-border{
+    & .no-border {
         border-bottom: none;
     }
-    & .gray{
+    & .gray {
         background: #d5d8db;
     }
 }
+
+
 /*login end*/
 
+
 /*addcard*/
-.addcard_cont{
-    .card_chart{
+
+.addcard_cont {
+    .card_chart {
         width: 1.57rem;
         height: auto;
         margin-top: 1.2rem;
         margin-bottom: 0.29rem;
     }
-    p{
+    p {
         font-size: 0.14rem;
         color: #999999;
         line-height: 1.5;
     }
-    .card_but{
-        span{
+    .card_but {
+        span {
             font-size: 0.2rem;
         }
     }
 }
 
+
 /*addcard end*/
+
+
+/*user-info*/
+
+.personal_management {
+    background: #fff;
+    padding: 0 0.15rem;
+    position: relative;
+    .item {
+        padding: 0.125rem 0;
+        border-bottom: 1px #ccc solid;
+        &:last-child {
+            border-bottom: none;
+        }
+        .personal_lef {
+            flex: 1;
+            text-align: left;
+            line-height: 0.45rem;
+            font-size: 0.16rem;
+            color: #282828;
+        }
+        .personal_rig {
+            flex: 1;
+            margin-right: 0.14rem;
+            text-align: right;
+            font-size: 0.14rem;
+            color: #cccccc;
+            line-height: 0.45rem;
+            img {
+                width: 0.45rem;
+                height: 0.45rem;
+                border-radius: 50%;
+            }
+        }
+        .noheight {
+            line-height: 0;
+        }
+        .information_bg {
+            flex: 0.1;
+            position: relative;
+            text-align: left;
+            i {
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+            }
+        }
+    }
+}
+
+
+/*user-info end*/
+
+
+/**/
+
+.camera {
+    text-align: left;
+    .video{
+        position: absolute;
+        // height: 100%;
+    }
+    .canvas{
+        position: absolute;
+        // width: 100%;
+        // height: 100%
+    }
+    .photo{
+        position: absolute;
+    }
+    .photograph {
+        position: absolute;
+        bottom: 0.4rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        border: 0.1rem solid #ccc;
+        border-radius: 50%;
+        background-color: white;
+        transform: translateX(-50%);
+        left: 50%;
+        z-index: 10;
+    }
+    .camera-blck {
+        position: absolute;
+        bottom: 0.7rem;
+        transform: translateX(-50%);
+        left: 20%;
+        z-index: 5;
+        i.icon {
+            font-size: 25px;
+            color: white;
+        }
+    }
+    .camera-switch {
+        position: absolute;
+        top: 0.3rem;
+        right: 0.3rem;
+        color: white;
+        z-index: 5;
+        i.icon {
+            font-size: 25px;
+            color: white;
+        }
+    }
+    .recovery{
+        position: absolute;
+        bottom: 0.4rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        background-color: #ececec;
+        left: 6%;
+        z-index: 5;
+        i.icon{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            font-size: 22px;
+        }
+    }
+    .confirm{
+        position: absolute;
+        bottom: 0.4rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        background-color: #fff;
+        right: 6%;
+        z-index: 5;
+        i.icon{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            font-size: 30px;
+            color: green;
+        }
+    }
+}
+
+
+/**/
