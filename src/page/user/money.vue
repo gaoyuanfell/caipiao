@@ -25,7 +25,7 @@
                     </span>
                 </a>
             </div>
-            <div class="pay_btn">
+            <div class="position-btn">
                 <button class="btn" @click="confirmExtract">确认提现</button>
             </div>
         </div>

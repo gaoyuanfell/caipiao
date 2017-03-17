@@ -59,7 +59,7 @@ const mutations = {
     },
     //增加注数
     addDoubleBallList(state, ball) {
-        state.doubleBallList.push(ball)
+        state.doubleBallList.unshift(ball)
     },
     //修改某项数据
     updateDoubleBallList(state, data) {

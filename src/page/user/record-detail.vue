@@ -75,7 +75,7 @@
         mounted:function(){
             let DID = this.$route.query.DID;
             console.info();
-            this.userorderdetail_({DID:1});
+            this.userorderdetail_({DID:DID});
         },
         computed:{
             ...mapState({
@@ -89,6 +89,18 @@
             getBalls(ball){
                 let rs = /\s/;
                 let rd = /\,/;
+                if(ball.split(" ").length == 2){
+                    let b = [];
+                    let balls = ball.split(" ");
+                    var s = 0;
+                    var _s = '';
+                    while(_s = balls[0].substr(s,2),_s.length > 0){
+                        s += 2;
+                        _s && b.push(_s)
+                    }
+                    b.push(balls[1])
+                    return b;
+                }
                 if(rs.test(ball)){
                     return ball.split(rs);
                 }

@@ -1,27 +1,27 @@
 <template>
     <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="我的彩票" router="/user"></y-header>
+        <y-header title="我的彩票" router="/user/manage"></y-header>
         <div class="scroll-content" style="margin-bottom:0">
             <div class="personal_management">
                 <div class="item flex" @click=" sheetVisible = !sheetVisible ">
                     <div class="personal_lef">我的头像</div>
                     <div class="personal_rig noheight">
-                        <img ref="img" :src="imgUrl || '/static/img/morentoux.png'" alt="">
+                        <img ref="img" :src="user.LogoUrl || '/static/img/morentoux.png'" alt="">
                     </div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
                 </div>
-                <div class="item flex" @click="nickName">
+                <div class="item flex" @click="nickNameModify">
                     <div class="personal_lef">昵称</div>
-                    <div class="personal_rig">{{nickName | confusePhone}}</div>
+                    <div class="personal_rig">{{user.NickName || user.MobilePhone | confusePhone}}</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
                 </div>
                 <div class="item flex">
                     <div class="personal_lef">登录手机号</div>
-                    <div class="personal_rig">123****5678</div>
+                    <div class="personal_rig">{{user.MobilePhone | confusePhone}}</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
@@ -29,11 +29,18 @@
             </div>
 
             <div hide>
-                <input @change="photoCapture" ref="capture" type="file" accept="image/*" capture/>
-                <input @change="photoAlbum" ref="album" type="file" accept="image/*"/>
+                <input @change="photoCapture" ref="capture" type="file" accept="image/*" capture="camera"/>
+                <input @change="photoAlbum" ref="album" type="file"/>
             </div>
 
-            <div class="position-btn"><button class="btn">退出登录</button></div>
+            <!--
+                <form enctype="multipart/form-data" method="post" action="http://180.97.75.144:8035/lotteryup/fileUpload">
+                    <input type="file" name="file"/>
+                    <input type="submit" value="上传"/>
+                </form>
+            -->
+
+            <div class="position-btn"><button class="btn" @click="loginout">退出登录</button></div>
         </div>
 
         <mt-actionsheet :actions="actions" v-model="sheetVisible"> </mt-actionsheet>
@@ -45,10 +52,11 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapGetters, mapActions, mapState, mapMutations } from 'vuex';
     import Vue from 'vue';
     import header from '../../components/header.vue';
-    import { Actionsheet, MessageBox } from 'mint-ui';
+    import compressImg from '../../compress-img.js';
+    import { Actionsheet, MessageBox,Toast } from 'mint-ui';
     Vue.component(Actionsheet.name, Actionsheet);
     export default {
         components: {
@@ -67,6 +75,9 @@
         computed:{
             ...mapGetters({
                 
+            }),
+            ...mapState({
+                user:state => state.user
             }),
             actions(){
                 let that = this;
@@ -89,11 +100,32 @@
             }
         },
         methods:{
-            nickName(){
+            ...mapMutations({
+                setUser:'setUser'
+            }),
+            ...mapActions([
+                'doupload_',
+                'loginout_',
+                'userunn_',
+            ]),
+            loginout(){
+                this.loginout_({UID:this.user.UserId}).then(
+                    (res) => {
+                        console.info(res);
+                        this.$router.push({name:'login'})
+                        this.setUser({})
+                    }
+                )
+            },
+            nickNameModify(){
                 MessageBox.prompt('请输入昵称').then(
                     ({ value, action }) => {
-                        console.info(value)
-                        console.info(action)
+                        this.userunn_({UserId:this.user.UserId,NickName:value}).then(
+                            (res) => {
+                                this.user.NickName = value;
+                                Toast('修改成功')
+                            }
+                        )
                     },
                     (e) => {
                         console.info(e)
@@ -104,20 +136,51 @@
                 let capture = this.$refs.capture
                 let img = this.$refs.img
                 let file = capture.files[0];
-                var reader = new FileReader();
-                reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-                reader.readAsDataURL(file);
-
-                console.info(this.$refs);
+                var formData = new FormData();
+                formData.append('userId', this.user.UserId);
+                formData.append('typeId', 1);
+                compressImg(file).then(
+                    (res) => {
+                        formData.append('file', res, file.name);
+                        this.doupload_(formData).then(
+                            (res) => {
+                                console.info(res)
+                                img.src = res.file;
+                                this.user.LogoUrl = res.file;
+                                Toast('修改成功')
+                            }
+                        )
+                    }
+                )
+                // var reader = new FileReader();
+                // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+                // reader.readAsDataURL(file);
             },
             photoAlbum(){
                 let album = this.$refs.album;
                 let img = this.$refs.img
                 let file = album.files[0];
-                var reader = new FileReader();
-                reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-                reader.readAsDataURL(file);
-                console.info(this.$refs);
+                var formData = new FormData();
+                formData.append('userId', this.user.UserId);
+                formData.append('typeId', 1);
+                compressImg(file).then(
+                    (res) => {
+                        formData.append('file', res, file.name);
+                        this.doupload_(formData).then(
+                            (res) => {
+                                console.info(res)
+                                img.src = res.file;
+                                this.user.LogoUrl = res.file;
+                                Toast('修改成功')
+                            }
+                        )
+                    }
+                )
+                
+                // var reader = new FileReader();
+                // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+                // reader.readAsDataURL(file);
+                // console.info(this.$refs);
             }
         }
     }

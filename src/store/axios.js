@@ -15,10 +15,8 @@ axios.interceptors.request.use(function (config) {
     Indicator.open({
         spinnerType:'fading-circle'
     });
-    
     return config;
 }, function (error) {
-    console.info(error)
     Indicator.close();
     return Promise.reject(error);
 });
@@ -27,15 +25,14 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     Indicator.close();
     if(response.data.Code == 200){
-        // 提示用户 接口有问题 或 请求参数 错误
         return response.data.Data;
     }
     //弹幕提示用户
     if(response.data.Code == 202){
         Toast(response.data.Msg);
     }
-    if(response.data.Code == 205){//没有登录 转向登录页面
-        router.push('/user/login')
+    if(response.data.Code == 203){//没有登录 转向登录页面
+        router.push({name:'login'})
     }
     throw 'not Data';
 }, function (error) {

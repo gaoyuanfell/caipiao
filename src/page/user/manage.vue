@@ -10,40 +10,42 @@
                         <i class="icon">&#xe608;</i>
                     </span>
                 </router-link>
-                <router-link to="/user/account" class="center_item flex">
+                <a to="/user/account" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/mx.png" /></div>
                     <div class="tyle_information">密码管理</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
-                </router-link>
+                </a>
             </div>
             <div class="center_list">
-                <router-link to="/user/nameauth" class="center_item flex">
+                <a to="/user/nameauth" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/rz.png" /></div>
                     <div class="tyle_information">检查最新版本</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
-                </router-link>
-                <router-link to="/user/bindcard"  class="center_item flex">
+                </a>
+                <a to="/user/bindcard"  class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/bd.png" /></div>
                     <div class="tyle_information">推荐给好友</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
-                </router-link>
-                <router-link to="/user/changePass" class="center_item flex">
+                </a>
+                <a to="/user/changePass" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/xg.png" /></div>
                     <div class="tyle_information">关于我们</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
-                </router-link>
+                </a>
             </div>
-            <div class="position-btn">
-                <button class="btn">退出登录</button>
-            </div>
+            <!--
+                <div class="position-btn">
+                    <button class="btn">退出登录</button>
+                </div>
+            -->
         </div>
         
         <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">

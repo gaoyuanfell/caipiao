@@ -87,9 +87,9 @@
         },
         mounted: function () {
             let DID = this.$route.query.DID
-            this.DID = 507;
+            this.DID = DID;
             console.info(DID)
-            this.noticedetail_({DID:507});
+            this.noticedetail_({DID:DID});
         },
         computed:{
             ...mapGetters({

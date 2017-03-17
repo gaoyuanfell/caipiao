@@ -4,11 +4,11 @@
         <div class="scroll-content">
             <div class="head_portrait flex">
                 <div class="avatar">
-                    <img :src="userInfo.LogoUrl || 'http://www.ycmedia.cn/lottery/static/img/leixing1.png'" />
+                    <img :src="user.LogoUrl || 'http://www.ycmedia.cn/lottery/static/img/leixing1.png'" />
                 </div>
                 <div class="head_name">
-                    <p>{{userInfo.NickName || '匿名'}}</p>
-                    <p>奖金：{{(userInfo.UserBalance || 0) | number('元')}}</p>
+                    <p>{{user.NickName || '匿名'}}</p>
+                    <p>奖金：{{(user.UserBalance || 0) | number('元')}}</p>
                 </div>
             </div>
             <div class="user_wallet flex">
@@ -81,18 +81,33 @@
             
         },
         mounted: function () {
+            let userInfo = window.localStorage.getItem('userInfo');
+            if(userInfo){
+                try{
+                    let u = JSON.parse(userInfo);
+                    this.setUser(u);
+                }catch(e){
+                    this.$router.push({name:'login'})
+                }
+            }else{
+                this.$router.push({name:'login'})
+            }
+            console.info(this.user)
             //获取用户 基本数据 请求参数 PN or UID
-            // this.userInfo_({ PN: '13870814611' })
+            this.userInfo_({ PN: this.user.MobilePhone })
         },
         computed: {
             ...mapState({
-                userInfo: state => state.$user.userInfo
+                user: state => state.user
             })
         },
         methods: {
             ...mapActions([
                 'userInfo_'
-            ])
+            ]),
+            ...mapMutations({
+                setUser:'setUser'
+            })
         }
     }
 

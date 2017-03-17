@@ -1,5 +1,6 @@
 export default {
     setUser(state,data = {}){
-        Object.assign(state.user,data);
+        state.user = data;
+        // Object.assign(state.user,data);
     }
 }

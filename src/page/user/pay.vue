@@ -52,7 +52,7 @@
                 </a>
             </div>
 
-            <div class="pay_btn">
+            <div class="position-btn">
                 <button class="btn" @click="confirmPay">确认充值</button>
             </div>
 

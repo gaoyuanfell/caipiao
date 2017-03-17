@@ -103,14 +103,15 @@
         },
         mounted: function () {
             this.destroyOrderList();
-            this.orderList_({ PN: 13000000000,PG: this.page })
+            this.orderList_({ PN: this.user.MobilePhone,PG: this.page })
         },
         computed: {
             ...mapGetters({
                 
             }),
             ...mapState({
-                orderList: state => state.$user.orderList
+                orderList: state => state.$user.orderList,
+                user:state => state.user
             })
         },
         methods: {
@@ -123,7 +124,7 @@
             tab(index) {
                 this.activeIndex = index;
                 this.destroyOrderList();
-                let body = { PN: 13000000000,PG: this.page };
+                let body = { PN: this.user.MobilePhone,PG: this.page };
                 index && (body.CS = index);
                 this.orderList_(body);
             },
@@ -133,7 +134,7 @@
                 this.page.currentPage = 1;
                 this.loadmore.bottomPullText = "上拉加载更多..."
                 this.destroyOrderList();
-                this.orderList_({ PN: 13000000000, PG: this.page }).then(
+                this.orderList_({ PN: this.user.MobilePhone, PG: this.page }).then(
                     (res) => {
                         loadmore.onTopLoaded();
                     }
@@ -143,7 +144,7 @@
                 let loadmore = this.$refs.loadmore;
                 if (this.allLoaded) { loadmore.onBottomLoaded(); return; };
                 ++this.page.currentPage;
-                this.orderList_({ PN: 13000000000, PG: this.page }).then(
+                this.orderList_({ PN: this.user.MobilePhone, PG: this.page }).then(
                     (res) => {
                         loadmore.onBottomLoaded();
                     },

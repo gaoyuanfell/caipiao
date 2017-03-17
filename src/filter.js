@@ -26,7 +26,7 @@ export default function (Vue) {
     })
 
     Vue.filter('confusePhone', function (value) {
-        if(isNaN(parseInt(value)) && String(value).length != 11){
+        if(isNaN(parseInt(value)) || String(value).length != 11){
             return value;
         }
         let _value = String(value).substr(0,3) + "****" + String(value).substr(7,4);
@@ -37,8 +37,12 @@ export default function (Vue) {
      * yyyy-MM-dd HH:mm:ss (周w)默认 w周
      */
     Vue.filter('date', function (value, format) {
-        !format && (format = "yyyy-MM-dd HH:mm:ss (周w)");
-        let d = new Date(value);
-        return formatDate(d, format);
+        if( typeof value != 'undefined'){
+            !format && (format = "yyyy-MM-dd HH:mm:ss (周w)");
+            let d = new Date(value);
+            return formatDate(d, format);
+        }else{
+            return ''
+        }
     })
 }

@@ -10,8 +10,8 @@
  */
 
 .animated {
-    animation: .18s 0s ease both;
-    -webkit-animation: .18s 0s ease both;
+    animation: .25s 0s ease both;
+    -webkit-animation: .25s 0s ease both;
 }
 
 

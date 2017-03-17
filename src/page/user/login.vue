@@ -1,7 +1,7 @@
 <template>
     <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="账户登录" router="/user"></y-header>
-        <div class="scroll-content " style="margin-bottom:0" v-if="_router == '/user/login'">
+        <y-header title="账户登录" router="/index"></y-header>
+        <div class="scroll-content " style="margin-bottom:0" v-if="_router == '/login'">
             <div class="form-group">
                 <label class="control-label">
                     <span>手机号</span>
@@ -62,6 +62,8 @@
                 this.login_(this.user).then(
                     (res) => {
                         this.setUser(res);//保存用户信息
+                        this.$router.push({name:'user'})
+                        window.localStorage.setItem('userInfo',JSON.stringify(res));
                         console.info(res);
                     },
                     (e) => {

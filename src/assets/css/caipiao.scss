@@ -898,8 +898,11 @@
     padding-left: .15rem;
     .avatar {
         width: .7rem;
+        height: .7rem;
         img {
+            height: 100%;
             width: 100%;
+            border-radius: 50%;
         }
     }
     .head_name {
@@ -1537,7 +1540,7 @@
     margin-bottom: .15rem;
     span {
         position: absolute;
-        z-index: 1;
+        // z-index: 1;
         color: #282828;
         font-size: .14rem;
     }
@@ -1546,8 +1549,9 @@
         height: .5rem;
         position: absolute;
         left: 0;
-        padding-left: .83rem;
+        margin-left: .83rem;
         font-size: .14rem;
+        padding-right: 0.98rem;
     }
 }
 
@@ -1565,6 +1569,7 @@
     width: 100%;
     bottom: .5rem;
     padding: 0 .15rem;
+    background: #f2f2f2;
     .login {
         margin-bottom: .15rem;
     }
@@ -1768,16 +1773,16 @@
 
 .camera {
     text-align: left;
-    .video{
+    .video {
         position: absolute;
         // height: 100%;
     }
-    .canvas{
+    .canvas {
         position: absolute;
         // width: 100%;
         // height: 100%
     }
-    .photo{
+    .photo {
         position: absolute;
     }
     .photograph {
@@ -1814,7 +1819,7 @@
             color: white;
         }
     }
-    .recovery{
+    .recovery {
         position: absolute;
         bottom: 0.4rem;
         width: 0.9rem;
@@ -1823,15 +1828,15 @@
         background-color: #ececec;
         left: 6%;
         z-index: 5;
-        i.icon{
+        i.icon {
             position: absolute;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             top: 50%;
             left: 50%;
             font-size: 22px;
         }
     }
-    .confirm{
+    .confirm {
         position: absolute;
         bottom: 0.4rem;
         width: 0.9rem;
@@ -1840,9 +1845,9 @@
         background-color: #fff;
         right: 6%;
         z-index: 5;
-        i.icon{
+        i.icon {
             position: absolute;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             top: 50%;
             left: 50%;
             font-size: 30px;

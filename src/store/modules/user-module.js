@@ -1,8 +1,7 @@
-import { login, register, userpwd, getUserInfo, userorder, usermoney, usercost, lotteryNotice, noticedetail, noticehistory, userorderdetail } from '../service/user-service';
+import { login, register, loginout, userpwd, getUserInfo, userunn, doupload, userorder, usermoney, usercost, lotteryNotice, noticedetail, noticehistory, userorderdetail } from '../service/user-service';
 
 const state = {
     userReg:{},
-    userInfo:{},
     orderList:[],
     usermoney:{},
     usercostList:[],
@@ -20,13 +19,18 @@ const actions = {
     //用户信息
     async userInfo_( {commit, state, rootState}, body ) {
         let data = await getUserInfo(body).catch( e => { console.info(e) } );
-        state.userInfo = data;
-        rootState.user = data;
+        if(data){
+            commit('setUser', data)
+        }
 		// commit('setUserInfo', data)
     },
     //登录
     login_( {commit, state}, body ){
         return login(body);
+    },
+    //退出登录
+    loginout_( {commit, state}, body ){
+        return loginout(body);
     },
     //注册
     register_( {commit, state}, body ){
@@ -35,6 +39,14 @@ const actions = {
     //修改密码
     userpwd_( {commit, state}, body ){
         return userpwd(body);
+    },
+    //修改昵称
+    userunn_( {commit,state}, body ){
+        return userunn(body);
+    },
+    //头像上传
+    doupload_( {commit, state}, body ){
+        return doupload(body);
     },
     //投注信息
     async orderList_( {commit, state}, body ){
@@ -49,13 +61,17 @@ const actions = {
     //账户明细 金额
     async usermoney_( {commit, state}, body ){
         let data = await usermoney(body);
-        state.usermoney = data
+        if(data){
+            state.usermoney = data
+        }
         // commit('setUsermoney', data)
     },
     //账户明细 投注信息
     async usercost_( {commit, state}, body ){
         let data = await usercost(body);
-        state.usercostList = data;
+        if(data){
+            state.usercostList = data;
+        }
         // commit('setUsercostList', data)
     },
     //开奖公告
@@ -71,19 +87,25 @@ const actions = {
     //开奖公告 详情
     async noticedetail_( {commit, state}, body ){
         let data = await noticedetail(body);
-        state.noticedetail = data
+        if(data){
+            state.noticedetail = data
+        }
         // commit('setNoticedetail', data)
     },
     //开奖公告 历史记录
     async noticehistory_( { commit, state }, body ){
         let data = await noticehistory(body);
-        state.noticehistorys = data
+        if(data){
+            state.noticehistorys = data
+        }
         // commit('setNoticehistory', data)
     },
     //投注详情
     async userorderdetail_( { commit, state }, body ){
         let data = await userorderdetail(body);
-        state.userorderdetail = data
+        if(data){
+            state.userorderdetail = data
+        }
     }
 }
 
