@@ -123,7 +123,9 @@
                         this.userunn_({UserId:this.user.UserId,NickName:value}).then(
                             (res) => {
                                 this.user.NickName = value;
-                                Toast('修改成功')
+                                setTimeout(function() {
+                                    Toast('修改成功')
+                                }, 0);
                             }
                         )
                     },
@@ -147,7 +149,9 @@
                                 console.info(res)
                                 img.src = res.file;
                                 this.user.LogoUrl = res.file;
-                                Toast('修改成功')
+                                setTimeout(function() {
+                                    Toast('修改成功')
+                                }, 0);
                             }
                         )
                     }
@@ -171,7 +175,9 @@
                                 console.info(res)
                                 img.src = res.file;
                                 this.user.LogoUrl = res.file;
-                                Toast('修改成功')
+                                setTimeout(function() {
+                                    Toast('修改成功')
+                                }, 0);
                             }
                         )
                     }

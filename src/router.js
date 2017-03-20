@@ -70,114 +70,125 @@ import accountDetail from './page/user/account-detail.vue'
 
 let routes = [{
     path: '*',
-    component: index,
+    components: {
+        node: index
+    }
 }];
 
-let index_ = {
-    name: 'index',
-    path: '/index',
-    component: index,
-    children: [{
-        name: 'betboxList',
-        path: 'betboxList',
-        component: betboxList,
-        children: [{
-            name: 'betbox',
-            path: 'betbox',
-            component: betbox,
-            children: [{
-                name: 'betSuccess',
-                path: 'betSuccess',
-                component: betSuccess
-            }]
-        }]
-    }]
-};
+let tabs = [{
+        name: 'index',
+        path: '/index',
+        components: {
+            node: index
+        }
+    },
+    {
+        name: 'info',
+        path: '/info',
+        components: {
+            node: info
+        }
+    },
+    {
+        name: 'user',
+        path: '/user',
+        components: {
+            node: user
+        }
+    }
+]
 
-let info_ = {
-    name: 'info',
-    path: '/info',
-    component: info,
+
+let index_c = {
+    name: 'betboxList',
+    path: '/betboxList',
+    component: betboxList,
     children: [{
-        name: 'doubleball',
-        path: 'doubleball',
-        component: doubleball,
+        name: 'betbox',
+        path: 'betbox',
+        component: betbox,
         children: [{
-            name: 'history',
-            path: 'history',
-            component: history
+            name: 'betSuccess',
+            path: 'betSuccess',
+            component: betSuccess
         }]
     }]
 }
 
-let user_ = {
-    name: 'user',
-    path: '/user',
-    component: user,
+let info_c = {
+    name: 'doubleball',
+    path: '/doubleball',
+    component: doubleball,
     children: [{
-        name: 'manage',
-        path: 'manage',
-        component: manage,
-        children: [{
-            name: 'userInfo',
-            path: 'userInfo',
-            component: userInfo,
-            children: [{
-                name: 'camera',
-                path: 'camera',
-                component: camera,
-            }]
-        }]
-    }, {
-        name: 'pay',
-        path: 'pay',
-        component: pay,
-        children: [{
-            name: 'paySuccess',
-            path: 'paySuccess',
-            component: paySuccess
-        }]
-    }, {
-        name: 'money',
-        path: 'money',
-        component: money,
-        children: [{
-            name: 'moneySuccess',
-            path: 'moneySuccess',
-            component: moneySuccess
-        }]
-    }, {
-        name: 'record',
-        path: 'record',
-        component: record,
-        children: [{
-            name: 'recordDetail',
-            path: 'recordDetail',
-            component: recordDetail,
-        }]
-    }, {
-        name: 'account',
-        path: 'account',
-        component: account
-    }, {
-        name: 'nameauth',
-        path: 'nameauth',
-        component: nameauth
-    }, {
-        name: 'bindcard',
-        path: 'bindcard',
-        component: bindcard,
-        children: [{
-            name: 'addcard',
-            path: 'addcard',
-            component: addcard,
-        }]
-    }, {
-        name: 'changePass',
-        path: 'changePass',
-        component: changePass
+        name: 'history',
+        path: 'history',
+        component: history
     }]
 }
+
+let user_c = [{
+    name: 'manage',
+    path: '/manage',
+    component: manage,
+    children: [{
+        name: 'userInfo',
+        path: 'userInfo',
+        component: userInfo,
+        children: [{
+            name: 'camera',
+            path: 'camera',
+            component: camera,
+        }]
+    }]
+}, {
+    name: 'pay',
+    path: '/pay',
+    component: pay,
+    children: [{
+        name: 'paySuccess',
+        path: 'paySuccess',
+        component: paySuccess
+    }]
+}, {
+    name: 'money',
+    path: '/money',
+    component: money,
+    children: [{
+        name: 'moneySuccess',
+        path: 'moneySuccess',
+        component: moneySuccess
+    }]
+}, {
+    name: 'record',
+    path: '/record',
+    component: record,
+    children: [{
+        name: 'recordDetail',
+        path: 'recordDetail',
+        component: recordDetail,
+    }]
+}, {
+    name: 'account',
+    path: '/account',
+    component: account
+}, {
+    name: 'nameauth',
+    path: '/nameauth',
+    component: nameauth
+}, {
+    name: 'bindcard',
+    path: '/bindcard',
+    component: bindcard,
+    children: [{
+        name: 'addcard',
+        path: 'addcard',
+        component: addcard,
+    }]
+}, {
+    name: 'changePass',
+    path: '/changePass',
+    component: changePass
+}]
 
 let login_ = {
     name: 'login',
@@ -211,7 +222,7 @@ let login_ = {
     ]
 }
 
-routes.unshift(...[index_, info_, user_, login_]);
+routes.unshift(...[...tabs, ...user_c, info_c, index_c, login_]);
 
 const router = new Vuer({
     routes: routes

@@ -1,10 +1,15 @@
 <template>
-    <div>
+    <main>
         <transition name="custom-classes-transition" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+            <keep-alive>
+                <router-view name="node"></router-view>
+            </keep-alive>
+        </transition>
+        <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
             <router-view></router-view>
         </transition>
         <y-footer></y-footer>
-    </div>
+    </main>
 </template>
 
 <script>

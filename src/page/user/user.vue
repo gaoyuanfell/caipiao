@@ -13,17 +13,17 @@
             </div>
             <div class="user_wallet flex">
                 <router-link :to="{ name: 'pay'}" class="border_right">充值</router-link>
-                <router-link to="/user/money">提现</router-link>
+                <router-link :to="{ name: 'money'}">提现</router-link>
             </div>
             <div class="center_list">
-                <router-link to="/user/record" class="center_item flex">
+                <router-link :to="{ name: 'record'}" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/jl.png" /></div>
                     <div class="tyle_information">投注记录</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
                 </router-link>
-                <router-link to="/user/account" class="center_item flex">
+                <router-link :to="{ name: 'account'}" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/mx.png" /></div>
                     <div class="tyle_information">账户明细</div>
                     <span href="javascript:;" class="information_bg">
@@ -32,14 +32,14 @@
                 </router-link>
             </div>
             <div class="center_list">
-                <router-link to="/user/nameauth" class="center_item flex">
+                <router-link :to="{ name: 'nameauth'}" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/rz.png" /></div>
                     <div class="tyle_information">实名认证</div>
                     <span href="javascript:;" class="information_bg">
                         <i class="icon">&#xe608;</i>
                     </span>
                 </router-link>
-                <router-link to="/user/bindcard"  class="center_item flex">
+                <router-link :to="{ name: 'bindcard'}" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/bd.png" /></div>
                     <div class="tyle_information">绑定银行卡</div>
                     <span href="javascript:;" class="information_bg">
@@ -48,7 +48,7 @@
                 </router-link>
             </div>
             <div class="center_list">
-                <router-link to="/user/changePass" class="center_item flex">
+                <router-link :to="{ name: 'changePass'}" class="center_item flex">
                     <div class="img_icon"><img src="../../assets/images/xg.png" /></div>
                     <div class="tyle_information">修改密码</div>
                     <span href="javascript:;" class="information_bg">

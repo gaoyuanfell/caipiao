@@ -50,9 +50,6 @@
                 </ul>
             </div>
         </div>
-        <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
-            <router-view></router-view>
-        </transition>
     </div>
 </template>
 
