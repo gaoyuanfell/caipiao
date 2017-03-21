@@ -10,8 +10,8 @@
  */
 
 .animated {
-    animation: .25s 0s ease both;
-    -webkit-animation: .25s 0s ease both;
+    animation: .23s 0s ease-out both;
+    -webkit-animation: .23s 0s ease-out both;
 }
 
 
@@ -744,4 +744,64 @@
 .slideOutUp {
     -webkit-animation-name: slideOutUp;
     animation-name: slideOutUp;
+}
+
+
+/*自定义*/
+@-webkit-keyframes slideOutLeft30 {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+    to {
+        -webkit-transform: translate3d(-70%, 0, 0);
+        transform: translate3d(-70%, 0, 0);
+    }
+}
+
+@keyframes slideOutLeft30 {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
+    to {
+        -webkit-transform: translate3d(-70%, 0, 0);
+        transform: translate3d(-70%, 0, 0);
+    }
+}
+
+.slideOutLeft30 {
+    -webkit-animation-name: slideOutLeft30;
+    animation-name: slideOutLeft30;
+}
+
+@-webkit-keyframes slideInLeft30 {
+    from {
+        -webkit-transform: translate3d(-70%, 0, 0);
+        transform: translate3d(-70%, 0, 0);
+        visibility: visible;
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideInLeft30 {
+    from {
+        -webkit-transform: translate3d(-70%, 0, 0);
+        transform: translate3d(-70%, 0, 0);
+        visibility: visible;
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.slideInLeft30 {
+    -webkit-animation-name: slideInLeft30;
+    animation-name: slideInLeft30;
 }

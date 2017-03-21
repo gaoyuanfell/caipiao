@@ -11,13 +11,15 @@ axios.defaults.baseURL = baseUrl;
 
 // axios.defaults.timeout = 2500;
 
+let toast = null;
+
 axios.interceptors.request.use(function (config) {
-    Indicator.open({
-        spinnerType:'fading-circle'
-    });
+    Indicator.open({spinnerType:'fading-circle'});
     return config;
 }, function (error) {
     Indicator.close();
+    toast && (toast.close())
+    toast = Toast('请稍后重试！')
     return Promise.reject(error);
 });
 
@@ -37,6 +39,8 @@ axios.interceptors.response.use(function (response) {
     throw 'not Data';
 }, function (error) {
     Indicator.close();
+    toast && (toast.close())
+    toast = Toast('请稍后重试！')
     return Promise.reject(error);
 });
 

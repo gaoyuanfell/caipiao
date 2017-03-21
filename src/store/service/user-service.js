@@ -16,9 +16,10 @@ export const getUserInfo = (body = {}) => {
  * @param {} body 
  */
 export const login = (body = {}) => {
-    let PD = body.PD;
-    body.PD = md5(PD);
-    return http.post(`/user/lg`, body)
+    let _body = Object.assign({},body);
+    let PD = _body.PD;
+    _body.PD = md5(PD);
+    return http.post(`/user/lg`, _body)
 }
 
 /**
@@ -26,9 +27,10 @@ export const login = (body = {}) => {
  * @param {} body 
  */
 export const register = (body = {}) => {
-    let PWD = body.PWD;
-    body.PWD = md5(PWD);
-    return http.post(`/user/reg`, body)
+    let _body = Object.assign({},body);
+    let PWD = _body.PWD;
+    _body.PWD = md5(PWD);
+    return http.post(`/user/reg`, _body)
 }
 
 /**
@@ -50,11 +52,12 @@ export const doupload = ( body = {} ) => {
  * @param {} body 
  */
 export const userpwd = (body = {}) => {
-    let OPWD = body.OPWD;
-    let PWD = body.PWD;
-    body.OPWD = md5(OPWD);
-    body.PWD = md5(PWD);
-    return http.post(`/user/pwd`, body)
+    let _body = Object.assign({},body);
+    let OPWD = _body.OPWD;
+    let PWD = _body.PWD;
+    _body.OPWD = md5(OPWD);
+    _body.PWD = md5(PWD);
+    return http.post(`/user/pwd`, _body)
 }
 
 /**

@@ -1,15 +1,17 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="支付成功" router="/betboxList"></y-header>
-        <div class="scroll-content" style="margin-bottom:0rem">
-            <div class="payment_success">
-                <img src="../../assets/images/zfcg.png" class="success"/>
-                <h3>支付成功</h3>
-                <p class="size_18 ">你可以通过投注详情查看方案状态</p>
-                <div class="success_after">
-                    <router-link :to="{name:'betboxList'}" class="continue_bet"> 继续投注 </router-link>
-                    <router-link :to="{name:'account'}"> 投注详情 </router-link>
-                    <router-link to="/"> 返回首页 </router-link>
+    <div class="content-modal">
+        <y-header title="支付成功" :router="{name:'betboxList'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <div class="payment_success">
+                    <img src="../../assets/images/zfcg.png" class="success"/>
+                    <h3>支付成功</h3>
+                    <p class="size_18 ">你可以通过投注详情查看方案状态</p>
+                    <div class="success_after">
+                        <router-link :to="{name:'betboxList'}" class="continue_bet"> 继续投注 </router-link>
+                        <router-link :to="{name:'account'}"> 投注详情 </router-link>
+                        <router-link to="/"> 返回首页 </router-link>
+                    </div>
                 </div>
             </div>
         </div>

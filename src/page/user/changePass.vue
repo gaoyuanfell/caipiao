@@ -1,23 +1,25 @@
 <template>
-	<div class="contener" :style="{'zIndex':$route.params.zIndex}">
-		<y-header title="修改密码" router="/user"></y-header>
-		<div class="scroll-content" style="margin-bottom:0rem;">
-			<div class="form-group">
-				<label class="control-label">
-					<span>原密码</span>
-					<input type="text" v-model="model.OPWD" placeholder="请输入原密码"/>
-				</label>
-				<label class="control-label">
-					<span>新密码</span>
-					<input type="text" v-model="model.PWD" placeholder="密码由6-20位字母、数字组成"/>
-				</label>
-				<label class="control-label">
-					<span>确认密码</span>
-					<input type="text" v-model="model.PWD1" placeholder="请重复输入密码"/>
-				</label>
-			</div>
-			<div class="position-btn">
-				<button @click="submit" class="btn">确认修改</button>
+	<div class="content-modal">
+		<y-header title="修改密码" :router="{name:'user'}"></y-header>
+		<div class="contener">
+			<div class="scroll-content" margin-header>
+				<div class="form-group">
+					<label class="control-label">
+						<span>原密码</span>
+						<input type="text" v-model="model.OPWD" placeholder="请输入原密码"/>
+					</label>
+					<label class="control-label">
+						<span>新密码</span>
+						<input type="text" v-model="model.PWD" placeholder="密码由6-20位字母、数字组成"/>
+					</label>
+					<label class="control-label">
+						<span>确认密码</span>
+						<input type="text" v-model="model.PWD1" placeholder="请重复输入密码"/>
+					</label>
+				</div>
+				<div class="default-btn">
+					<button @click="submit" class="btn">确认修改</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -61,15 +63,18 @@
 					if(reg.test(PWD) && PWD == PWD1){
 						this.userpwd_({ PWD:PWD, OPWD:OPWD, UID:this.user.UserId }).then(
 							(res) => {
-								Toast('修改成功！');
+								this._toast && (this._toast.close())
+								this._toast = Toast('修改成功！');
 								setTimeout( ()=> { this.$router.push({name:'user'}) }, 1000 )
 							}
 						)
 					}else{
-						Toast('两次密码不一致，请重新输入！')
+						this._toast && (this._toast.close())
+						this._toast = Toast('两次密码不一致，请重新输入！')
 					}
 				}else{
-					Toast('请填写内容')
+					this._toast && (this._toast.close())
+					this._toast = Toast('请填写内容')
 				}
 			}
 		}

@@ -1,18 +1,22 @@
 <template>
-    <div class="heading cont_padding flex">
-        <div class="back"> 
-            <router-link v-if="router" :to="router">
-                <i class="icon">&#xe600;</i>
-            </router-link>
+    <div class="header">
+        <div class="toolbar">
+            <div class="bar-button">
+                <router-link class="button-inner" v-if="router" :to="router" >
+                    <i class="icon">&#xe600;</i>
+                </router-link>
+            </div>
+
+            <div class="bar-button">
+                <router-link v-if="r_router" :to="r_router" v-text="r_title" class="button-inner"></router-link>
+                <span v-else-if="r_title" class="button-inner" @click="callback" v-text="r_title"></span>
+            </div>
+
+            <div class="title-h">
+                <div class="toolbar-title" v-if="title" v-text="title"></div>
+            </div>
         </div>
-        <div class="title" v-if="title" v-text="title"></div>
-        <div class="title_right size_14" v-if="r_router">
-            <router-link v-if="r_router" :to="r_router" v-text="r_title"></router-link>
-        </div>
-        <div @click="callback" class="title_right size_14" v-else>
-            {{r_title}}
-        </div>
-    </div>   
+    </div>
 </template>
 
 <script>

@@ -21,6 +21,7 @@ const actions = {
         let data = await getUserInfo(body).catch( e => { console.info(e) } );
         if(data){
             commit('setUser', data)
+            return data;
         }
 		// commit('setUserInfo', data)
     },

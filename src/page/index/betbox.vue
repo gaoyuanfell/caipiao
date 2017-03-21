@@ -1,54 +1,57 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="双色球" router="/index/betboxList" r_title="玩法"></y-header>
-        <div class="scroll-content">
-            <div class="betting_content">
-                <div class="tyle_information">
-                    <p class="stop_prompt"><span class="size_14 typecolor">第2016-145期</span><span>2016/12/11&nbsp;19:40:00&nbsp;截止</span></p>
-                </div>
-                <div class="select_number">
-                    <div class="red_ball">
-                        <div class="flex title_notice">
-                            <div>至少选择6个<span>红球</span></div>
-                            <a href="javascript:;" class="machine_elects" @click="changeBet()">
-                                <span>机选</span>
-                            </a>
-                        </div>
-                        <div class="ball_cont" @click="selectBet($event,1)">
-                            <a v-for="red in bet_red_list" v-text="red" :num="red" href="javacript:;" :class="{'deepred':doubleBall[0].indexOf(red) != -1,'red':doubleBall[0].indexOf(red) == -1}">
-                            </a>
-                        </div>
+    <div class="content-modal">
+        <y-header title="双色球" :router="{name:'betboxList'}" r_title="玩法"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header margin-tabbar>
+                <div class="betting_content">
+                    <div class="tyle_information">
+                        <p class="stop_prompt"><span class="size_14 typecolor">第2016-145期</span><span>2016/12/11&nbsp;19:40:00&nbsp;截止</span></p>
                     </div>
-                    <!--以上是选择红球-->
-                    <div class="blue_ball">
-                        <div class="flex title_notice">
-                            <div>至少选择1个<span>蓝球</span></div>
-                        </div>
-                        <div class="ball_cont" @click="selectBet($event,2)">
-                            <a v-for="blue in bet_blue_list" v-text="blue" :num="blue" href="javacript:;"
-                                :class="{'deepblue':doubleBall[1].indexOf(blue) != -1,'blue':doubleBall[1].indexOf(blue) == -1}">
+                    <div class="select_number">
+                        <div class="red_ball">
+                            <div class="flex title_notice">
+                                <div>至少选择6个<span>红球</span></div>
+                                <a href="javascript:;" class="machine_elects" @click="changeBet()">
+                                    <span>机选</span>
                                 </a>
+                            </div>
+                            <div class="ball_cont" @click="selectBet($event,1)">
+                                <a v-for="red in bet_red_list" v-text="red" :num="red" href="javacript:;" :class="{'deepred':doubleBall[0].indexOf(red) != -1,'red':doubleBall[0].indexOf(red) == -1}">
+                                </a>
+                            </div>
                         </div>
+                        <!--以上是选择红球-->
+                        <div class="blue_ball">
+                            <div class="flex title_notice">
+                                <div>至少选择1个<span>蓝球</span></div>
+                            </div>
+                            <div class="ball_cont" @click="selectBet($event,2)">
+                                <a v-for="blue in bet_blue_list" v-text="blue" :num="blue" href="javacript:;" :class="{'deepblue':doubleBall[1].indexOf(blue) != -1,'blue':doubleBall[1].indexOf(blue) == -1}"></a>
+                            </div>
+                        </div>
+                        <!--以上是选择蓝球-->
                     </div>
-                    <!--以上是选择蓝球-->
+                    <!--以上是选择号-->
                 </div>
-                <!--以上是选择号-->
             </div>
-        </div>
-        <div class="foot_menu select_complete flex">
-            <a @click="clearBet()" href="javascript:;" class="delect">
-                <i class="icon">&#xe62f</i>
-            </a>
-            <div class="have_cast">已选
-                <span v-text="doubleBallBet"></span>注
-                <span class="numberred" v-text="doubleBallBet * 2"></span>元
+
+            <div class="foot_menu select_complete flex">
+                <a @click="clearBet()" href="javascript:;" class="delect">
+                    <i class="icon">&#xe62f</i>
+                </a>
+                <div class="have_cast">已选
+                    <span v-text="doubleBallBet"></span>注
+                    <span class="numberred" v-text="doubleBallBet * 2"></span>元
+                </div>
+                <a href="javascript:;" @click="goBetboxList()" class="complete">确定</a>
             </div>
-            <a href="javascript:;" @click="goBetboxList()" class="complete">确定</a>
+
         </div>
         <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
             <router-view></router-view>
         </transition>
     </div>
+    
 </template>
 
 <script>
@@ -139,7 +142,6 @@
                 }
                 this.$router.push({
                     name: 'betboxList',
-                    path: '/betboxList'
                 })
             },
             selectBet(e, type) {

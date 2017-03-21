@@ -1,26 +1,30 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="历史开奖信息" router="/info/doubleball"></y-header>
-        <div class="scroll-content" style="margin-bottom: 0rem;">
-            <ul class="information_list history_entry no-bgimg">
-                <template v-for="(h,index) in noticehistorys">
-                    <li class="information flex">
-                        <div class="tyle_information">
-                            <p class="info">
-                                <span>第{{h.LotterySeq || 0}}期</span>
-                                <span>{{h.LotteryDate}}</span>
-                            </p>
-                            <div class="bet_cont flex" v-if="h.LotteryString">
-                                <template v-for="(n,index) in getBalls(h.LotteryString)">
-                                    <div class="ball" :class="{'deepblue_bg margin_none': index == getBalls(h.LotteryString).length - 1}">{{n}}</div>
-                                </template>
+    <div class="content-modal">
+        <y-header title="历史开奖信息" :router="{name:'doubleball'}"></y-header>
+        
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <ul class="information_list history_entry no-bgimg">
+                    <template v-for="(h,index) in noticehistorys">
+                        <li class="information flex">
+                            <div class="tyle_information">
+                                <p class="info">
+                                    <span>第{{h.LotterySeq || 0}}期</span>
+                                    <span>{{h.LotteryDate}}</span>
+                                </p>
+                                <div class="bet_cont flex" v-if="h.LotteryString">
+                                    <template v-for="(n,index) in getBalls(h.LotteryString)">
+                                        <div class="ball" :class="{'deepblue_bg margin_none': index == getBalls(h.LotteryString).length - 1}">{{n}}</div>
+                                    </template>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-            <!--以上是开奖历史查看-->
+                        </li>
+                    </template>
+                </ul>
+                <!--以上是开奖历史查看-->
+            </div>
         </div>
+        
     </div>
 </template>
 

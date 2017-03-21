@@ -32,6 +32,7 @@ import {
 // const moneySuccess = resolve => require(['./page/user/moneySuccess.vue'], resolve)
 // const pay = resolve => require(['./page/user/pay.vue'], resolve)
 // const paySuccess = resolve => require(['./page/user/paySuccess.vue'], resolve)
+import footer from './components/footer.vue';
 
 import index from './page/index/index.vue'
 import betbox from './page/index/betbox.vue'
@@ -43,6 +44,7 @@ import history from './page/info/history.vue'
 
 import user from './page/user/user.vue'
 import userInfo from './page/user/user-info.vue'
+import userInfoName from './page/user/user-info-name.vue'
 import manage from './page/user/manage.vue'
 import bindcard from './page/user/bindcard.vue'
 import addcard from './page/user/addcard.vue'
@@ -71,33 +73,33 @@ import accountDetail from './page/user/account-detail.vue'
 let routes = [{
     path: '*',
     components: {
-        node: index
-    }
+        node: index,
+        footer: footer
+    },
 }];
 
 let tabs = [{
-        name: 'index',
-        path: '/index',
-        components: {
-            node: index
-        }
-    },
-    {
-        name: 'info',
-        path: '/info',
-        components: {
-            node: info
-        }
-    },
-    {
-        name: 'user',
-        path: '/user',
-        components: {
-            node: user
-        }
+    name: 'index',
+    path: '/index',
+    components: {
+        node: index,
+        footer: footer
     }
-]
-
+}, {
+    name: 'info',
+    path: '/info',
+    components: {
+        node: info,
+        footer: footer
+    }
+}, {
+    name: 'user',
+    path: '/user',
+    components: {
+        node: user,
+        footer: footer
+    }
+}]
 
 let index_c = {
     name: 'betboxList',
@@ -107,11 +109,10 @@ let index_c = {
         name: 'betbox',
         path: 'betbox',
         component: betbox,
-        children: [{
-            name: 'betSuccess',
-            path: 'betSuccess',
-            component: betSuccess
-        }]
+    }, {
+        name: 'betSuccess',
+        path: 'betSuccess',
+        component: betSuccess
     }]
 }
 
@@ -138,6 +139,10 @@ let user_c = [{
             name: 'camera',
             path: 'camera',
             component: camera,
+        }, {
+            name: 'userInfoName',
+            path: 'userInfoName',
+            component: userInfoName,
         }]
     }]
 }, {
@@ -231,7 +236,9 @@ const router = new Vuer({
 //登录拦截
 let zIndex = 100;
 router.beforeEach((to, from, next) => {
-    to.params.zIndex = ++zIndex;
+    to.params.zIndex = zIndex + 1;
+    from.params.zIndex = 100;
+    ++zIndex
     // Indicator.close();//路由改变需要把遮罩层去掉
     next();
 })

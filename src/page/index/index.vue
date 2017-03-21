@@ -1,53 +1,57 @@
 <template>
-    <div class="contener">
+    <div class="tab-content">
         <y-header title="彩票"></y-header>
-        <div class="scroll-content">
-            <div class="banner">
-                <mt-swipe :show-indicators="true" :auto="0">
-                    <mt-swipe-item>
-                        <img src="../../assets/images/banner.jpg" />
-                    </mt-swipe-item>
-                    <mt-swipe-item>
-                        <img src="../../assets/images/banner.jpg" />
-                    </mt-swipe-item>
-                    <mt-swipe-item>
-                        <img src="../../assets/images/banner.jpg" />
-                    </mt-swipe-item>
-                </mt-swipe>
-            </div>
-            <div class="bet_luckynumber cont_padding">
-                <div class="bet_title flex">
-                    <p>
-                        <span class="typecolor">【双色球】</span>2元赢千万大奖！等你来战！
-                    </p>
-                    <p @click="changeLuckyDoubleBall">
-                        <img src="../../assets/images/huanyiz.png"/>
-                        <a href="javascript:;" class="typehot">换一注</a>
-                    </p>
+        <div class="content">
+            <div class="scroll-content" margin-tabbar margin-header>
+                <div class="banner">
+                    <mt-swipe :show-indicators="true" :auto="0">
+                        <mt-swipe-item>
+                            <img src="../../assets/images/banner.jpg" />
+                        </mt-swipe-item>
+                        <mt-swipe-item>
+                            <img src="../../assets/images/banner.jpg" />
+                        </mt-swipe-item>
+                        <mt-swipe-item>
+                            <img src="../../assets/images/banner.jpg" />
+                        </mt-swipe-item>
+                    </mt-swipe>
                 </div>
-                <div class="bet_cont flex" id="index_number_box">
-                    <div class="lucky_number red">08</div>
-                    <div class="lucky_number red">09</div>
-                    <div class="lucky_number red">16</div>
-                    <div class="lucky_number red">18</div>
-                    <div class="lucky_number red">28</div>
-                    <div class="lucky_number red">32</div>
-                    <div class="lucky_number blue">08</div>
+                <div class="bet_luckynumber cont_padding">
+                    <div class="bet_title flex">
+                        <p>
+                            <span class="typecolor">【双色球】</span>2元赢千万大奖！等你来战！
+                        </p>
+                        <p @click="changeLuckyDoubleBall">
+                            <img src="../../assets/images/huanyiz.png"/>
+                            <a href="javascript:;" class="typehot">换一注</a>
+                        </p>
+                    </div>
+                    <div class="bet_cont flex" id="index_number_box">
+                        <div class="lucky_number red">08</div>
+                        <div class="lucky_number red">09</div>
+                        <div class="lucky_number red">16</div>
+                        <div class="lucky_number red">18</div>
+                        <div class="lucky_number red">28</div>
+                        <div class="lucky_number red">32</div>
+                        <div class="lucky_number blue">08</div>
+                    </div>
+                    <div class="bet_button">
+                        <a href="javascript:;" class="size_14 bet_submit" @click="luckSubmin()">投注幸运号</a>
+                    </div>
                 </div>
-                <div class="bet_button">
-                    <a href="javascript:;" class="size_14 bet_submit" @click="luckSubmin()">投注幸运号</a>
+                <div class="lotterylist">
+                    <ul @click="changePromptState($event)">
+                        <li class="item_menu flex" v-for="(list,index) in lotterylist">
+                            <div v-for="(l,idx) in list" class="item" :data-type="l.TypeId" :data-state="l.CurState">
+                                <img :src="l.LogoUrl"/>
+                                <p>{{l.TypeName}}</p>
+                                <p>{{l.Tips}}</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="lotterylist">
-                <ul @click="changePromptState($event)">
-                    <li class="item_menu flex" v-for="(list,index) in lotterylist">
-                        <div v-for="(l,idx) in list" class="item" :data-type="l.TypeId" :data-state="l.CurState">
-                            <img :src="l.LogoUrl"/>
-                            <p>{{l.TypeName}}</p>
-                            <p>{{l.Tips}}</p>
-                        </div>
-                    </li>
-                </ul>
+
+                
             </div>
         </div>
     </div>
@@ -85,6 +89,9 @@
             this.changeLuckyDoubleBall();
             this.lotterylist_()
         },
+        activated:function(){
+            console.info('activated')
+        },
         computed: {
             ...mapState({
                 lotterylist: state => state.$home.lotterylist
@@ -104,7 +111,6 @@
                 this.$store.commit('addDoubleBallList', this.luckyDoubleBall)
                 this.$router.push({
                     name: 'betboxList',
-                    path: '/betboxList'
                 })
             },
             changePromptState(e) {
@@ -120,7 +126,6 @@
                     this.$store.commit('setLotteryType',type);
                     this.$router.push({
                         name: 'betbox',
-                        path: '/betbox'
                     });
                 }else{
                     this._toast && (this._toast.close());

@@ -1,50 +1,45 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="我的彩票" router="/user/manage"></y-header>
-        <div class="scroll-content" style="margin-bottom:0">
-            <div class="personal_management">
-                <div class="item flex" @click=" sheetVisible = !sheetVisible ">
-                    <div class="personal_lef">我的头像</div>
-                    <div class="personal_rig noheight">
-                        <img ref="img" :src="user.LogoUrl || '/static/img/morentoux.png'" alt="">
+    <div class="content-modal">
+        <y-header title="我的彩票" :router="{name:'manage'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <div class="personal_management">
+                    <div class="item flex" @click=" sheetVisible = !sheetVisible ">
+                        <div class="personal_lef">我的头像</div>
+                        <div class="personal_rig noheight">
+                            <img ref="img" :src="user.LogoUrl || '/static/img/morentoux.png'" alt="">
+                        </div>
+                        <span href="javascript:;" class="information_bg">
+                            <i class="icon">&#xe608;</i>
+                        </span>
                     </div>
-                    <span href="javascript:;" class="information_bg">
-                        <i class="icon">&#xe608;</i>
-                    </span>
+                    <div class="item flex" @click="nickNameModify">
+                        <div class="personal_lef">昵称</div>
+                        <div class="personal_rig">{{user.NickName || user.MobilePhone | confusePhone}}</div>
+                        <span href="javascript:;" class="information_bg">
+                            <i class="icon">&#xe608;</i>
+                        </span>
+                    </div>
+                    <div class="item flex">
+                        <div class="personal_lef">登录手机号</div>
+                        <div class="personal_rig">{{user.MobilePhone | confusePhone}}</div>
+                        <span href="javascript:;" class="information_bg">
+                            <i class="icon">&#xe608;</i>
+                        </span>
+                    </div>
                 </div>
-                <div class="item flex" @click="nickNameModify">
-                    <div class="personal_lef">昵称</div>
-                    <div class="personal_rig">{{user.NickName || user.MobilePhone | confusePhone}}</div>
-                    <span href="javascript:;" class="information_bg">
-                        <i class="icon">&#xe608;</i>
-                    </span>
+
+                <div hide>
+                    <input @change="photoCapture" ref="capture" type="file" accept="image/*" capture="camera"/>
+                    <input @change="photoAlbum" ref="album" type="file" accept="image/*" />
                 </div>
-                <div class="item flex">
-                    <div class="personal_lef">登录手机号</div>
-                    <div class="personal_rig">{{user.MobilePhone | confusePhone}}</div>
-                    <span href="javascript:;" class="information_bg">
-                        <i class="icon">&#xe608;</i>
-                    </span>
-                </div>
+
+                <div class="default-btn"><button class="btn" @click="loginout">退出登录</button></div>
             </div>
 
-            <div hide>
-                <input @change="photoCapture" ref="capture" type="file" accept="image/*" capture="camera"/>
-                <input @change="photoAlbum" ref="album" type="file"/>
-            </div>
+            <mt-actionsheet :actions="actions" v-model="sheetVisible"> </mt-actionsheet>
 
-            <!--
-                <form enctype="multipart/form-data" method="post" action="http://180.97.75.144:8035/lotteryup/fileUpload">
-                    <input type="file" name="file"/>
-                    <input type="submit" value="上传"/>
-                </form>
-            -->
-
-            <div class="position-btn"><button class="btn" @click="loginout">退出登录</button></div>
         </div>
-
-        <mt-actionsheet :actions="actions" v-model="sheetVisible"> </mt-actionsheet>
-
         <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
             <router-view></router-view>
         </transition>
@@ -56,7 +51,7 @@
     import Vue from 'vue';
     import header from '../../components/header.vue';
     import compressImg from '../../compress-img.js';
-    import { Actionsheet, MessageBox,Toast } from 'mint-ui';
+    import { Actionsheet, MessageBox, Toast } from 'mint-ui';
     Vue.component(Actionsheet.name, Actionsheet);
     export default {
         components: {
@@ -70,6 +65,9 @@
             }
         },
         created: function () {
+            
+        },
+        mounted:function(){
             
         },
         computed:{
@@ -111,28 +109,29 @@
             loginout(){
                 this.loginout_({UID:this.user.UserId}).then(
                     (res) => {
-                        console.info(res);
-                        this.$router.push({name:'login'})
                         this.setUser({})
+                        window.localStorage.removeItem('userInfo')
+                        this.$router.push({name:'login'})
                     }
                 )
             },
             nickNameModify(){
-                MessageBox.prompt('请输入昵称').then(
-                    ({ value, action }) => {
-                        this.userunn_({UserId:this.user.UserId,NickName:value}).then(
-                            (res) => {
-                                this.user.NickName = value;
-                                setTimeout(function() {
-                                    Toast('修改成功')
-                                }, 0);
-                            }
-                        )
-                    },
-                    (e) => {
-                        console.info(e)
-                    }
-                );
+                let name = this.user.NickName || this.user.MobilePhone || '';
+                this.$router.push({name:'userInfoName',query:{NickName:name}})
+                // MessageBox.prompt('请输入昵称').then(
+                //     ({ value, action }) => {
+                //         this.userunn_({UserId:this.user.UserId,NickName:value}).then(
+                //             (res) => {
+                //                 this.user.NickName = value;
+                //                 this._toast && (this._toast.close())
+                //                 setTimeout( () => { this._toast = Toast('修改成功') }, 0 )
+                //             }
+                //         )
+                //     },
+                //     (e) => {
+                //         console.info(e)
+                //     }
+                // );
             },
             photoCapture(){
                 let capture = this.$refs.capture
@@ -142,16 +141,20 @@
                 formData.append('userId', this.user.UserId);
                 formData.append('typeId', 1);
                 compressImg(file).then(
-                    (res) => {
-                        formData.append('file', res, file.name);
+                    (result) => {
+                        formData.append('file', result, file.name);
                         this.doupload_(formData).then(
                             (res) => {
                                 console.info(res)
                                 img.src = res.file;
                                 this.user.LogoUrl = res.file;
-                                setTimeout(function() {
-                                    Toast('修改成功')
-                                }, 0);
+                                this._toast && (this._toast.close())
+                                this._toast = Toast('修改成功')
+                                // this._toast = Toast('修改成功')
+                            },
+                            () => {
+                                this._toast && (this._toast.close())
+                                this._toast = Toast('修改失败')
                             }
                         )
                     }
@@ -168,16 +171,19 @@
                 formData.append('userId', this.user.UserId);
                 formData.append('typeId', 1);
                 compressImg(file).then(
-                    (res) => {
-                        formData.append('file', res, file.name);
+                    (result) => {
+                        formData.append('file', result, file.name);
                         this.doupload_(formData).then(
                             (res) => {
                                 console.info(res)
                                 img.src = res.file;
                                 this.user.LogoUrl = res.file;
-                                setTimeout(function() {
-                                    Toast('修改成功')
-                                }, 0);
+                                this._toast && (this._toast.close())
+                                this._toast = Toast('修改成功')
+                            },
+                            () => {
+                                this._toast && (this._toast.close())
+                                this._toast = Toast('修改失败')
                             }
                         )
                     }

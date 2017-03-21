@@ -1,19 +1,21 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="新密码" router="/user/login/register2" r_title="登录" :r_router="{name:'login'}"></y-header>
-        <div class="scroll-content" style="margin-bottom:0">
-            <div class="form-group">
-                <label class="control-label">
-                    <span>新密码</span>
-                    <input v-model="PWD" type="text" placeholder="请输入新密码（6-20位、数字、字母）"/>
-                </label>
-                <label class="control-label">
-                    <span>确认密码</span>
-                    <input v-model="PWD1" type="text" placeholder="请再次输入新密码（6-20位、数字、字母）"/>
-                </label>
-            </div>
-            <div class="position-btn">
-                <button class="btn" @click="next"> 下一步 </button>
+    <div class="content-modal">
+        <y-header title="新密码" r_title="登录" :r_router="{name:'login'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <div class="form-group">
+                    <label class="control-label">
+                        <span>新密码</span>
+                        <input v-model="PWD" type="password" placeholder="请输入新密码（6-20位、数字、字母）"/>
+                    </label>
+                    <label class="control-label">
+                        <span>确认密码</span>
+                        <input v-model="PWD1" type="password" placeholder="请再次输入新密码（6-20位、数字、字母）"/>
+                    </label>
+                </div>
+                <div class="default-btn">
+                    <button class="btn" @click="next"> 下一步 </button>
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +43,10 @@
         computed:{
             ...mapGetters({
                 
-            })
+            }),
+            zIndex:function(){
+                return this.$route.params.zIndex
+            },
         },
         methods:{
             ...mapMutations({
@@ -55,9 +60,11 @@
                     this.setUserRegByKey({key:'PWD',value:PWD});
                     this.$router.push({name:'register4'});
                 }else if(reg.test(PWD) && PWD != PWD1){
-                    Toast('两次密码不一致，请重新输入！')
+                    this._toast && (this._toast.close())
+                    this._toast = Toast('两次密码不一致，请重新输入！')
                 }else{
-                    Toast('请填写新密码！')
+                    this._toast && (this._toast.close())
+                    this._toast = Toast('请填写新密码！')
                 }
             }
         }

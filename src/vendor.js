@@ -9,6 +9,7 @@
 // import './assets/css/caipiao.css';
 
 import './assets/css/master.css';
+import './assets/css/base.css';
 import './assets/css/caipiao.scss';
 
 /*动画*/

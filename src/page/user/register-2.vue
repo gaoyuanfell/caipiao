@@ -1,21 +1,23 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="填写验证码" router="/user/login/register1" r_title="登录" :r_router="{name:'login'}"></y-header>
-        <div class="scroll-content" style="margin-bottom:0">
-            <div class="iphone_note">
-                <p class="note">我们已经发送<span>验证码短信</span>至您的手机</p>
-                <p class="mobile">{{PN}}</p>
-            </div>
-            <div class="sms flex">
-                <label class="flex">
-                    <span>验证码</span>
-                    <input type="text" placeholder="请输入验证码"/>
-                </label>
-                <font color="#999" v-if="verifyState" class="test-button">重新获取({{countDown}})</font>
-                <input v-else type="button" @click="getVerifyCode" value="获取验证码" class="test-button">
-            </div>
-            <div class="login_but">
-                <button class="btn" @click="next"> 下一步 </button>
+    <div class="content-modal">
+        <y-header title="填写验证码" r_title="登录" :r_router="{name:'login'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <div class="iphone_note">
+                    <p class="note">我们已经发送<span>验证码短信</span>至您的手机</p>
+                    <p class="mobile">{{PN}}</p>
+                </div>
+                <div class="sms flex">
+                    <label class="flex">
+                        <span>验证码</span>
+                        <input type="number" autofocus placeholder="请输入验证码"/>
+                    </label>
+                    <font color="#999" v-if="verifyState" class="test-button">重新获取({{countDown}})</font>
+                    <input v-else type="button" @click="getVerifyCode" value="获取验证码" class="test-button">
+                </div>
+                <div class="login_but">
+                    <button class="btn" @click="next"> 下一步 </button>
+                </div>
             </div>
         </div>
     </div>
@@ -46,9 +48,13 @@
             ...mapState({
                 userReg:state => state.$user.userReg
             }),
+            zIndex:function(){
+                return this.$route.params.zIndex
+            },
             ...mapGetters({
                 
-            })
+            }),
+            
         },
         methods:{
             getVerifyCode(){

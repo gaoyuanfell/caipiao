@@ -1,21 +1,23 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="绑定银行卡" router="/user" r_title="添加" r_router="/user/bindcard/addcard"></y-header>
-        <div class="scroll-content" style="margin-bottom:0rem;">
-            <div class="recharge_content">
-                <div class="card">
-                    <a href="javascript:;" class="flex">
-                        <div class="type_logo"><img src="../../assets/images/banklg.png" /></div>
-                        <div class="tyle_information">
-                            <p>中国农业银行</p>
-                            <p>尾号0779储蓄卡</p>
-                        </div>
-                        <span href="javascript:;" class="information_bg"><i class="icon">&#xe608;</i></span>
-                    </a>
+    <div class="content-modal">
+        <y-header title="绑定银行卡" :router="{name:'user'}" r_title="添加" :r_router="{name:'addcard'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <div class="recharge_content">
+                    <div class="card">
+                        <a href="javascript:;" class="flex">
+                            <div class="type_logo"><img src="../../assets/images/banklg.png" /></div>
+                            <div class="tyle_information">
+                                <p>中国农业银行</p>
+                                <p>尾号0779储蓄卡</p>
+                            </div>
+                            <span href="javascript:;" class="information_bg"><i class="icon">&#xe608;</i></span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="position-btn">
-                <button class="btn">确认绑定</button>
+                <div class="default-btn">
+                    <button class="btn">确认绑定</button>
+                </div>
             </div>
         </div>
         <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">

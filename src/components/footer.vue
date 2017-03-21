@@ -1,22 +1,22 @@
 <template>
-    <div class="foot_menu flex">
-        <router-link to="/index" class="lottery_hall link" :class="{active:getPath == '/index' || getPath == '/'}">
-            <div class="lottery_menu img"></div>
-            <p class="menucolor">
-                彩票大厅
-            </p>
+    <div class="tabbar">
+        <router-link to="/index" class="tab-button" :class="{active:getPath == '/index' || getPath == '/'}">
+            <span class="tab-button-icon home-icon">
+                
+            </span>
+            <span class="tab-button-text">彩票大厅</span>
         </router-link>
-        <router-link to="/info" class="draw_notice link" :class="{active:getPath == '/info'}">
-            <div class="lottery_menu img"></div>
-            <p class="menucolor">
-                开奖公告
-            </p>
+        <router-link to="/info" class="tab-button" :class="{active:getPath == '/info'}">
+            <span class="tab-button-icon notice-icon">
+                
+            </span>
+            <span class="tab-button-text">开奖公告</span>
         </router-link>
-        <router-link to="/user" class="my_lottery link" :class="{active:getPath == '/user'}">
-            <div class="lottery_menu img"></div>
-            <p class="menucolor">
-                我的彩票
-            </p>
+        <router-link to="/user" class="tab-button" :class="{active:getPath == '/user'}">
+            <span class="tab-button-icon lottery-icon">
+                
+            </span>
+            <span class="tab-button-text">我的彩票</span>
         </router-link>
     </div>
 </template>

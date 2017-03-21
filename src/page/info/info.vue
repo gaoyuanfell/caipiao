@@ -1,44 +1,47 @@
 <template>
-    <div class="contener">
+    <div class="tab-content">
         <y-header title="开奖公告"></y-header>
-        <div class="tabs">
-            <ul class="notice_menu flex">
-                <li class="item" :class="{active:(index + 1) == activeIndex}" v-for="(item, index) in tabs" @click="tab(++index)">
-                    <a href="Javascript:;">
-                        {{ item.title}}
-                    </a>
-                </li>
-            </ul>
-            <div style="overflow:auto;top: 0rem;bottom: 0rem;position: absolute;right: 0;left: 0;margin-top: 0.45rem;">
-                <mt-loadmore :bottomPullText="loadmore.bottomPullText" :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" ref="loadmore" style="margin-top: 0rem">
-                    <ul class="information_list">
-                        <template v-for="i in lotteryNotices">
-                            <li class="information">
-                                <router-link :to="{ name: 'doubleball', query: {DID: i.ItemId }}" class="flex item">
-                                    <div class="type_logo"><img :src="i.LogoUrl" /></div>
-                                    <div class="tyle_information">
-                                        <p class="info">
-                                            <span>{{i.TypeName}}</span>
-                                            <span>{{i.LotterySeq}}</span>
-                                            <span>{{i.LotteryDate}}</span>
-                                        </p>
-                                        <div class="bet_cont flex">
-                                            <div class="ball" v-for="(num, index) in getBalls(i.LotteryString)" v-if="num != ' '" :class="{bluebg:index == getBalls(i.LotteryString).length - 1}">{{$last}}{{num}}</div>
+
+        <div class="content">
+            <div class="nav-content" margin-tabbar margin-header>
+                <ul class="notice_menu flex">
+                    <li class="item" :class="{active:(index + 1) == activeIndex}" v-for="(item, index) in tabs" @click="tab(++index)">
+                        <a href="Javascript:;">
+                            {{ item.title}}
+                        </a>
+                    </li>
+                </ul>
+
+                <div style="overflow:auto;top: 0rem;bottom: 0rem;position: absolute;right: 0;left: 0;margin-top: 0.45rem;">
+                    <mt-loadmore :bottomPullText="loadmore.bottomPullText" :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" ref="loadmore" style="margin-top: 0rem">
+                        <ul class="information_list">
+                            <template v-for="i in lotteryNotices">
+                                <li class="information">
+                                    <router-link :to="{ name: 'doubleball', query: {DID: i.ItemId }}" class="flex item">
+                                        <div class="type_logo"><img :src="i.LogoUrl" /></div>
+                                        <div class="tyle_information">
+                                            <p class="info">
+                                                <span>{{i.TypeName}}</span>
+                                                <span>{{i.LotterySeq}}</span>
+                                                <span>{{i.LotteryDate}}</span>
+                                            </p>
+                                            <div class="bet_cont flex">
+                                                <div class="ball" v-for="(num, index) in getBalls(i.LotteryString)" v-if="num != ' '" :class="{bluebg:index == getBalls(i.LotteryString).length - 1}">{{$last}}{{num}}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <span href="javascript:;" class="information_bg">
-                                        <i class="icon">&#xe608;</i>
-                                    </span>
-                                </router-link>
-                            </li>
-                        </template>
-                    </ul>
-                </mt-loadmore>
+                                        <span href="javascript:;" class="information_bg">
+                                            <i class="icon">&#xe608;</i>
+                                        </span>
+                                    </router-link>
+                                </li>
+                            </template>
+                        </ul>
+                    </mt-loadmore>
+                </div>
+
             </div>
         </div>
-        <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
-            <router-view></router-view>
-        </transition>
+
     </div>
 </template>
 

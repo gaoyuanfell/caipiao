@@ -1,9 +1,11 @@
 <template>
-    <div class="contener">
-        <y-header title="账户明细" router="/user"></y-header>
-        <div class="scroll-content">
-            {{test | json}}
-            <button @click="test()">测试</button>
+    <div class="content-modal">
+        <y-header title="账户明细" :router="{name:'user'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                {{test | json}}
+                <button @click="test()">测试</button>
+            </div>
         </div>
     </div>
 </template>

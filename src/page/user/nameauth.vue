@@ -1,23 +1,25 @@
 <template>
-    <div class="contener" :style="{'zIndex':$route.params.zIndex}">
-        <y-header title="实名认证" router="/user"></y-header>
-        <div class="scroll-content" style="margin-bottom:0rem;">
-            <div class="form-group">
-                <label class="control-label">
-                    <span>真实姓名</span>
-                    <input type="text" v-model="model.name" placeholder="需与真实姓名一致，提交后不可修改"/>
-                </label>
-                <label class="control-label">
-                    <span>身份证号</span>
-                    <input type="text" v-model="model.sfz" placeholder="需与身份证一致，提交后不可修改"/>
-                </label>
-                <label class="control-label">
-                    <span>确认号码</span>
-                    <input type="text" v-model="model.repe" placeholder="请重复输入身份证号码"/>
-                </label>
-            </div>
-            <div class="position-btn">
-                <buttin @click="submit" class="btn">提交认证</buttin>
+    <div class="content-modal">
+        <y-header title="实名认证" :router="{name:'user'}"></y-header>
+        <div class="content">
+            <div class="scroll-content" margin-header>
+                <div class="form-group">
+                    <label class="control-label">
+                        <span>真实姓名</span>
+                        <input type="text" v-model="model.name" placeholder="需与真实姓名一致，提交后不可修改"/>
+                    </label>
+                    <label class="control-label">
+                        <span>身份证号</span>
+                        <input type="text" v-model="model.sfz" placeholder="需与身份证一致，提交后不可修改"/>
+                    </label>
+                    <label class="control-label">
+                        <span>确认号码</span>
+                        <input type="text" v-model="model.repe" placeholder="请重复输入身份证号码"/>
+                    </label>
+                </div>
+                <div class="default-btn">
+                    <buttin @click="submit" class="btn">提交认证</buttin>
+                </div>
             </div>
         </div>
     </div>

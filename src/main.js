@@ -12,7 +12,9 @@ import router from './router';
 import store from './store';
 
 import filter from './filter';
+import directive from './directive';
 filter(Vue);
+directive(Vue);
 
 // sync the router with the vuex store.
 // this registers `store.state.route`
@@ -22,10 +24,12 @@ Vue.config.silent = true;
 Vue.config.devtools = true;
 
 import App from './App.vue';
-
-const app = new Vue({
-	el: '#app',
-	store,
-	router,
-	render: a => a(App)
-})
+//异步 加快首页加载速度
+setTimeout(function () {
+    const app = new Vue({
+        el: '#app',
+        store,
+        router,
+        render: a => a(App)
+    })
+}, 0);

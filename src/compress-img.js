@@ -5,8 +5,8 @@ async function compressImg(blob, config) {
     document.body.appendChild($canvas);
     var result = await readBlobAsDataURL(blob);
     config = config || {
-        wh: 100,
-        quality: 0.96,
+        wh: 400,
+        quality: 1,
         type: blob.type || 'image/jpeg'
     }
     var bold = await canvasToImg($canvas, result, config);
