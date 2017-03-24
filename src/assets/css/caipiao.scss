@@ -186,13 +186,12 @@
     padding: 0 .15rem;
     .title_notice {
         position: relative;
-        &:first-child {
+        .title_p {
             height: .3rem;
             line-height: .3rem;
             color: #282828;
             font-size: .14rem;
             span {
-                color: #ff3b3b;
                 font-size: .14rem;
             }
         }
@@ -220,13 +219,12 @@
         padding: .1rem 0;
         border-bottom: 1px solid #ccc;
         display: block;
-        a {
+        .ball {
             border: 1px solid #cfcfcf;
             display: inline-block;
             margin-bottom: .13rem;
             margin-right: .05rem;
             background: #fff;
-            color: #ff3b3b;
             font-size: .16rem;
             border-radius: 100%;
             width: .38rem;
@@ -262,7 +260,7 @@
         text-align: center;
         position: relative;
         i {
-            font-size: 24px;
+            font-size: .24rem;
             border-right: 1px solid #ccc;
             padding-right: 0.09rem;
             color: #989898;
@@ -397,13 +395,15 @@
                         text-align: center;
                         line-height: .28rem;
                         font-size: .16rem;
-                        color: #ff3b3b;
                         border-radius: 100%;
                         background: #fff3f3;
-                        &:last-child {
-                            background: #f7fbff;
-                            color: #3b97ff;
-                        }
+                    }
+                    .red-ball{
+                        color: #ff3b3b;
+                    }
+                    .blue-ball{
+                        background: #f7fbff;
+                        color: #3b97ff;
                     }
                 }
                 .information_bg {
@@ -442,7 +442,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    max-width: 800px;
+    // max-width: 800px;
     .bet_way {
         margin-bottom: .15rem;
         a {
@@ -531,7 +531,7 @@
             }
         }
     }
-    .bank_select {
+    @at-root .bank_select {
         height: 0.5rem;
         width: 100%;
         border: 1px solid #ccc;
@@ -588,7 +588,7 @@
         font-size: 0.18rem;
         height: 0.5rem;
         line-height: 0.5rem;
-        border-bottom: 1px solid #ccc;
+        // border-bottom: 1px solid #ccc;
     }
     .card {
         height: 0.56rem;
@@ -1469,7 +1469,7 @@
     padding: 0 .15rem;
 }
 
-.default-btn{
+.default-btn {
     padding: 0 .15rem;
     margin-top: .15rem;
 }
@@ -1551,8 +1551,7 @@
     text-align: left;
     margin-bottom: .15rem;
     span {
-        position: absolute;
-        // z-index: 1;
+        position: absolute; // z-index: 1;
         color: #282828;
         font-size: .14rem;
     }
@@ -1642,8 +1641,7 @@
         font-size: .14rem;
         display: inline-block;
         height: .3rem;
-        line-height: .3rem;
-        // color: #ccc;
+        line-height: .3rem; // color: #ccc;
     }
 }
 
@@ -1778,7 +1776,7 @@
 /*user-info end*/
 
 
-/**/
+/* 照相机 */
 
 .camera {
     text-align: left;
@@ -1863,4 +1861,202 @@
 }
 
 
-/**/
+/* 照相机 end */
+
+
+/* 走势图 start */
+
+
+.trend {
+    .ball-title,.ball-list,.issue-code,.ball-total{
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    }
+}
+
+$width_ball: 0.3rem; //球的宽度高度
+$width_title: 0.6rem;//靠右的宽度
+$height_total: 0.5rem;//底部的高度
+
+$line_color1: #e8e8e8;
+$line_color2: #8e8e8e;
+
+.trend {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    table {
+        tr {
+            display: flex;
+        }
+        td {
+            flex: 1;
+            height: $width_ball;
+            line-height: $width_ball;
+        }
+    }
+    /* 标题区域 */
+    .ball-title {
+        overflow: scroll;
+        text-align: center;
+        height: $width_ball * 2;
+        margin-left: $width_title;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        tr:first-child{
+            border-bottom: 1px solid $line_color2;
+            td{
+                display: inline-grid;
+                &:last-child{
+                    border-right:none;
+                    max-width: $width_ball * 16;
+                    min-width: $width_ball * 16;
+                }
+                border-right: 1px solid $line_color2;
+
+                max-width: $width_ball * 11;
+                min-width: $width_ball * 11;
+            }
+        }
+        tr.tr_item {
+            background-color: #fffff4;
+            td {
+                display: inline-grid;
+                max-width: $width_ball;
+                min-width: $width_ball;
+                white-space: nowrap;
+                border-right: 1px solid $line_color1;
+                border-bottom: 2px solid $line_color1;
+                &:last-child{
+                    border-right:none;
+                }
+            }
+        }
+    }
+    /* 球区域 */
+    .ball-list {
+        overflow: scroll;
+        position: absolute;
+        margin-top: $width_ball * 2;
+        margin-left: $width_title;
+        margin-bottom: $height_total;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        background: #fff;
+        z-index: 1;
+        table {
+            background: #fff;
+            color: #ccc;
+            tr{
+                &:last-child{
+                    td{
+                        border-bottom:none;
+                    }
+                }
+            }
+            td {
+                display: inline-grid;
+                max-width: $width_ball;
+                min-width: $width_ball;
+                white-space: nowrap;
+                border-right: 1px solid $line_color1;
+                border-bottom: 1px solid $line_color1;
+                &:last-child{
+                    border-right:none;
+                }
+            }
+        }
+    }
+    /*期号列表*/
+    .issue-code {
+        overflow: scroll;
+        position: absolute;
+        top: 0;
+        margin-top: $width_ball * 2;
+        margin-bottom: $height_total;
+        left: 0;
+        bottom: 0;
+        width: $width_title;
+        text-align: center;
+        background-color: #f2f2f2;
+        z-index: 2;
+        border-right: 1px solid $line_color2;
+        table {
+            tr:last-child td{
+                border-bottom: none;
+            }
+            td {
+                border-bottom: 1px solid $line_color1;
+                display: inline-grid;
+                max-width: $width_title;
+                min-width: $width_title;
+                white-space: nowrap; // border-top: 1px solid #e8e8e8;
+            }
+        }
+    }
+    /*期号标题*/
+    .issue-code-t {
+        text-align: center;
+        width: $width_title;
+        height: $width_ball * 2;
+        line-height: $width_ball * 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #f2f2f2;
+        z-index: 2;
+        border-bottom: 1px solid $line_color1;
+        border-right: 1px solid $line_color2;
+    }
+    /*总计标题*/
+    .ball-total-t{
+        text-align: center;
+        width: $width_title;
+        height: $height_total;
+        line-height: $height_total;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        background: #f2f2f2;
+        z-index: 3;
+        border-right: 1px solid $line_color2;
+        border-top: 1px solid $line_color2;
+    }
+    /*总计详情*/
+    .ball-total{
+        overflow: scroll;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $height_total;
+        margin-left: $width_title;
+        text-align: center;
+        z-index: 3;
+        border-top: 1px solid $line_color2;
+        table {
+            background: #fff;
+            color: #ccc;
+            td {
+                display: inline-grid;
+                max-width: $width_ball;
+                min-width: $width_ball;
+                height: $height_total;
+                line-height: $height_total;
+                white-space: nowrap;
+                border-right: 1px solid $line_color1;
+            }
+        }
+    }
+}
+
+
+/* 走势图 end */

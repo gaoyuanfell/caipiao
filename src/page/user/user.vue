@@ -98,7 +98,9 @@
             // //获取用户 基本数据 请求参数 PN or UID
             this.userInfo_({ PN: this.user.MobilePhone }).then( 
                 (result) => {
-                    console.info(result);
+                    if(result){
+                        window.localStorage.setItem('userInfo',JSON.stringify(result));
+                    }
                 }
              )
         },

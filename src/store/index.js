@@ -7,9 +7,16 @@ import mutations from './mutations';
 
 Vue.use(Vuex)
 
+function fetchStore(key) {
+    if (localStorage.getItem(key)) {
+        return JSON.parse(localStorage.getItem(key));
+    }
+    return {};
+}
+
 export default new Vuex.Store({
     state: {
-        user:{},//用户详细信息
+        user: fetchStore('userInfo'), //用户详细信息
     },
     getters: {
         getUser: state => {
@@ -18,7 +25,7 @@ export default new Vuex.Store({
     },
     mutations,
     modules: {
-        $home:home,
-        $user:user,
+        $home: home,
+        $user: user,
     },
 })

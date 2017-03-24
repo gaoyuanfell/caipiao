@@ -9,7 +9,7 @@ axios.defaults.baseURL = baseUrl;
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-// axios.defaults.timeout = 2500;
+axios.defaults.timeout = 25000;
 
 let toast = null;
 

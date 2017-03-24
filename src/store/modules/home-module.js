@@ -4,9 +4,11 @@ import { arrayslice } from '../../util';
 
 const state = {
     doubleBall: {
-        0: [],
-        1: [],
-        type:2
+        0: [],//红球 或 胆红
+        1: [],//篮球
+        2: [],//拖红
+        type: 2,//1 自动获取注数 2 手动获取注数
+        ballType: 1,//下注方式 1普通下注 2复试下注 3胆拖下注
     },
     doubleBallList: [],
     lotterylist: null,
@@ -18,8 +20,16 @@ const getters = {
     doubleBallBet: state => {
         let r = state.doubleBall[0].length;
         let b = state.doubleBall[1].length;
-        if (r >= 6 && b >= 1) {
-            return getBet(b, r);
+        let r_t = state.doubleBall[2].length;
+        let ballType = state.doubleBall.ballType;
+        switch (+ballType) {
+            case 1:
+                if (r >= 6 && b >= 1) {
+                    return getBet(b, r);
+                }
+                break;
+            case 3:
+                return tdb_betting(r,r_t,b);
         }
         return 0;
     },
@@ -41,11 +51,16 @@ const getters = {
 
 const actions = {
     async lotterylist_( {commit, state} ){
-        let data = await lotterylist().catch( (e) => {console.info(e)} );
-        state.lotterylist = arrayslice(data,4);
+        let data = await lotterylist();
+        if(data){
+            state.lotterylist = arrayslice(data,4);
+        }else{
+            throw 'not data';
+        }
     },
     async aorder_( {commit, state}, body){
         let data = await aorder(body).catch( (e) => {console.info(e)} );
+        return data;
     }
 }
 
@@ -54,8 +69,15 @@ const mutations = {
     setDoubleBall(state, ball) {
         state.doubleBall = ball || {
             0: [],
-            1: []
+            1: [],
+            2: [],
+            type: 2,
+            ballType: 1,
         }
+    },
+    //设置下注类型
+    setDoubleBallType(state, type){
+        state.doubleBall.ballType = type || 1;
     },
     //增加注数
     addDoubleBallList(state, ball) {
@@ -76,7 +98,10 @@ const mutations = {
         state.doubleBallList = [];
         state.doubleBall = {
             0: [],
-            1: []
+            1: [],
+            2: [],
+            type: 2,
+            ballType: 1,
         }
     },
     //设置彩票类型
@@ -147,4 +172,23 @@ function getBet(b, r) {
     let sum = factorial(r, r - 5) || 0;
     let c = factorial(6, 1) || 1;
     return sum / c * b
+}
+/**
+ * 胆拖注数计算
+ * @param {*} hd 
+ * @param {*} ht 
+ * @param {*} ldt 
+ */
+function tdb_betting(hd = 0, ht = 0, ldt = 0) {
+    //求M的阶乘
+    function jiecheng(m) { //求阶乘
+        if (m == 1 || m == 0) return 1;
+        else return m * (jiecheng(m - 1)); //递归算:法n!=n*(n-1)!
+    }
+    if(hd > 5 || ldt < 1 || ht < 2 || (hd + ht) < 7 || isNaN(hd + ht + ldt)){
+        return 0
+    }
+    var r = 6 - hd;
+    var n = ht;
+    return (jiecheng(n) / (jiecheng(r) * jiecheng(n - r))) * ldt;
 }

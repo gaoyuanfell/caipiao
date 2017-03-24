@@ -37,6 +37,8 @@ import footer from './components/footer.vue';
 import index from './page/index/index.vue'
 import betbox from './page/index/betbox.vue'
 import betboxList from './page/index/betboxList.vue'
+import rule from './page/index/rule.vue';//玩法
+import trend from './page/index/trend.vue';//走势图
 import betSuccess from './page/index/betSuccess.vue'
 import info from './page/info/info.vue'
 import doubleball from './page/info/doubleball.vue'
@@ -58,12 +60,12 @@ import moneySuccess from './page/user/moneySuccess.vue'
 import pay from './page/user/pay.vue'
 import paySuccess from './page/user/paySuccess.vue'
 
-import login from './page/user/login.vue'
-import register1 from './page/user/register-1.vue'
-import register2 from './page/user/register-2.vue'
-import register3 from './page/user/register-3.vue'
-import register4 from './page/user/register-4.vue'
-import register5 from './page/user/register-5.vue'
+import login from './page/login/login.vue'
+import register1 from './page/login/register-1.vue'
+import register2 from './page/login/register-2.vue'
+import register3 from './page/login/register-3.vue'
+import register4 from './page/login/register-4.vue'
+import register5 from './page/login/register-5.vue'
 
 // 相机
 import camera from './page/user/camera.vue'
@@ -109,6 +111,18 @@ let index_c = {
         name: 'betbox',
         path: 'betbox',
         component: betbox,
+        children:[
+            {
+                name: 'rule',
+                path: 'rule',
+                component: rule
+            },
+            {
+                name: 'trend',
+                path: 'trend',
+                component: trend
+            },
+        ]
     }, {
         name: 'betSuccess',
         path: 'betSuccess',

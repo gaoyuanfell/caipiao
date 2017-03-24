@@ -6,18 +6,18 @@
                 <div class="multiple_left">
                     追&nbsp;
                     <span class="allowance flex">
-                            <a href="javascript:;" @click="stage_change(false)">-</a>
-                                <input type="number" min="1" v-model.number="stage" class="multiple_numb"/>
-                            <a href="javascript:;" @click="stage_change(true)">+</a>
+                            <a href="javascript:;" @click=" stage > 0 ? (--stage) : (stage = 0) ">-</a>
+                                <input type="number" min="0" v-model.number="stage" class="multiple_numb"/>
+                            <a href="javascript:;" @click=" ++stage ">+</a>
                         </span>
                     &nbsp;期
                 </div>
                 <div class="multiple_left">
                     买&nbsp;
                     <span class="allowance flex">
-                            <a href="javascript:;" @click="fold_change(false)">-</a>
+                            <a href="javascript:;" @click=" fold > 1 ? (--fold) : (fold = 1) ">-</a>
                                 <input type="number" min="1" v-model="fold" class="multiple_numb"/>
-                            <a href="javascript:;" @click="fold_change(true)">+</a>
+                            <a href="javascript:;" @click=" ++fold ">+</a>
                         </span>
                     &nbsp;倍
                 </div>
@@ -30,9 +30,14 @@
                         <template v-for="(bet,$index) in doubleBallList" :index="$index" >
                             <a @click="modifyBet($index)" href="javascript:;" class="slips">
                                 <div class="slips_body">
-                                    <template v-for="(value,key) in bet">
-                                        <div v-if="key == 0" v-for="v in value" v-text="v" class="ballslips"></div>
-                                        <div v-if="key == 1" v-for="v in value" v-text="v" class="ballslips"></div>
+                                    <template v-for="(value,key) in bet[0]">
+                                        <div v-text="value" class="ballslips red-ball"></div>
+                                    </template>
+                                    <template v-for="(value,key) in bet[2]">
+                                        <div v-text="value" class="ballslips red-ball"></div>
+                                    </template>
+                                    <template v-for="(value,key) in bet[1]">
+                                        <div v-text="value" class="ballslips blue-ball"></div>
                                     </template>
                                 </div>
                                 <span href="javascript:;" class="information_bg">
@@ -111,17 +116,23 @@
                         <i class="icon" @click=" confirmPay = !confirmPay ">&#xe648;</i>
                     </p>
                     <p class="title"> 付款方式 </p>
-                    <div class="card">
-                        <img src="../../assets/images/banklg.png"/>
-                        <span> 中国农业银行 尾号0775储蓄卡 </span>
-                        <i class="icon fr">&#xe608;</i>
+                    
+                    <div class="bank_select flex">
+                        <img class="banklogo" src="../../assets/images/zfb.png"/>
+                        <select class="select">
+                            <option class="option" value="中国农业银行 尾号0775储蓄卡 ">支付宝</option>
+                        </select>
+                        <span class="select-blak">
+                            <i class="icon">&#xe653;</i>
+                        </span>
                     </div>
+
                     <div class="info">
                         <p>需付款</p>
                         <p>{{ totalMoney | number('元') }}</p>
                     </div>
                     <div class="pay">
-                        <button class="btn">确认付款</button>
+                        <button class="btn" @click="$confirmPay">确认付款</button>
                     </div>
                 </div>
             </div>
@@ -137,6 +148,7 @@
 <script>
 
 import { mapGetters,mapMutations, mapState, mapActions } from 'vuex';
+import { Toast } from 'mint-ui';
 import header from '../../components/header.vue';
 
 export default {
@@ -145,10 +157,10 @@ export default {
     },
     data(){
         return {
-            stage:1,
-            fold:1,
-            noMoney:false,
-            confirmPay:false,
+            stage: 0,
+            fold: 1,
+            noMoney: false,
+            confirmPay: false,
         }
     },
     created:function(){
@@ -162,11 +174,12 @@ export default {
             doubleBallListBet: 'doubleBallListBet'
         }),
         ...mapState({
+            user:state => state.user,
             doubleBallList: state => state.$home.doubleBallList,
             lotteryType: state => state.$home.lotteryType,
         }),
         totalMoney(){
-            return this.doubleBallListBet * 2 * this.stage * this.fold
+            return this.doubleBallListBet * 2 * (this.stage + 1) * this.fold
         }
     },
     methods:{
@@ -179,24 +192,6 @@ export default {
         clearBetList(){
             this.$store.commit('distroyDoubleBallList')
         },
-        fold_change(bo){
-            if(bo){
-                this.fold += 1
-            }else{
-                if(this.fold > 1){
-                    this.fold -= 1
-                }
-            }
-        },
-        stage_change(bo){
-            if(bo){
-                this.stage += 1
-            }else{
-                if(this.stage > 1){
-                    this.stage -= 1
-                }
-            }
-        },
         modifyBet($index){
             if($index != undefined){
                 let ball = this.doubleBallList[$index]
@@ -208,9 +203,17 @@ export default {
             this.$store.commit('setDoubleBall');
             this.$router.push({name:'betbox'})
         },
+        //下单
         betting(){
+            if(this.doubleBallList.length == 0){
+                Toast('请至少选一注彩票！')
+                return;
+            }
+            //查询余额
+            this.confirmPay = true;
             // this.noMoney = true;
-            // return ;
+        },
+        $confirmPay(){
             let list = [];
             this.doubleBallList.forEach( (ball) => {
                 list.push({
@@ -220,7 +223,7 @@ export default {
                 })
             } )
             let body = {
-                UId: "1",//用户ID
+                UId: this.user.UserId,//用户ID
                 TId: this.lotteryType,//彩票类型
                 TNum: this.doubleBallListBet,//注数
                 DNum: this.fold,//倍数
@@ -229,21 +232,12 @@ export default {
                 CartData: list
             }
             console.info(body)
-            // this.confirmPay = true;
-            this.noMoney = true;
-
-            // this.aorder_(body).then(
-            //     (res) => {
-            //         this.$store.commit('distroyDoubleBallList');
-            //         this.stage = 1;
-            //         this.fold = 1;
-            //         this.$router.push({
-            //             name:'betSuccess',
-            //             path:'/betSuccess'
-            //         });
-            //     }
-            // );
-            
+            this.confirmPay = false;
+            this.aorder_(body).then(
+                (res) => {
+                    
+                }
+            );
         },
         addBetForRobot(){
             let arr1 = [];
@@ -263,9 +257,21 @@ export default {
             let ball = {
                 0: arr1,
                 1: arr2,
-                type:2
+                2: [],
+                type: 2,
+                ballType: 1
             }
-            this.$store.commit('addDoubleBallList',ball);
+            this.$store.commit('addDoubleBallList', ball);
+        },
+        //完成支付
+        finishPay(){
+            this.$store.commit('distroyDoubleBallList');
+            this.stage = 1;
+            this.fold = 1;
+            this.$router.push({
+                name:'betSuccess',
+                path:'/betSuccess'
+            });
         }
     }
 }

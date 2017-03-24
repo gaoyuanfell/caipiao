@@ -106,7 +106,7 @@
                 openMask:'openMask',
             }),
             luckSubmin() {
-                // this.$store.commit('setLotteryType',1);
+                this.$store.commit('setLotteryType',1);
                 this.$store.commit('distroyDoubleBallList');
                 this.$store.commit('addDoubleBallList', this.luckyDoubleBall)
                 this.$router.push({

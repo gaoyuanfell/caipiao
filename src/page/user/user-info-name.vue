@@ -1,6 +1,6 @@
 <template>
     <div class="content-modal">
-        <y-header title="修改昵称" r_title="保存" :r_callback="nickNameModify"></y-header>
+        <y-header title="修改昵称" router="-1" r_title="保存" :r_callback="nickNameModify"></y-header>
         <div class="content">
             <div class="scroll-content" margin-header>
                 <div class="form-group">
