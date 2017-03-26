@@ -34,7 +34,7 @@
                 </tr>
             </table>
         </div>
-        
+
         <div class="ball-total-t">
             出现次数
         </div>
@@ -69,24 +69,16 @@ export default {
     },
     mounted:function(){
         this.list = [];
-        // for(var i = 0; i < 40; i++){
-        //     this.list.push({
-        //         LotterySeq:`2017${i}`,
-        //         LotteryString:`05,08,15,24,27,31,11`.split(',')
-        //     })
-        // }
-        this.list.push({
-            LotterySeq:`2017`,
-            LotteryString:`05,08,15,24,27,31,05`.split(',')
-        })
-        this.list.push({
-            LotterySeq:`2017`,
-            LotteryString:`04,08,12,22,27,33,12`.split(',')
-        })
-        this.list.push({
-            LotterySeq:`2017`,
-            LotteryString:`01,06,09,20,26,30,06`.split(',')
-        })
+         for(var i = 0; i < 40; i++){
+             let b = {
+                 LotterySeq:`2017${i}`,
+                 LotteryString:`05,08,15,24,27,31,11`.split(',')
+             };
+             let n = this.intAddZero(parseInt(Math.random()*16) + 1,2)
+//             console.info(n)
+             b.LotteryString.splice(6,1,n);
+             this.list.push(b);
+         }
         this.ball = [];
         for(var i = 1; i <= 49; i++){
             this.ball.push({
@@ -110,7 +102,7 @@ export default {
                 })
             })
             for(let i = 0; i < lineList.length - 1; i++){
-                this.canvasLine(lineList[i],lineList[i + 1]);
+                this.canvasLine(lineList[i], lineList[i + 1]);
             }
         },
         canvasLine(option,option2){
@@ -123,7 +115,7 @@ export default {
             let h = top1 - top2;
             let w = left1 - left2;
             let canvas = document.createElement('canvas');
-            canvas.width =  Math.abs(w) || 2;
+            canvas.width =  Math.abs(w) || 30;
             canvas.height =  Math.abs(h);
             canvas.style.position = 'absolute';
             canvas.style.top = top1 + 'px';
@@ -139,18 +131,18 @@ export default {
                 ctx.lineTo(Math.abs(w), Math.abs(h) - 1);
                 canvas.style.left = left1 + 'px';
             }else{
-                ctx.moveTo(0,1);
-                ctx.lineTo(1, h);
-                canvas.style.left = left1 + 'px';
+                ctx.moveTo(15,0);
+                ctx.lineTo(15, Math.abs(h));
+                canvas.style.left = left1 - 15 + 'px';
             }
             ctx.lineCap = 'square';
-            ctx.lineWidth = 2; 
-            ctx.strokeStyle = '#3b97ff'; 
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#3b97ff';
             ctx.stroke();
-            
-            // 
+
+            //
             // ctx.strokeRect(left1, top1, w || 2, h);
-            
+
             canvasLine.appendChild(canvas);
         },
         initData(){
@@ -158,7 +150,7 @@ export default {
             let ball = this.ball;
             list.forEach((l,i1) => {
                 let ls = l.LotteryString;
-                l.blue = Array.of(ls.pop());
+                l.blue = Array.of(String(ls.pop()));
                 l.red = ls;
                 let _ball = [];
                 for(var i = 1; i <= 49; i++){
@@ -206,12 +198,19 @@ export default {
             let $ball_title = this.$refs.ball_title;
             let $issue_code = this.$refs.issue_code;
             let $ball_total = this.$refs.ball_total;
-            
+            let time = 0;
+
             //主视图 两个值都需要改变
             $ball_list.addEventListener('scroll', (e) => {
                 $issue_code.scrollTop = $ball_list.scrollTop;
                 $ball_title.scrollLeft = $ball_list.scrollLeft;
-                $ball_total.scrollLeft = $ball_list.scrollLeft;
+                $ball_total.scrollLeft = $ball_list.scrollLeft
+                clearTimeout(time);
+                time = setTimeout(function () {
+                    $issue_code.scrollTop = $ball_list.scrollTop;
+                    $ball_title.scrollLeft = $ball_list.scrollLeft;
+                    $ball_total.scrollLeft = $ball_list.scrollLeft
+                },100);
             })
             // 只改变scrollLeft 值
             $ball_title.addEventListener('scroll', (e) => {
@@ -224,6 +223,7 @@ export default {
             $ball_total.addEventListener('scroll', (e) => {
                 $ball_list.scrollLeft = $ball_total.scrollLeft;
                 $ball_title.scrollLeft = $ball_total.scrollLeft;
+
             })
         },
         intAddZero(num, n){

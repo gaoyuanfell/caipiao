@@ -1,10 +1,7 @@
 @font-face {
-  font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_blu67vt21rftj4i.eot');
-  src: url('//at.alicdn.com/t/font_blu67vt21rftj4i.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_blu67vt21rftj4i.woff') format('woff'),
-  url('//at.alicdn.com/t/font_blu67vt21rftj4i.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_blu67vt21rftj4i.svg#iconfont') format('svg');
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_blu67vt21rftj4i.eot');
+    src: url('//at.alicdn.com/t/font_blu67vt21rftj4i.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_blu67vt21rftj4i.woff') format('woff'), url('//at.alicdn.com/t/font_blu67vt21rftj4i.ttf') format('truetype'), url('//at.alicdn.com/t/font_blu67vt21rftj4i.svg#iconfont') format('svg');
 }
 
 *,
@@ -136,7 +133,6 @@ samp {
     font-size: 1em;
 }
 
-
 input,
 button,
 textarea {
@@ -153,7 +149,6 @@ input:focus,
 textarea:focus {
     outline: 0 none;
 }
-
 
 label,
 input,
@@ -201,5 +196,3 @@ input[type="submit"] {
 a {
     background-color: transparent;
 }
-
-
