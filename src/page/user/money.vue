@@ -16,13 +16,14 @@
                 </div>
                 <div class="pay_cards">
                     <a href="javascript:;" class="card flex">
-                        <div class="type_logo"><img ref="img" src="../../assets/images/banklg.png"/></div>
-                        <div class="tyle_information">
-                            <p ref="text1">中国农业银行</p>
-                            <p ref="text2">尾号0779储蓄卡</p>
+                        <div class="type_logo">
+                            <img ref="img" src="../../assets/images/zfb.png"/>
                         </div>
-                        <span href="javascript:;" class="information_bg">
-                            <i class="icon">&#xe608;</i>
+                        <div class="tyle_information">
+                            支付宝
+                        </div>
+                        <span class="information_bg">
+                            <i class="icon fr">&#xe608;</i>
                         </span>
                     </a>
                 </div>

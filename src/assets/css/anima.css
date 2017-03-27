@@ -67,24 +67,24 @@
 
 @-webkit-keyframes slideInDown_ {
     from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
     }
     to {
-        -webkit-transform: translate3d(0, 100%, 0);
-        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         visibility: visible;
     }
 }
 
 @keyframes slideInDown_ {
     from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
     }
     to {
-        -webkit-transform: translate3d(0, 100%, 0);
-        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         visibility: visible;
     }
 }
@@ -96,29 +96,29 @@
 
 @-webkit-keyframes slideOutUp_ {
     from {
-        -webkit-transform: translate3d(0, 100%, 0);
-        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
     to {
         opacity: 0;
         visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
     }
 }
 
 @keyframes slideOutUp_ {
-    from {
-        -webkit-transform: translate3d(0, 100%, 0);
-        transform: translate3d(0, 100%, 0);
+     from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
     to {
         opacity: 0;
         visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
     }
 }
 

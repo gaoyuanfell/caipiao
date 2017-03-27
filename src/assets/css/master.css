@@ -517,20 +517,28 @@ body {
     background-color: #000;
     opacity: 0.85;
     color: #fff;
-    height: 0.45rem;
     width: 100%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    line-height: 0.45rem;
     font-size: 0.14rem;
+    top: 0.45rem;
+}
+.float_nav .navs{
+    display: flex;
+    border-bottom: 1px solid #2f2f2f;
+}
+.float_nav .navs:last-child{
+    border-bottom:none;
 }
 .float_nav .nav_btn{
-    flex: 1;
+    flex: 0.3333333;
+    height: 0.45rem;
+    line-height: 0.45rem;
     border-right: 1px solid #2f2f2f;
 }
-.float_nav .nav_btn:last-child{
+.float_nav .nav_btn:nth-child(3n){
     border-right: none; 
 }
 

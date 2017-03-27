@@ -71,7 +71,7 @@ const arrayslice = function(array,num){
     let ar = [];
     let _ar = null;
     let _num = num;
-    while (_ar = array.slice( 0 - _num + num, num ),ar.push(_ar),_ar.length == _num) {
+    while (_ar = array.slice( 0 - _num + num, num ),_ar.length > 0 && ar.push(_ar),_ar.length == _num) {
         num += _num;
     }
     return ar;

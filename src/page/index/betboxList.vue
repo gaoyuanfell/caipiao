@@ -218,8 +218,10 @@ export default {
             this.doubleBallList.forEach( (ball) => {
                 list.push({
                     CRedNum: ball[0].join(","),
+                    CRedNum2: ball[2].join(","),
                     CBlueNum: ball[1].join(","),
-                    CType: ball.type || 2
+                    CType: ball.type || 2,
+                    SType: ball.ballType || 1,
                 })
             } )
             let body = {
@@ -235,7 +237,7 @@ export default {
             this.confirmPay = false;
             this.aorder_(body).then(
                 (res) => {
-                    
+                    this.finishPay()
                 }
             );
         },
@@ -268,7 +270,7 @@ export default {
             this.$store.commit('distroyDoubleBallList');
             this.stage = 1;
             this.fold = 1;
-            this.$router.push({
+            this.$router.replace({
                 name:'betSuccess',
                 path:'/betSuccess'
             });

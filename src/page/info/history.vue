@@ -40,7 +40,7 @@
         },
         data() {
             return {
-                
+                noticehistorys:[]
             }
         },
         created: function () {
@@ -48,15 +48,17 @@
         },
         mounted:function(){
             let DID = this.$route.query.DID
-            this.noticehistory_({DID:DID});
+            this.noticehistory_({DID:DID}).then( (data) =>{
+                this.noticehistorys = data;
+            } );
         },
         computed:{
             ...mapGetters({
                 
             }),
-            ...mapState({
-                noticehistorys:state => state.$user.noticehistorys
-            })
+            // ...mapState({
+            //     noticehistorys:state => state.$user.noticehistorys
+            // })
         },
         methods:{
             ...mapActions([

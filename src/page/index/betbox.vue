@@ -168,14 +168,14 @@
                         method:function(){
                             that._setDoubleBall();
                             that._setDoubleBallType(1);
-                            that.doubleBallName = '双色球普通投注';
+                            that.doubleBallName = this.name
                         }
                     },{
                         name:'双色球胆拖投注',
                         method:function(){
                             that._setDoubleBall();
                             that._setDoubleBallType(3);
-                            that.doubleBallName = '双色球胆拖投注';
+                            that.doubleBallName = this.name
                         }
                     }
                 ]

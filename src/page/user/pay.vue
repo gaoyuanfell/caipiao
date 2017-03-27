@@ -128,7 +128,7 @@
         data() {
             return {
                 paySelect: false,
-                payType:1,
+                payType:2,
                 moneySelect: [30, 50, 100, 200, 300, 500],
                 money: 30,
                 active: false
@@ -140,7 +140,7 @@
             },
             selectPay(type){
                 this.payType = type;
-                this.display = false;
+                this.paySelect = false;
             },
             confirmPay(){
                 this.$router.push({name:'paySuccess'})

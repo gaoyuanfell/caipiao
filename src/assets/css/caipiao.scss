@@ -1060,13 +1060,15 @@
         .tyle_information {
             position: relative;
             margin-left: .15rem;
-            line-height: 2.2;
+            line-height: 0.5rem;
             p {
                 &:nth-child(1) {
+                    line-height: 2.2;
                     font-size: .14rem;
                     color: #333;
                 }
                 &:nth-child(2) {
+                    line-height: 2.2;
                     color: #989898;
                 }
             }
@@ -1974,6 +1976,16 @@ $line_color2: #8e8e8e;
                 }
             }
         }
+        .is_red{
+            color: #fff;
+            background: url(../images/red.png) center no-repeat;
+            background-size: 0.25rem 0.25rem;
+        }
+        .is_blue{
+            color: #fff;
+            background: url(../images/blue.png) center no-repeat;
+            background-size: 0.25rem 0.25rem;
+        }
     }
     /*期号列表*/
     .issue-code {
@@ -2046,6 +2058,9 @@ $line_color2: #8e8e8e;
             background: #fff;
             color: #ccc;
             td {
+                &:last-child{
+                    border-right: none;
+                }
                 display: inline-grid;
                 max-width: $width_ball;
                 min-width: $width_ball;

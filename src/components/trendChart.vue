@@ -20,8 +20,7 @@
         <div class="ball-list" ref="ball_list">
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr v-for="i in list">
-                    <!-- <td v-for="(n,index) in i.ball"> {{  }} </td> -->
-                    <td v-for="n in i.ball" :class="{'is_blue':n.type == 2 && n.select}">{{n.select ? n.num : ''}}</td>
+                    <td v-for="n in i.ball" :class="{'is_blue': n.type == 2 && n.select,'is_select': n.select,'is_red':n.type == 1 && n.select}">{{n.select ? n.num : ''}}</td>
                 </tr>
             </table>
             <div ref="canvasLine"></div>
@@ -55,7 +54,6 @@ export default {
     name:'trend-chart',
     data(){
         return {
-            list:[],
             ball:[],
             scrollLeft: 0,
             scrollTop: 0,
@@ -67,18 +65,7 @@ export default {
             default: () => []
         }
     },
-    mounted:function(){
-        this.list = [];
-         for(var i = 0; i < 40; i++){
-             let b = {
-                 LotterySeq:`2017${i}`,
-                 LotteryString:`05,08,15,24,27,31,11`.split(',')
-             };
-             let n = this.intAddZero(parseInt(Math.random()*16) + 1,2)
-//             console.info(n)
-             b.LotteryString.splice(6,1,n);
-             this.list.push(b);
-         }
+    mounted(){
         this.ball = [];
         for(var i = 1; i <= 49; i++){
             this.ball.push({
@@ -88,8 +75,27 @@ export default {
             })
         }
         this.initEvent();
-        this.initData();
-        Vue.nextTick( ()=> { this.initLine() } );
+    },
+    computed:{},
+    watch:{
+        list(val){
+            this.initData();
+            Vue.nextTick( ()=> { this.initLine();this.initTotal(); } );
+        },
+        scrollLeft(val){
+            let $ball_list = this.$refs.ball_list;
+            let $ball_title = this.$refs.ball_title;
+            let $ball_total = this.$refs.ball_total;
+            $ball_title.scrollLeft = val;
+            $ball_total.scrollLeft = val;
+            $ball_list.scrollLeft = val;
+        },
+        scrollTop(val){
+            let $ball_list = this.$refs.ball_list;
+            let $issue_code = this.$refs.issue_code;
+            $ball_list.scrollTop = val;
+            $issue_code.scrollTop = val;
+        }
     },
     methods:{
         initLine(){
@@ -102,7 +108,7 @@ export default {
                 })
             })
             for(let i = 0; i < lineList.length - 1; i++){
-                this.canvasLine(lineList[i], lineList[i + 1]);
+                this.canvasLine(lineList[i],lineList[i + 1]);
             }
         },
         canvasLine(option,option2){
@@ -114,6 +120,7 @@ export default {
             let left2 = option2.left;
             let h = top1 - top2;
             let w = left1 - left2;
+            let reserve = 25/3.5;
             let canvas = document.createElement('canvas');
             canvas.width =  Math.abs(w) || 30;
             canvas.height =  Math.abs(h);
@@ -121,33 +128,27 @@ export default {
             canvas.style.top = top1 + 'px';
             let ctx = canvas.getContext('2d');
             ctx.beginPath();
-            // ctx.lineCap = 'square';
             if(w > 0){
-                ctx.moveTo(Math.abs(w), 1);
-                ctx.lineTo(0, Math.abs(h) - 1);
+                ctx.moveTo(Math.abs(w) - reserve, 0 + reserve);
+                ctx.lineTo(0 + reserve, Math.abs(h) - reserve);
                 canvas.style.left = left2 + 'px';
             }else if(w < 0){
-                ctx.moveTo(0, 1);
-                ctx.lineTo(Math.abs(w), Math.abs(h) - 1);
+                ctx.moveTo(0 + reserve, 0 + reserve);
+                ctx.lineTo(Math.abs(w) - reserve, Math.abs(h) - reserve);
                 canvas.style.left = left1 + 'px';
             }else{
-                ctx.moveTo(15,0);
-                ctx.lineTo(15, Math.abs(h));
+                ctx.moveTo(15, reserve);
+                ctx.lineTo(15, Math.abs(h) - reserve);
                 canvas.style.left = left1 - 15 + 'px';
             }
             ctx.lineCap = 'square';
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = '#3b97ff';
+            ctx.lineWidth = 2; 
+            ctx.strokeStyle = '#3b97ff'; 
             ctx.stroke();
-
-            //
-            // ctx.strokeRect(left1, top1, w || 2, h);
-
             canvasLine.appendChild(canvas);
         },
         initData(){
             let list = this.list;
-            let ball = this.ball;
             list.forEach((l,i1) => {
                 let ls = l.LotteryString;
                 l.blue = Array.of(String(ls.pop()));
@@ -169,68 +170,43 @@ export default {
                     }else{
                         l.red.indexOf(num) != -1 && (b.select = true);
                     }
-                    // let index = ls.indexOf(num);
-                    // if(index != -1){
-                    //     if(type == 2){
-                    //         b.select = true;
-                    //         ++b.total;
-                    //     }else if(type == 1){
-                    //         b.select = true;
-                    //         ++b.total
-                    //     }
-                    // }
                 })
             })
         },
-        selectShowBall(l,b){
-            let ball = '';
-            if(b.type == 2){
-                ball = l.blue;
-            }else{
-                ball = l.red;
-            }
-            if(ball.indexOf(b.num) != -1){
-                b.select = true;
-            }
+        initTotal(){
+            let ball = this.ball;
+            let $ball_list = this.$refs.ball_list;
+            ball.forEach( (b,i) => {
+                let a = $ball_list.querySelectorAll(`tr td:nth-child(${i+1}).is_select`)
+                b.total = a.length;
+            } )
         },
         initEvent(){
             let $ball_list = this.$refs.ball_list;
             let $ball_title = this.$refs.ball_title;
             let $issue_code = this.$refs.issue_code;
             let $ball_total = this.$refs.ball_total;
-            let time = 0;
-
             //主视图 两个值都需要改变
             $ball_list.addEventListener('scroll', (e) => {
-                $issue_code.scrollTop = $ball_list.scrollTop;
-                $ball_title.scrollLeft = $ball_list.scrollLeft;
-                $ball_total.scrollLeft = $ball_list.scrollLeft
-                clearTimeout(time);
-                time = setTimeout(function () {
-                    $issue_code.scrollTop = $ball_list.scrollTop;
-                    $ball_title.scrollLeft = $ball_list.scrollLeft;
-                    $ball_total.scrollLeft = $ball_list.scrollLeft
-                },100);
+                this.scrollTop = $ball_list.scrollTop;
+                this.scrollLeft = $ball_list.scrollLeft;
             })
             // 只改变scrollLeft 值
             $ball_title.addEventListener('scroll', (e) => {
-                $ball_list.scrollLeft = $ball_title.scrollLeft;
+                this.scrollLeft = $ball_title.scrollLeft;
             })
             //只改变scrollTop 值
             $issue_code.addEventListener('scroll', (e) => {
-                $ball_list.scrollTop = $issue_code.scrollTop;
+                this.scrollTop = $issue_code.scrollTop;
             })
             $ball_total.addEventListener('scroll', (e) => {
-                $ball_list.scrollLeft = $ball_total.scrollLeft;
-                $ball_title.scrollLeft = $ball_total.scrollLeft;
-
+                this.scrollLeft = $ball_total.scrollLeft;
             })
         },
         intAddZero(num, n){
             var len = num.toString().length;
             while (len < n) {
-                num = "0" + num;
-                len++;
+                num = "0" + num,len++;
             }
             return num;
         }

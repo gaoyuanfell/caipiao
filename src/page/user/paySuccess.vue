@@ -8,8 +8,8 @@
                     <h3>充值成功</h3>
                     <p class="size_18 ">您可通过投注详情查看方案状态</p>
                     <div class="success_after">
-                        <router-link :to="{ name: 'user'}" >账户详情</router-link>
-                        <router-link :to="{ name: 'index'}" >返回首页</router-link>
+                        <router-link :to="{ name: 'user'}" replace>账户详情</router-link>
+                        <router-link :to="{ name: 'index'}" replace>返回首页</router-link>
                     </div>
                 </div>
             </div>

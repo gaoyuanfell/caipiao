@@ -7,7 +7,6 @@ const state = {
     usercostList:[],
     lotteryNotices:[],
     noticedetail:{},
-    noticehistorys:[],
     userorderdetail:{},
 }
 
@@ -97,8 +96,9 @@ const actions = {
     async noticehistory_( { commit, state }, body ){
         let data = await noticehistory(body);
         if(data){
-            state.noticehistorys = data
+            return data;
         }
+        throw 'not Data'
         // commit('setNoticehistory', data)
     },
     //投注详情

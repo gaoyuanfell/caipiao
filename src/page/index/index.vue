@@ -138,7 +138,10 @@
             changeLuckyDoubleBall() {
                 this.luckyDoubleBall = {
                     0: [],
-                    1: []
+                    1: [],
+                    2: [],
+                    type: 2,
+                    ballType: 1,
                 }
                 getLuckyDoubleBall('red', 34, this.luckyDoubleBall);
                 getLuckyDoubleBall('blue', 17, this.luckyDoubleBall);

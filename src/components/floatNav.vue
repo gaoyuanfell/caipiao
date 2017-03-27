@@ -1,12 +1,15 @@
 <template>
     <div class="box_mask" :style="display" ref="nav" @click="$visibility">
-        <div class="float_nav flex animated" :class="{'slideInDown_':visibility,'slideOutUp_':!visibility}">
-            <span v-for="(n, index) in navs" class="nav_btn" @click.stop="$method(n)">{{n.name}}</span>
+        <div class="float_nav animated" :class="{'slideInDown_':visibility,'slideOutUp_':!visibility}">
+            <div class="navs" v-for="nav in navsList">
+                <span v-for="(n, index) in nav" class="nav_btn" @click.stop="$method(n)">{{n.name}}</span>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import { arrayslice } from '../util';
 export default {
     name: 'float-nav',
     data() {
@@ -14,7 +17,9 @@ export default {
             visibility: false,
             display: {
                 display: 'none'
-            }
+            },
+            navsList:[],
+            $navs:this.navs
         }
     },
     props: {
@@ -26,6 +31,11 @@ export default {
             type: Array,
             default: () => []
         }
+    },
+    mounted(){
+        console.info(this.navs)
+        this.navsList = arrayslice(this.navs,3);
+        console.info(this.navsList)
     },
     methods: {
         $visibility() {
@@ -41,6 +51,7 @@ export default {
     },
     watch: {
         visibility(val) {
+            console.info(val)
             this.$emit('input', val);
         },
         value(val) {
@@ -59,7 +70,7 @@ export default {
                 $nav.style.zIndex = 9;
                 setTimeout(() => { this.display.display = 'none'; $nav.style.zIndex = ''; }, 200)
             }
-        }
+        },
     }
 }
 </script>

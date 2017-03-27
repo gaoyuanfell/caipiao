@@ -8,9 +8,9 @@
                     <h3>支付成功</h3>
                     <p class="size_18 ">你可以通过投注详情查看方案状态</p>
                     <div class="success_after">
-                        <router-link :to="{name:'betboxList'}" class="continue_bet"> 继续投注 </router-link>
-                        <router-link :to="{name:'account'}"> 投注详情 </router-link>
-                        <router-link to="/"> 返回首页 </router-link>
+                        <router-link :to="{name:'betboxList'}" class="continue_bet" replace> 继续投注 </router-link>
+                        <router-link :to="{name:'account'}" replace> 投注详情 </router-link>
+                        <router-link to="/" replace> 返回首页 </router-link>
                     </div>
                 </div>
             </div>
