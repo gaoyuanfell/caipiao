@@ -5,18 +5,13 @@ import user from './modules/user-module'
 
 import mutations from './mutations';
 
-Vue.use(Vuex)
+import proxyStorage from '../proxyStorage';
 
-function fetchStore(key) {
-    if (localStorage.getItem(key)) {
-        return JSON.parse(localStorage.getItem(key));
-    }
-    return {};
-}
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        user: fetchStore('userInfo'), //用户详细信息
+        user: proxyStorage('userInfo'), //用户详细信息 user改变 将改变本地存储的值
     },
     getters: {
         getUser: state => {

@@ -10,7 +10,7 @@
                 <div class="sms flex">
                     <label class="flex">
                         <span>验证码</span>
-                        <input type="number" autofocus placeholder="请输入验证码"/>
+                        <input type="number" autofocus placeholder="请输入验证码" autocomplete="off" autocorrect="off"/>
                     </label>
                     <font color="#999" v-if="verifyState" class="test-button">重新获取({{countDown}})</font>
                     <input v-else type="button" @click="getVerifyCode" value="获取验证码" class="test-button">

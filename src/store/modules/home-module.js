@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { lotterylist, aorder } from '../service/home-service';
+import { lotterylist, aorder, noticetrend } from '../service/home-service';
 import { arrayslice } from '../../util';
 
 const state = {
@@ -59,7 +59,11 @@ const actions = {
         }
     },
     async aorder_( {commit, state}, body){
-        let data = await aorder(body).catch( (e) => {console.info(e)} );
+        let data = await aorder(body);
+        return data;
+    },
+    async noticetrend_( {commit, state}, body ){
+        let data = await noticetrend(body);
         return data;
     }
 }

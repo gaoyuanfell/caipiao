@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
+            <transition name="custom-classes-transition" enter-active-class="animated nav-open" leave-active-class="animated nav-close">
                 <router-view></router-view>
             </transition>
         </div>
@@ -197,7 +197,7 @@ export default {
                 let ball = this.doubleBallList[$index]
                 this.$store.commit('setDoubleBall',ball);
             }
-            this.$router.push({name:'betbox',params:{$index:$index}})
+            this.$router.push({name:'betbox',query:{$index:$index}})
         },
         addBetForHand(){
             this.$store.commit('setDoubleBall');

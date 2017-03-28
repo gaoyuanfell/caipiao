@@ -18,4 +18,12 @@ export const aorder = (body = {}) => {
     return http.post(`/order/aorder`, body);
 }
 
+/**
+ * 获取走势图数据
+ * @param {*} body 
+ */
+export const noticetrend = (body = {}) => {
+    return http.post(`/notice/noticetrend`, body);
+}
+
 ///lottery/lotterylist

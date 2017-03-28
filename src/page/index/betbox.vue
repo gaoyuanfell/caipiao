@@ -81,7 +81,7 @@
 
         <float-menu :menus="menus" v-model="visibility_menu"></float-menu>
         
-        <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
+        <transition name="custom-classes-transition" enter-active-class="animated nav-open" leave-active-class="animated nav-close">
             <router-view></router-view>
         </transition>
     </div>
@@ -241,7 +241,7 @@
                 let r = this.doubleBall[0].length;
                 let b = this.doubleBall[1].length;
                 let r_t = this.doubleBall[2].length;
-                let $index = this.$route.params.$index;
+                let $index = this.$route.query.$index;
 
                 let bo1 = r < 6;//红球需要大于等于6个
                 let bo2 = b < 1;//篮球需要大于等于1个

@@ -22,14 +22,25 @@ export default {
         }
     },
     mounted() {
-        this.noticehistory_({ DID: 1 }).then((data) => {
+        this.noticetrend_({ lotteryType: 1, row: 40 }).then((data) => {
             this.trendList = data.map((d) => { d.LotteryString = d.LotteryString.split(","); return d })
         });
     },
     methods: {
         ...mapActions([
-            'noticehistory_'
+            'noticetrend_'
         ]),
+        getBalls(ball){
+            let rs = /\s/;
+            let rd = /\,/;
+            if(rs.test(ball)){
+                return ball.split(rs);
+            }
+            if(rd.test(ball)){
+                return ball.split(rd);
+            }
+            return ball.split("");
+        },
     }
 }
 </script>

@@ -57,7 +57,7 @@
                     (res) => {
                         this.user.NickName = this.NickName;
                         Toast('修改成功')
-                        setTimeout( ()=> { this.$router.go(-1); },500 )
+                        this.$router.go(-1);
                     }
                 )
             },

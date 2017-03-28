@@ -6,11 +6,11 @@
                 <div class="form-group">
                     <label class="control-label">
                         <span>新密码</span>
-                        <input v-model="PWD" type="password" placeholder="请输入新密码（6-20位、数字、字母）"/>
+                        <input v-model="PWD" type="password" placeholder="请输入新密码（6-20位、数字、字母）" autocomplete="off" autocorrect="off"/>
                     </label>
                     <label class="control-label">
                         <span>确认密码</span>
-                        <input v-model="PWD1" type="password" placeholder="请再次输入新密码（6-20位、数字、字母）"/>
+                        <input v-model="PWD1" type="password" placeholder="请再次输入新密码（6-20位、数字、字母）" autocomplete="off" autocorrect="off"/>
                     </label>
                 </div>
                 <div class="default-btn">

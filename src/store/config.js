@@ -1,3 +1,6 @@
+//正式服务器
+
+
 //测试服务器
 export const baseUrl = 'http://180.97.75.144:8035/ABCLotteryWeb/';
 export const fileUrl = 'http://180.97.75.144:8035/lotteryup/';

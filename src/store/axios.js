@@ -15,6 +15,10 @@ let toast = null;
 
 axios.interceptors.request.use(function (config) {
     Indicator.open({spinnerType:'fading-circle'});
+    let token = window.localStorage.getItem('express-token-key');
+    if(token){
+        config.headers['Token'] = token;
+    }
     return config;
 }, function (error) {
     Indicator.close();
@@ -26,6 +30,10 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
     Indicator.close();
+    let token = response.data.token;
+    if(response.status == 200 && token){
+        window.localStorage.setItem('express-token-key',JSON.stringify(token));
+    }
     if(response.data.Code == 200){
         return response.data.Data;
     }

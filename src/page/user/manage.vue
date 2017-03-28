@@ -50,7 +50,7 @@
             </div>
             
         </div>
-        <transition name="custom-classes-transition" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
+        <transition name="custom-classes-transition" enter-active-class="animated nav-open" leave-active-class="animated nav-close">
             <router-view></router-view>
         </transition>
     </div>

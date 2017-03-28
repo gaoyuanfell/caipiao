@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <label class="control-label">
                         <span>手机号</span>
-                        <input type="number" v-model="PN" placeholder="请输入手机号"/>
+                        <input type="number" v-model="PN" placeholder="请输入手机号" autocomplete="off" autocorrect="off"/>
                     </label>
                 </div>
                 <div class="default-btn">

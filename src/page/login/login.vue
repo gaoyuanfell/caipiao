@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <transition name="custom-classes-transition" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+        <transition name="custom-classes-transition" enter-active-class="animated nav-open" leave-active-class="animated fadeOut">
             <router-view></router-view>
         </transition>
     </div>

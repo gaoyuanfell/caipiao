@@ -6,10 +6,10 @@
         <div class="ball-title" ref="ball_title">
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
-                    <td colspan="11">红球区域1</td>
-                    <td colspan="11">红球区域2</td>
-                    <td colspan="11">红球区域3</td>
-                    <td colspan="16">篮球区域1</td>
+                    <td colspan="11">红球区域一</td>
+                    <td colspan="11">红球区域二</td>
+                    <td colspan="11">红球区域三</td>
+                    <td colspan="16">篮球区域一</td>
                 </tr>
                 <tr class="tr_item">
                     <td v-for="b in ball"> {{b.num}} </td>

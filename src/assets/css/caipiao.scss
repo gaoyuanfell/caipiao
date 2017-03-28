@@ -1914,13 +1914,14 @@ $line_color2: #8e8e8e;
             border-bottom: 1px solid $line_color2;
             td{
                 display: inline-grid;
+                color: #ef3726;
                 &:last-child{
                     border-right:none;
+                    color: #3b97ff;
                     max-width: $width_ball * 16;
                     min-width: $width_ball * 16;
                 }
                 border-right: 1px solid $line_color2;
-
                 max-width: $width_ball * 11;
                 min-width: $width_ball * 11;
             }

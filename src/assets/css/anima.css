@@ -1,9 +1,22 @@
 @charset "UTF-8";
 .animated {
-    animation: .23s 0s ease-out both;
-    -webkit-animation: .23s 0s ease-out both;
+    animation: .18s 0s ease-out both;
+    -webkit-animation: .18s 0s ease-out both;
 }
 
+/*用于页面导航动画*/
+.nav-open{
+    -webkit-animation-name: zoomIn50;
+    animation-name: zoomIn50;
+    transform-origin: 50% 50%;
+    box-shadow: 1px 1px 15px #3e3e3e;
+}
+.nav-close{
+    -webkit-animation-name: zoomOut50;
+    animation-name: zoomOut50;
+    transform-origin: 50% 50%;
+    box-shadow: 1px 1px 15px #3e3e3e;
+}
 
 /*自定义*/
 
@@ -109,7 +122,7 @@
 }
 
 @keyframes slideOutUp_ {
-     from {
+    from {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
         opacity: 1;
@@ -136,6 +149,9 @@
     50% {
         opacity: 1;
     }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes zoomIn_t_r {
@@ -147,6 +163,9 @@
     50% {
         opacity: 1;
     }
+    to {
+        opacity: 1;
+    }
 }
 
 .zoomIn_t_r {
@@ -155,43 +174,94 @@
     transform-origin: 80% 0%;
 }
 
-
 @-webkit-keyframes zoomOut_t_r {
-  from {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes zoomOut_t_r {
-  from {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 .zoomOut_t_r {
-  -webkit-animation-name: zoomOut_t_r;
-  animation-name: zoomOut_t_r;
-  transform-origin: 80% 0%;
+    -webkit-animation-name: zoomOut_t_r;
+    animation-name: zoomOut_t_r;
+    transform-origin: 80% 0%;
+}
+
+@-webkit-keyframes zoomIn50 {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.85, .85, .85);
+        transform: scale3d(.85, .85, .85);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn50 {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.85, .85, .85);
+        transform: scale3d(.85, .85, .85);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.zoomIn50 {
+    -webkit-animation-name: zoomIn50;
+    animation-name: zoomIn50;
+    transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes zoomOut50 {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: scale3d(.85, .85, .85);
+        transform: scale3d(.85, .85, .85);
+    }
+}
+
+@keyframes zoomOut50 {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: scale3d(.85, .85, .85);
+        transform: scale3d(.85, .85, .85);
+    }
+}
+
+.zoomOut50 {
+    -webkit-animation-name: zoomOut50;
+    animation-name: zoomOut50;
+    transform-origin: 50% 50%;
 }
 
 
