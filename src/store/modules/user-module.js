@@ -1,4 +1,4 @@
-import { login, register, loginout, userpwd, getUserInfo, userunn, doupload, userorder, usermoney, usercost, lotteryNotice, noticedetail, noticehistory, userorderdetail } from '../service/user-service';
+import { login, register, loginout, userpwd, getUserInfo, userunn, bindidentity, doupload, userorder, usermoney, usercost, lotteryNotice, noticedetail, noticehistory, userorderdetail } from '../service/user-service';
 
 const state = {
     userReg:{},
@@ -17,9 +17,8 @@ const getters = {
 const actions = {
     //用户信息
     async userInfo_( {commit, state, rootState}, body ) {
-        let data = await getUserInfo(body).catch( e => { console.info(e) } );
+        let data = await getUserInfo(body);
         if(data){
-            commit('setUser', data)
             return data;
         }
 		// commit('setUserInfo', data)
@@ -43,6 +42,10 @@ const actions = {
     //修改昵称
     userunn_( {commit,state}, body ){
         return userunn(body);
+    },
+    //绑定银行卡
+    bindidentity_( {commit,state}, body ){
+        return bindidentity(body);
     },
     //头像上传
     doupload_( {commit, state}, body ){

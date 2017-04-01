@@ -16,7 +16,7 @@ export const getUserInfo = (body = {}) => {
  * @param {} body 
  */
 export const login = (body = {}) => {
-    let _body = Object.assign({},body);
+    let _body = Object.assign({}, body);
     let PD = _body.PD;
     _body.PD = md5(PD);
     return http.post(`/user/lg`, _body)
@@ -27,7 +27,7 @@ export const login = (body = {}) => {
  * @param {} body 
  */
 export const register = (body = {}) => {
-    let _body = Object.assign({},body);
+    let _body = Object.assign({}, body);
     let PWD = _body.PWD;
     _body.PWD = md5(PWD);
     return http.post(`/user/reg`, _body)
@@ -40,8 +40,13 @@ export const register = (body = {}) => {
 // export const doupload = ( body = {} ) => {
 //     return http.post(`/user/doup`,body,{ headers:{'Content-Type':'multipart/form-data'} });
 // }
-export const doupload = ( body = {} ) => {
-    return http.post(`/fileUpload`,body,{ headers:{'Content-Type':'multipart/form-data'},baseURL: fileUrl });
+export const doupload = (body = {}) => {
+    return http.post(`/fileUpload`, body, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        baseURL: fileUrl
+    });
 }
 // export const doupload = ( body = {} ) => {
 //     return http.post(`/load/profile.htm`,body,{ headers:{'Content-Type':'multipart/form-data'},baseURL: 'http://127.0.0.1' });
@@ -52,7 +57,7 @@ export const doupload = ( body = {} ) => {
  * @param {} body 
  */
 export const userpwd = (body = {}) => {
-    let _body = Object.assign({},body);
+    let _body = Object.assign({}, body);
     let OPWD = _body.OPWD;
     let PWD = _body.PWD;
     _body.OPWD = md5(OPWD);
@@ -65,7 +70,7 @@ export const userpwd = (body = {}) => {
  * @param {} body  UID
  */
 export const loginout = (body = {}) => {
-    return http.post(`/user/outlg`,body)
+    return http.post(`/user/outlg`, body)
 }
 
 /**
@@ -73,7 +78,15 @@ export const loginout = (body = {}) => {
  * @param {} body  UID
  */
 export const userunn = (body = {}) => {
-    return http.post(`/user/unn`,body)
+    return http.post(`/user/unn`, body)
+}
+
+/**
+ * 修改昵称
+ * @param {} body  UID
+ */
+export const bindidentity = (body = {}) => {
+    return http.post(`/user/bindidentity`, body)
 }
 
 /**

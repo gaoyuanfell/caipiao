@@ -51,7 +51,7 @@
     import Vue from 'vue';
     import header from '../../components/header.vue';
     import compressImg from '../../compress-img.js';
-    import { Actionsheet, MessageBox, Toast } from 'mint-ui';
+    import { Actionsheet, Toast } from 'mint-ui';
     Vue.component(Actionsheet.name, Actionsheet);
     export default {
         components: {
@@ -98,9 +98,9 @@
             }
         },
         methods:{
-            ...mapMutations({
-                setUser:'setUser'
-            }),
+            // ...mapMutations({
+            //     setUser:'setUser'
+            // }),
             ...mapActions([
                 'doupload_',
                 'loginout_',
@@ -109,8 +109,7 @@
             loginout(){
                 this.loginout_({UID:this.user.UserId}).then(
                     (res) => {
-                        this.setUser({})
-                        window.localStorage.removeItem('userInfo')
+                        window.localStorage.clear();
                         this.$router.push({name:'login'})
                     }
                 )
@@ -118,20 +117,6 @@
             nickNameModify(){
                 let name = this.user.NickName || this.user.MobilePhone || '';
                 this.$router.push({name:'userInfoName',query:{NickName:name}})
-                // MessageBox.prompt('请输入昵称').then(
-                //     ({ value, action }) => {
-                //         this.userunn_({UserId:this.user.UserId,NickName:value}).then(
-                //             (res) => {
-                //                 this.user.NickName = value;
-                //                 this._toast && (this._toast.close())
-                //                 setTimeout( () => { this._toast = Toast('修改成功') }, 0 )
-                //             }
-                //         )
-                //     },
-                //     (e) => {
-                //         console.info(e)
-                //     }
-                // );
             },
             photoCapture(){
                 let capture = this.$refs.capture

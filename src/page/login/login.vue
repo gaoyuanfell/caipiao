@@ -48,6 +48,9 @@
             
         },
         computed:{
+            ...mapState({
+                _user: state => state.user
+            }),
             ...mapGetters({
                 
             }),
@@ -59,7 +62,6 @@
             }
         },
         methods:{
-            //{"PD":"1234563333","UA":"13000000000"}
             ...mapMutations({
                 setUser:'setUser'
             }),
@@ -73,10 +75,8 @@
                 }
                 this.login_(this.user).then(
                     (res) => {
-                        this.setUser(res);//保存用户信息
-                        window.localStorage.setItem('userInfo',JSON.stringify(res));
+                        Object.assign(this._user, res);//保存用户信息
                         this.$router.push({name:'user'})
-                        console.info(res);
                     },
                     (e) => {
                         console.info(e);

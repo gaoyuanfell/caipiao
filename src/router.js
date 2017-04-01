@@ -244,7 +244,8 @@ let login_ = {
 routes.unshift(...[...tabs, ...user_c, info_c, index_c, login_]);
 
 const router = new Vuer({
-    routes: routes
+    routes: routes,
+    mode:'hash'
 })
 
 //登录拦截

@@ -1,15 +1,17 @@
 //图片压缩
 async function compressImg(blob, config) {
-    var $canvas = document.createElement("canvas");
-    $canvas.style.display = 'none';
-    document.body.appendChild($canvas);
-    var result = await readBlobAsDataURL(blob);
     config = config || {
-        wh: 400,
+        wh: 200,
         quality: 1,
         type: blob.type || 'image/jpeg'
     }
+    var $canvas = document.createElement("canvas");
+    $canvas.style.display = 'none';
+    document.body.appendChild($canvas);
+    config.start && config.start();
+    var result = await readBlobAsDataURL(blob);
     var bold = await canvasToImg($canvas, result, config);
+    config.end && config.end();
     document.body.removeChild($canvas)
     return bold;
 }

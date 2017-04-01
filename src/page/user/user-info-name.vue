@@ -56,7 +56,7 @@
                 this.userunn_({UserId:this.user.UserId, NickName:this.NickName}).then(
                     (res) => {
                         this.user.NickName = this.NickName;
-                        Toast('修改成功')
+                        Toast('修改成功');
                         this.$router.go(-1);
                     }
                 )

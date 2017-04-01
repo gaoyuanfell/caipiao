@@ -66,6 +66,7 @@
     import footer from '../../components/footer.vue';
     import $router from '../../router'
     import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
+    import { expires } from '../../store/config'
 
     export default {
         components: {
@@ -80,34 +81,23 @@
         created: function () {
             
         },
-        mounted: function () {
-            let userInfo = window.localStorage.getItem('userInfo');
-            if(userInfo){
-                try{
-                    let u = JSON.parse(userInfo);
-                    this.setUser(u);
-                }catch(e){
-                    this.$router.push({name:'login'})
-                    return;
-                }
-            }else{
-                this.$router.push({name:'login'})
-                return;
-            }
-            // console.info(this.user)
-            // //获取用户 基本数据 请求参数 PN or UID
+        activated:function(){
             this.userInfo_({ PN: this.user.MobilePhone }).then( 
                 (result) => {
-                    if(result){
-                        window.localStorage.setItem('userInfo',JSON.stringify(result));
-                    }
+                    console.info(this)
+                    this.setUser(result);
+                    // this.user = Object.assign(this.user, result)
                 }
              )
+        },
+        mounted: function () {
+            
         },
         computed: {
             ...mapState({
                 user: state => state.user
-            })
+            }),
+            
         },
         methods: {
             ...mapActions([
@@ -118,15 +108,16 @@
             })
         },
         beforeRouteEnter(to, from, next){
-            let userInfo = window.localStorage.getItem('userInfo');
-            if(userInfo){
-                try{
-                    let u = JSON.parse(userInfo);
-                    next()
-                }catch(e){
-                    $router.push({name:'login'})
-                    return;
-                }
+            let token = window.localStorage.getItem('express-token-key');
+            try{
+                token = JSON.parse(token)
+            }catch(e){
+                $router.push({name:'login'})
+                return;
+            }
+            let bo = token && Date.now() - token.expires < expires;
+            if(bo){
+                next();
             }else{
                 $router.push({name:'login'})
                 return;

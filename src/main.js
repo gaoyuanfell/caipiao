@@ -25,7 +25,7 @@ Vue.config.devtools = true;
 
 import App from './App.vue';
 //异步 加快首页加载速度
-setTimeout(function () {
+setTimeout(() => {
     const app = new Vue({
         el: '#app',
         store,

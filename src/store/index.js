@@ -11,7 +11,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        user: proxyStorage('userInfo'), //用户详细信息 user改变 将改变本地存储的值
+        user: new proxyStorage('userInfo'), //用户详细信息 user改变 将改变本地存储的值
     },
     getters: {
         getUser: state => {

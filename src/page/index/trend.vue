@@ -23,7 +23,7 @@ export default {
     },
     mounted() {
         this.noticetrend_({ lotteryType: 1, row: 40 }).then((data) => {
-            this.trendList = data.map((d) => { d.LotteryString = d.LotteryString.split(","); return d })
+            this.trendList = data.map((d) => { d.LotteryString = this.getBalls(d.LotteryString); return d })
         });
     },
     methods: {
@@ -33,6 +33,19 @@ export default {
         getBalls(ball){
             let rs = /\s/;
             let rd = /\,/;
+            if(ball.split(rs).length == 2){
+                let ba = [];
+                let b = ball.split(rs);
+                let _b = b[0];
+                let i = 0;
+                let s = "";
+                while(s = _b.substr(i, 2),s){
+                    ba.push(s);
+                    i += 2;
+                }
+                ba.push(b[1]);
+                return ba;
+            }
             if(rs.test(ball)){
                 return ball.split(rs);
             }
