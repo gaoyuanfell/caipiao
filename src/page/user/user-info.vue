@@ -51,6 +51,7 @@
     import Vue from 'vue';
     import header from '../../components/header.vue';
     import compressImg from '../../compress-img.js';
+    import canDeactivate from '../../canDeactivate';
     import { Actionsheet, Toast } from 'mint-ui';
     Vue.component(Actionsheet.name, Actionsheet);
     export default {
@@ -98,9 +99,9 @@
             }
         },
         methods:{
-            // ...mapMutations({
-            //     setUser:'setUser'
-            // }),
+            ...mapMutations({
+                // clearUser:'clearUser'
+            }),
             ...mapActions([
                 'doupload_',
                 'loginout_',
@@ -110,7 +111,8 @@
                 this.loginout_({UID:this.user.UserId}).then(
                     (res) => {
                         window.localStorage.clear();
-                        this.$router.push({name:'login'})
+                        // this.clearUser();
+                        this.$router.replace({name:'login'})
                     }
                 )
             },
@@ -178,6 +180,11 @@
                 // reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
                 // reader.readAsDataURL(file);
                 // console.info(this.$refs);
+            }
+        },
+        beforeRouteEnter(to, from, next){
+            if(canDeactivate()){
+                next();
             }
         }
     }

@@ -21,6 +21,7 @@
     import { mapGetters, mapActions, mapState, mapMutations } from 'vuex';
     import Vue from 'vue';
     import header from '../../components/header.vue';
+    import canDeactivate from '../../canDeactivate';
     import { Toast } from 'mint-ui';
     export default {
         components: {
@@ -61,6 +62,11 @@
                     }
                 )
             },
+        },
+        beforeRouteEnter(to, from, next){
+            if(canDeactivate()){
+                next();
+            }
         }
     }
 </script>

@@ -1,10 +1,22 @@
 function $proxy(_key, agent = {}) {
     if (window.localStorage.getItem(_key)) {
         let s = JSON.parse(window.localStorage.getItem(_key));
-        Object.assign(agent,s);
+        Object.assign(agent, s);
     }
     return new Proxy(agent, {
         get: function (target, key, receiver) {
+            if (window.localStorage.getItem(_key)) {
+                let s = JSON.parse(window.localStorage.getItem(_key));
+                for(let k in target){
+                    if(!Reflect.has(s, k)){
+                        Reflect.deleteProperty(target, k)
+                    }
+                }
+            }else{
+                for(let k in target){
+                    Reflect.deleteProperty(target, k)
+                }
+            }
             return Reflect.get(target, key, receiver);
         },
         set: function (target, key, value, receiver) {
@@ -17,7 +29,7 @@ function $proxy(_key, agent = {}) {
         deleteProperty: function (target, key) {
             if (Reflect.has(target, key)) {
                 let b = Reflect.deleteProperty(target, key);
-                if(b){
+                if (b) {
                     window.localStorage.setItem(_key, JSON.stringify(target))
                 }
                 return b;

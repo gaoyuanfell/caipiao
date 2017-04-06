@@ -13,11 +13,11 @@ axios.defaults.baseURL = baseUrl;
 axios.defaults.timeout = 25000;
 
 let toast = null;
-let Token = new proxyStorage('express-token-key');;
+let Token = new proxyStorage('express-token-key');
 
 axios.interceptors.request.use(function (config) {
     Indicator.open({spinnerType:'fading-circle'});
-    if(Token){
+    if(Token && Token.token){
         config.headers['Token'] = Token.token;
         Token.expires = Date.now();
     }
@@ -32,6 +32,7 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
     Indicator.close();
+    console.info(response);
     let token = response.data.token;
     if(response.status == 200 && token){
         Token.token = token;
@@ -46,7 +47,7 @@ axios.interceptors.response.use(function (response) {
     }
     if(response.data.Code == 203){//没有登录 转向登录页面
         window.localStorage.clear();
-        router.push({name:'login'})
+        router.replace({name:'login'})
     }
     throw 'not Data';
 }, function (error) {

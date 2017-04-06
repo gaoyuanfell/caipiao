@@ -59,6 +59,7 @@
 <script>
     import { mapGetters } from 'vuex';
     import header from '../../components/header.vue';
+    import canDeactivate from '../../canDeactivate';
     export default {
         components: {
             'y-header': header,
@@ -78,6 +79,14 @@
             ...mapGetters({
                 
             })
+        },
+        methods:{
+
+        },
+        beforeRouteEnter(to, from, next){
+            if(canDeactivate()){
+                next();
+            }
         }
     }
 </script>

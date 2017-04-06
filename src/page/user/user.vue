@@ -64,9 +64,9 @@
 <script>
     import header from '../../components/header.vue';
     import footer from '../../components/footer.vue';
-    import $router from '../../router'
+    import canDeactivate from '../../canDeactivate';
     import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
-    import { expires } from '../../store/config'
+    
 
     export default {
         components: {
@@ -82,6 +82,9 @@
             
         },
         activated:function(){
+            
+        },
+        mounted: function () {
             this.userInfo_({ PN: this.user.MobilePhone }).then( 
                 (result) => {
                     console.info(this)
@@ -89,9 +92,6 @@
                     // this.user = Object.assign(this.user, result)
                 }
              )
-        },
-        mounted: function () {
-            
         },
         computed: {
             ...mapState({
@@ -108,19 +108,8 @@
             })
         },
         beforeRouteEnter(to, from, next){
-            let token = window.localStorage.getItem('express-token-key');
-            try{
-                token = JSON.parse(token)
-            }catch(e){
-                $router.push({name:'login'})
-                return;
-            }
-            let bo = token && Date.now() - token.expires < expires;
-            if(bo){
+            if(canDeactivate()){
                 next();
-            }else{
-                $router.push({name:'login'})
-                return;
             }
         }
     }
