@@ -31,16 +31,19 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        exclude: /node_modules/,
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        exclude: /node_modules/,
         include: [resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'file-loader',
+        exclude: /node_modules/,
         query: {
           // limit: 1000000,
           name: utils.assetsPath('img/[name].[ext]')
@@ -49,6 +52,7 @@ module.exports = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'file-loader',
+        exclude: /node_modules/,
         query: {
           name: utils.assetsPath('fonts/[name].[ext]')
         }
